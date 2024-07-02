@@ -1,11 +1,10 @@
-# Name der App
+# BookVault
 
-**(Optional) Füge hier einen kurzen, knackigen Slogan ein, um deine App zu bewerben.**
+**Mit BookVault behältst Du den Überblick über Deine Bücher, Leseerlebnisse und findest immer das Richtige, wenn Du es brauchst.**
 
-Beschreibe hier in ein paar Sätzen, was deine App bietet.
+Hast Du schon wieder ein Buch doppelt gekauft oder hast Du es gleich im Laden liegen lassen, weil Du nicht wusstest, ob Du es schon besitzt? BookVault hilft Dir, Deinen Buchbestand immer Griffbereit zu haben, Deine Leseerlebnisse und Ergebnisse festzuhalten, und verschiedene Bücherlisten zu verwalten, wie Beispielsweise Bestands- und Wunschliste, sowie Listen für geliehene und verliehene Bücher.
 
-Für wen ist sie geeignet? Welches Problem löst sie? Was macht deine App anders / besser als andere Apps?
-Vermeide es, hier allzusehr in technische Details zu gehen.
+Die App ermöglicht Dir detailierte Notizen, Gedanke und Zitate für jedes einzelne Buch festzuhalten. Der Barcode-Scanner erlaubt es Dir Deine Bücher schnell und einfach mit einer online Datenbank abzugleichen. Dadurch fügst Du Deine Bücher der BookVault Bibliothek blitzschnell hinzu.
 
 ## Geplantes Design
 Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma).
@@ -20,9 +19,16 @@ Wenn deine App dann so weit ist, dass du echte Screenshots machen kannst, sollte
 ## Features
 Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits umgesetzt wurde.
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] ...
+- [ ] ISBN-Suche
+- [ ] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
+- [ ] Buchnotizen
+- [ ] Themensortierte, buchübergreifende Notizsammelbecken
+- [ ] Barcode-Scanner
+- [ ] Favoriten setzen
+- [ ] Bücherbewertungen Appintern
+- [ ] Empfehlungen neuer Bücher nach Geschmack 
+- [ ] Gruppen zum Austausch über Bücher/ Themen
+- [ ] Schwarzesbrett für Bücher: Kauf- und Leihbörse
 
 
 ## Technischer Aufbau
@@ -33,8 +39,12 @@ Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositorie
 #### Datenspeicherung
 Welche Daten speicherst du? Wo und wie (Firebase, Core Data, etwas anderes)?
 
+Es werden Daten Lokal in CoreData gespeichert, für offline Unterstützung und in Firebase um geräteübergreifend arbeiten zu können.
+
 #### API Calls
 Welche APIs verwendest du?
+
+ISBNdb.com
 
 #### 3rd-Party Frameworks
 Verwendest du Frameworks, die nicht von dir stammen? Bspw. Swift Packages für Firebase, fertige SwiftUI-Views o.Ä.? Gib diese hier an.
