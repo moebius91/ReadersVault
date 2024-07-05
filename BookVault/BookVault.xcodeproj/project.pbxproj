@@ -25,6 +25,8 @@
 		C1383C4C2C38330500CDB87A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C492C38330500CDB87A /* ApiError.swift */; };
 		C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C4A2C38330500CDB87A /* ApiRepository.swift */; };
 		C1383C502C3833BE00CDB87A /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C4F2C3833BE00CDB87A /* CommunityView.swift */; };
+		C1383C592C38356300CDB87A /* BookVault.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1383C552C38356300CDB87A /* BookVault.xcdatamodeld */; };
+		C1383C5A2C38356300CDB87A /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C562C38356300CDB87A /* PersistentStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		C1383C492C38330500CDB87A /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		C1383C4A2C38330500CDB87A /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		C1383C4F2C3833BE00CDB87A /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		C1383C562C38356300CDB87A /* PersistentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
+		C1383C582C38356300CDB87A /* BookVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookVault.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		C1383C3E2C3832D200CDB87A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C1383C572C38356300CDB87A /* CoreData */,
 				C1383C432C3832DC00CDB87A /* ApiModel */,
 			);
 			path = Models;
@@ -203,6 +208,15 @@
 				C1383C4F2C3833BE00CDB87A /* CommunityView.swift */,
 			);
 			path = CommunityView;
+			sourceTree = "<group>";
+		};
+		C1383C572C38356300CDB87A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C1383C552C38356300CDB87A /* BookVault.xcdatamodeld */,
+				C1383C562C38356300CDB87A /* PersistentStore.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +293,11 @@
 				C125BFD82C333144000636AF /* BookListView.swift in Sources */,
 				C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */,
 				C125BFD02C332180000636AF /* Tab.swift in Sources */,
+				C1383C592C38356300CDB87A /* BookVault.xcdatamodeld in Sources */,
 				C1383C442C3832DC00CDB87A /* ApiBook.swift in Sources */,
 				C125BFE12C340DAE000636AF /* SettingsView.swift in Sources */,
 				C125BFDB2C340D65000636AF /* SearchView.swift in Sources */,
+				C1383C5A2C38356300CDB87A /* PersistentStore.swift in Sources */,
 				C1383C4C2C38330500CDB87A /* ApiError.swift in Sources */,
 				C1383C472C3832DC00CDB87A /* ApiSearchResult.swift in Sources */,
 				C125BFC22C32C652000636AF /* ContentView.swift in Sources */,
@@ -494,6 +510,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C1383C552C38356300CDB87A /* BookVault.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C1383C582C38356300CDB87A /* BookVault.xcdatamodel */,
+			);
+			currentVersion = C1383C582C38356300CDB87A /* BookVault.xcdatamodel */;
+			name = BookVault.xcdatamodeld;
+			path = "/Users/nikoothersen/Developer/Praxisprojekt/ios-praxisprojekt-moebius91/BookVault/BookVault/Models/CoreData/BookVault.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C125BFB42C32C652000636AF /* Project object */;
 }
