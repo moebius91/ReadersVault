@@ -16,9 +16,9 @@ enum Tab: String, Identifiable, CaseIterable {
     var title: String {
         switch self {
         case .home: return "Startseite"
-        case .booklists: return "Listen"
+        case .booklists: return "Bibliothek"
         case .search: return "Suche"
-        case .notes: return "Notizen"
+        case .notes: return "Community"
         case .settings: return "Einstellungen"
         }
     }
@@ -28,7 +28,7 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return "house"
         case .booklists: return "books.vertical"
         case .search: return "magnifyingglass"
-        case .notes: return "list.clipboard"
+        case .notes: return "person.2.fill"
         case .settings: return "gear"
         }
     }
@@ -38,8 +38,8 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return AnyView(HomeView())
         case .booklists: return AnyView(BookListView())
         case .search: return AnyView(SearchView())
-        case .notes: return AnyView(NotesListView())
-        case .settings: return AnyView(NotesListView())
+        case .notes: return AnyView(CommunityView())
+        case .settings: return AnyView(SettingsView())
         }
     }
 }

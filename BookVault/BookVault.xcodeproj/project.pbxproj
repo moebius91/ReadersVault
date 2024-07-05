@@ -24,6 +24,7 @@
 		C1383C472C3832DC00CDB87A /* ApiSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C422C3832DC00CDB87A /* ApiSearchResult.swift */; };
 		C1383C4C2C38330500CDB87A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C492C38330500CDB87A /* ApiError.swift */; };
 		C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C4A2C38330500CDB87A /* ApiRepository.swift */; };
+		C1383C502C3833BE00CDB87A /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C4F2C3833BE00CDB87A /* CommunityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		C1383C422C3832DC00CDB87A /* ApiSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSearchResult.swift; sourceTree = "<group>"; };
 		C1383C492C38330500CDB87A /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		C1383C4A2C38330500CDB87A /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
+		C1383C4F2C3833BE00CDB87A /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		C125BFBE2C32C652000636AF /* BookVault */ = {
 			isa = PBXGroup;
 			children = (
+				C1383C4E2C3833B200CDB87A /* CommunityView */,
 				C1383C482C3832DF00CDB87A /* Repositories */,
 				C1383C3E2C3832D200CDB87A /* Models */,
 				C125BFDF2C340DA5000636AF /* SettingsView */,
@@ -194,6 +197,14 @@
 			path = ApiRepository;
 			sourceTree = "<group>";
 		};
+		C1383C4E2C3833B200CDB87A /* CommunityView */ = {
+			isa = PBXGroup;
+			children = (
+				C1383C4F2C3833BE00CDB87A /* CommunityView.swift */,
+			);
+			path = CommunityView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -278,6 +289,7 @@
 				C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,
+				C1383C502C3833BE00CDB87A /* CommunityView.swift in Sources */,
 				C125BFC02C32C652000636AF /* BookVaultApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
