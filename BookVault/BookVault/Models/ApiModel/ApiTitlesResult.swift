@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct ApiTitlesResult: Codable {
+    let books: [ApiBook]
+}

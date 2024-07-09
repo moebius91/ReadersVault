@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct SingleBookResultView: View {
+    @EnvironmentObject private var viewModel: SearchViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(viewModel.book?.title ?? "no title")
     }
 }
 
 #Preview {
     SingleBookResultView()
+        .environmentObject(SearchViewModel())
 }

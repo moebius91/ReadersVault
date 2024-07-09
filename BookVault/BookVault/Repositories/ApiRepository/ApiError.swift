@@ -8,5 +8,5 @@
 import Foundation
 
 enum ApiError: Error {
-    case invalidUrl
+    case invalidUrl, bookNotFound
 }

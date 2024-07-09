@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct ApiAuthorsResult: Codable {
+    let authors: [String]
+}

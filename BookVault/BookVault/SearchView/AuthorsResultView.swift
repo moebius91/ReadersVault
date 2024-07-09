@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct AuthorsResultView: View {
+    @EnvironmentObject private var viewModel: SearchViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(viewModel.authors, id: \.self) { author in
+            Text(author)
+        }
+        .listStyle(.plain)
     }
 }
 
 #Preview {
-    AuthorsResultView()
+    var viewModel = SearchViewModel()
+    viewModel.getAuthors("Tim Burton")
+    
+    return AuthorsResultView()
+        .environmentObject(viewModel)
 }
