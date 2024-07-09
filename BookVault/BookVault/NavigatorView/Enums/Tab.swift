@@ -9,7 +9,7 @@ import SwiftUI
 
 // Entnommen einer Tagesaufgabe
 enum Tab: String, Identifiable, CaseIterable {
-    case home, booklists, search, notes, settings
+    case home, booklists, search, community, notes
     
     var id: String { rawValue }
     
@@ -18,8 +18,8 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return "Startseite"
         case .booklists: return "Bibliothek"
         case .search: return "Suche"
-        case .notes: return "Community"
-        case .settings: return "Einstellungen"
+        case .community: return "Community"
+        case .notes: return "Notizen"
         }
     }
     
@@ -28,8 +28,8 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return "house"
         case .booklists: return "books.vertical"
         case .search: return "magnifyingglass"
-        case .notes: return "person.2.fill"
-        case .settings: return "gear"
+        case .community: return "person.2.fill"
+        case .notes: return "list.clipboard"
         }
     }
     
@@ -38,8 +38,8 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return AnyView(HomeView())
         case .booklists: return AnyView(BookListView())
         case .search: return AnyView(SearchView())
-        case .notes: return AnyView(CommunityView())
-        case .settings: return AnyView(SettingsView())
+        case .community: return AnyView(CommunityView())
+        case .notes: return AnyView(NotesListView())
         }
     }
 }
