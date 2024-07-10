@@ -32,17 +32,19 @@ struct SearchView: View {
             VStack {
                 if !searchString.isEmpty {
                     if selectedIndex == 0 {
-                        HStack {
-                            Text("Suchergebnis:")
-                                .font(.title2)
-                                .bold()
-                                .padding(.top,4)
-                                .padding(.leading)
+                        if viewModel.book != nil {
+                            HStack {
+                                Text("Suchergebnis:")
+                                    .font(.title2)
+                                    .bold()
+                                    .padding(.top,4)
+                                    .padding(.leading)
+                                Spacer()
+                            }
+                            SingleBookResultView()
+                                .environmentObject(viewModel)
                             Spacer()
                         }
-                        SingleBookResultView()
-                            .environmentObject(viewModel)
-                        Spacer()
                     } else if selectedIndex == 1 {
                         VStack {
                             HStack {
@@ -73,14 +75,15 @@ struct SearchView: View {
             .navigationTitle("Suche")
             .searchable(text: $searchString, prompt: "Suche nach \(searchOptions[selectedIndex])")
             .onSubmit(of: .search) {
-                if selectedIndex == 0 {
-                    if searchString.count == 13 {
-                        viewModel.getBookByIsbn(searchString)
-                    }
-                } else if selectedIndex == 1 {
+                switch selectedIndex {
+                case 0:
+                    searchString.count == 13 ? viewModel.getBookByIsbn(searchString) : nil
+                case 1:
                     viewModel.getBooksByTitle(searchString)
-                }  else if selectedIndex == 2 {
+                case 2:
                     viewModel.getAuthors(searchString)
+                default:
+                    fatalError()
                 }
             }
             .onChange(of: selectedIndex) {

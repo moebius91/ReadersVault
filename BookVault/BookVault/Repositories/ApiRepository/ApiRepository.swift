@@ -29,8 +29,8 @@ class ApiRepository {
         return apiBookResult.book
     }
     
-    func getAuthors(author: String) async throws -> [String] {
-        guard let url = URL(string: "https://api2.isbndb.com/authors/\(author.replacingOccurrences(of: " ", with: "%20"))") else {
+    func getAuthors(name: String) async throws -> [String] {
+        guard let url = URL(string: "https://api2.isbndb.com/authors/\(name.replacingOccurrences(of: " ", with: "%20"))") else {
             throw ApiError.invalidUrl
         }
         
@@ -41,6 +41,20 @@ class ApiRepository {
         let apiAuthorsResult = try JSONDecoder().decode(ApiAuthorsResult.self, from: data)
         
         return apiAuthorsResult.authors
+    }
+    
+    func getBooksByAuthor(_ name: String) async throws -> [ApiBook] {
+        guard let url = URL(string: "https://api2.isbndb.com/author/\(name.replacingOccurrences(of: " ", with: "%20"))") else {
+            throw ApiError.invalidUrl
+        }
+        
+        let urlRequest = urlRequest(url)
+        
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        
+        let apiTitlesResult = try JSONDecoder().decode(ApiTitlesResult.self, from: data)
+        
+        return apiTitlesResult.books
     }
     
     func getBooksByTitle(title: String) async throws -> [ApiBook] {

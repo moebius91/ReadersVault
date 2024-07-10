@@ -12,7 +12,16 @@ struct AuthorsResultView: View {
     
     var body: some View {
         List(viewModel.authors, id: \.self) { author in
-            Text(author)
+            
+            NavigationLink(destination: {
+                BooksResultView()
+                    .environmentObject(viewModel)
+                    .onAppear {
+                        viewModel.getBooksByAuthor(author)
+                    }
+            }, label: {
+                Text(author)
+            })
         }
         .listStyle(.plain)
     }

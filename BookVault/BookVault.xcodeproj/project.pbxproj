@@ -109,18 +109,12 @@
 		C125BFBE2C32C652000636AF /* BookVault */ = {
 			isa = PBXGroup;
 			children = (
-				C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */,
-				C1383C4E2C3833B200CDB87A /* CommunityView */,
+				C162C0C02C3D7A0E00C84781 /* Views */,
 				C1383C482C3832DF00CDB87A /* Repositories */,
 				C1383C3E2C3832D200CDB87A /* Models */,
-				C125BFDF2C340DA5000636AF /* SettingsView */,
-				C125BFDC2C340D92000636AF /* NotesListView */,
-				C125BFD92C340D5D000636AF /* SearchView */,
-				C125BFD62C33313D000636AF /* BookListView */,
-				C125BFD32C332814000636AF /* HomeView */,
-				C125BFCD2C332162000636AF /* NavigatorView */,
 				C125BFBF2C32C652000636AF /* BookVaultApp.swift */,
 				C125BFC32C32C653000636AF /* Assets.xcassets */,
+				C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */,
 				C125BFC52C32C653000636AF /* Preview Content */,
 			);
 			path = BookVault;
@@ -248,6 +242,20 @@
 				C1383C562C38356300CDB87A /* PersistentStore.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		C162C0C02C3D7A0E00C84781 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C1383C4E2C3833B200CDB87A /* CommunityView */,
+				C125BFDF2C340DA5000636AF /* SettingsView */,
+				C125BFDC2C340D92000636AF /* NotesListView */,
+				C125BFD92C340D5D000636AF /* SearchView */,
+				C125BFD62C33313D000636AF /* BookListView */,
+				C125BFD32C332814000636AF /* HomeView */,
+				C125BFCD2C332162000636AF /* NavigatorView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
