@@ -4,7 +4,7 @@
 
 Hast Du schon wieder ein Buch doppelt gekauft oder hast Du es gleich im Laden liegen lassen, weil Du nicht wusstest, ob Du es schon besitzt? BookVault hilft Dir, Deinen Buchbestand immer Griffbereit zu haben, Deine Leseerlebnisse und Ergebnisse festzuhalten, und verschiedene Bücherlisten zu verwalten, wie Beispielsweise Bestands- und Wunschliste, sowie Listen für geliehene und verliehene Bücher.
 
-Die App ermöglicht Dir detailierte Notizen, Gedanke und Zitate für jedes einzelne Buch festzuhalten und auch thematisch zu gruppieren. So hast Du immer Zugriff auf alle Notizen eines Buches oder eines Themas. Der Barcode-Scanner erlaubt es Dir Deine Bücher schnell und einfach mit einer online Datenbank abzugleichen. Dadurch fügst Du Deine Bücher der BookVault Bibliothek blitzschnell hinzu.
+Die App ermöglicht Dir detailierte Notizen, Gedanken und Zitate für jedes einzelne Buch festzuhalten und auch thematisch zu gruppieren. So hast Du immer Zugriff auf alle Notizen eines Buches oder eines Themas. Der Barcode-Scanner erlaubt es Dir Deine Bücher schnell und einfach mit einer online Datenbank abzugleichen. Dadurch fügst Du Deine Bücher der BookVault Bibliothek blitzschnell hinzu.
 
 ## Geplantes Design
 Screenshots aus dem Simulator:
@@ -31,14 +31,27 @@ Die folgenden Features sind geplant und, sofern abgehakt, bereits implementiert.
 #### Projektaufbau
 Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das ViewModel enthalten sind. Die App benutzt die MVVM Architektur und benutzt Repositorys.
 
+```
 └── BookVault
-    ├── BookListView
-    ├── HomeView
-    ├── NavigatorView
-    │   └── Enums
-    ├── NotesListView
-    ├── SearchView
-    └── SettingsView
+    ├── Models
+    │   ├── ApiModel
+    │   └── CoreData
+    │       └── BookVault.xcdatamodeld
+    │           └── BookVault.xcdatamodel
+    ├── Preview Content
+    │   └── Preview Assets.xcassets
+    ├── Repositories
+    │   └── ApiRepository
+    └── Views
+        ├── BookListView
+        ├── CommunityView
+        ├── HomeView
+        ├── NavigatorView
+        │   └── Enums
+        ├── NotesListView
+        ├── SearchView
+        └── SettingsView
+```
 
 Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.
 
