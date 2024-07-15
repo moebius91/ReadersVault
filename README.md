@@ -19,11 +19,11 @@ Screenshots aus dem Simulator:
 Die folgenden Features sind geplant und, sofern abgehakt, bereits implementiert.
 
 - [x] ISBN-Suche
-- [ ] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
+- [x] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
 - [ ] Buchnotizen
 - [ ] Themensortierte, buchübergreifende Notizsammelbecken
 - [ ] Barcode-Scanner
-- [ ] Favoriten setzen
+- [x] Favoriten setzen
 
 
 ## Technischer Aufbau
