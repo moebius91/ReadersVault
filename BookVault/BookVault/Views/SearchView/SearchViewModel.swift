@@ -63,6 +63,11 @@ class SearchViewModel: ObservableObject {
         let cdBook = CDBook(context: PersistentStore.shared.context)
         cdBook.id = UUID()
         cdBook.title = self.book?.title
+        cdBook.image = self.book?.image
+        cdBook.isbn = self.book?.isbn
+        cdBook.isbn10 = self.book?.isbn10
+        cdBook.isbn13 = self.book?.isbn13
+        cdBook.publisher = self.book?.publisher
         
         self.book?.authors?.forEach { name in
             if let author = checkAndCreateAuthor(name) {
