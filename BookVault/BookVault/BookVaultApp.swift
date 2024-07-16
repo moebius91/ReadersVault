@@ -18,9 +18,7 @@ struct BookVaultApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            NavigatorView()
-//            ScannerViewByMedium()
-            ScannerView()
+            NavigatorView()
         }
     }
 }
