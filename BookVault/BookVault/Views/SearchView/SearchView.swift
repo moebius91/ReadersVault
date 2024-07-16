@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
+    @StateObject private var scannerViewModel = ScannerViewModel()
     
     @State private var searchString: String = ""
     @State private var selectedIndex = 0
@@ -74,6 +75,15 @@ struct SearchView: View {
             }
             .navigationTitle("Suche")
             .searchable(text: $searchString, prompt: "Suche nach \(searchOptions[selectedIndex])")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        scannerViewModel.isScanning = true
+                    }) {
+                        Image(systemName: "barcode.viewfinder")
+                    }
+                }
+            }
             .onSubmit(of: .search) {
                 switch selectedIndex {
                 case 0:
@@ -99,6 +109,28 @@ struct SearchView: View {
                         fatalError()
                     }
                 }
+            }
+            .sheet(isPresented: $scannerViewModel.isScanning) {
+                Text("Klicke auf das entsprechende Kästchen:")
+                    .padding()
+                    .bold()
+                DocumentScannerView(viewModel: scannerViewModel, searchString: $searchString)
+                    .onAppear {
+                        switch selectedIndex {
+                        case 0:
+                            scannerViewModel.startBarcodeScanner()
+                        case 1:
+                            scannerViewModel.startTextScanner()
+                        case 2:
+                            scannerViewModel.startTextScanner()
+                        default:
+                            break
+                        }
+                    }
+                    .onDisappear {
+                        scannerViewModel.scannedText = searchString
+                        scannerViewModel.stopScanning()
+                    }
             }
         }
     }
