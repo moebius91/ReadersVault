@@ -9,11 +9,12 @@ import Foundation
 
 struct ApiBook: Codable, Hashable {
     let publisher: String?
+    let title: String
     let image: URL
     let title_long: String?
     let authors: [String]?
-    let title: String
     let isbn13: String
     let isbn: String
     let isbn10: String?
+    let synopsis: String
 }
