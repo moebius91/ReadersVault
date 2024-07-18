@@ -93,3 +93,5 @@ iOSInjectionProject/
 **/.DS_Store
 .DS_Store
 ApiKeys.swift
+ScannerViewByMedium.swift
+TestScannerView.swift

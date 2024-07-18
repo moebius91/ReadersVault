@@ -30,7 +30,7 @@ class ApiRepository {
     }
     
     func getAuthors(name: String) async throws -> [String] {
-        guard let url = URL(string: "https://api2.isbndb.com/authors/\(name.replacingOccurrences(of: " ", with: "%20"))") else {
+        guard let url = URL(string: "https://api2.isbndb.com/authors/\(name)") else {
             throw ApiError.invalidUrl
         }
         
@@ -44,7 +44,7 @@ class ApiRepository {
     }
     
     func getBooksByAuthor(_ name: String) async throws -> [ApiBook] {
-        guard let url = URL(string: "https://api2.isbndb.com/author/\(name.replacingOccurrences(of: " ", with: "%20"))") else {
+        guard let url = URL(string: "https://api2.isbndb.com/author/\(name)") else {
             throw ApiError.invalidUrl
         }
         
@@ -58,7 +58,7 @@ class ApiRepository {
     }
     
     func getBooksByTitle(title: String) async throws -> [ApiBook] {
-        guard let url = URL(string: "https://api2.isbndb.com/books/\(title.replacingOccurrences(of: " ", with: "%20"))?page=1&pageSize=20&column=title") else {
+        guard let url = URL(string: "https://api2.isbndb.com/books/\(title)?page=1&pageSize=20&column=title") else {
             throw ApiError.invalidUrl
         }
         
