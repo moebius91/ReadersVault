@@ -10,15 +10,10 @@ import SwiftUI
 struct VerticalBookListsView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
     
-    @State private var isPresented: Bool = false
-    @State private var showingAlert: Bool = false
-    
-    @State private var newListTitle: String = ""
-    
     var body: some View {
         Section {
             Button(action: {
-                isPresented = true
+                viewModel.presentNewListSheet = true
             }, label: {
                 Text("Neue Liste")
             })
@@ -55,30 +50,6 @@ struct VerticalBookListsView: View {
                 .font(.title2)
         }
         .padding(0)
-        .sheet(isPresented: $isPresented) {
-            Form {
-                TextField("Titel der neuen Liste", text: $newListTitle)
-                    .padding(8)
-                Button(action: {
-                    if !newListTitle.isEmpty {
-                        viewModel.createList(newListTitle)
-                        newListTitle = ""
-                        isPresented.toggle()
-                    } else {
-                        showingAlert.toggle()
-                    }
-                }, label: {
-                    Text("Liste hinzufügen")
-                })
-                //                Spacer()
-            }
-            .padding()
-        }
-        .alert("Liste nicht erstellt!\nTitel darf nicht leer sein.", isPresented: $showingAlert) {
-            Button("OK", role: .cancel) {
-                showingAlert.toggle()
-            }
-        }
     }
 }
 
