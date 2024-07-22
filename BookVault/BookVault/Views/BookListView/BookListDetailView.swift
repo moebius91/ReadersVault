@@ -37,7 +37,7 @@ struct BookListDetailView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.getCDBooks()
+                        viewModel.list != nil ? viewModel.getCDBooks() : viewModel.getOwnCDBooks()
                     }
                     .navigationTitle("Bücher hinzufügen")
                 }

@@ -79,9 +79,6 @@ struct HorizontalBookListView: View {
                                     // Eigene View für die Vorgegebenen Liste erstellen
                                     BookListDetailView()
                                         .environmentObject(viewModel)
-                                        .onAppear {
-                                            viewModel.getOwnCDBooks()
-                                        }
                                 }, label: {
                                     Text("Alle\nBücher")
                                 })
@@ -117,4 +114,8 @@ struct HorizontalBookListView: View {
 
 #Preview("LibraryView") {
     LibraryView()
+}
+
+#Preview("NavigatorView") {
+    NavigatorView()
 }
