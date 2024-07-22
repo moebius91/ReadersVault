@@ -35,6 +35,42 @@ class LibraryViewModel: ObservableObject {
         }
     }
     
+    func getOwnCDBooks() {
+        let fetchRequest = CDBook.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "isOwned = %@ OR (isOwned = %@", NSNumber(value: true), NSNumber(value: false), NSNumber(value: true))
+        
+        do {
+            self.books = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+    
+    func getBorrowedCDBooks() {
+        let fetchRequest = CDBook.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "isOwned = %@ AND isLoaned = %@", NSNumber(value: false), NSNumber(value: true))
+        
+        do {
+            self.books = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+    
+    func getLentCDBooks() {
+        let fetchRequest = CDBook.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "isOwned = %@ AND isLoaned = %@", NSNumber(value: true), NSNumber(value: true))
+        
+        do {
+            self.books = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+    
     func getCDLists() {
         let fetchRequest = CDList.fetchRequest()
         
@@ -59,6 +95,18 @@ class LibraryViewModel: ObservableObject {
     
     func updateBookFavorite(_ book: CDBook) {
         book.isFavorite.toggle()
+        
+        saveAndFetchBooks()
+    }
+    
+    func updateBookIsOwned(_ book: CDBook) {
+        book.isOwned.toggle()
+        
+        saveAndFetchBooks()
+    }
+    
+    func updateBookIsLoaned(_ book: CDBook) {
+        book.isLoaned.toggle()
         
         saveAndFetchBooks()
     }

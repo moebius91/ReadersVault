@@ -16,6 +16,7 @@ struct SearchView: View {
     
     let searchOptions = ["ISBN", "Titel", "Autor"]
     
+    // 9783424200447
     
     
     var body: some View {
@@ -32,8 +33,9 @@ struct SearchView: View {
             Spacer()
             VStack {
                 if !searchString.isEmpty {
-                    if selectedIndex == 0 {
-                        if viewModel.book != nil {
+                    switch selectedIndex {
+                    case 0:
+                        if viewModel.book != nil && searchString.isNumeric {
                             HStack {
                                 Text("Suchergebnis:")
                                     .font(.title2)
@@ -46,8 +48,23 @@ struct SearchView: View {
                                 .environmentObject(viewModel)
                             Spacer()
                         }
-                    } else if selectedIndex == 1 {
-                        VStack {
+                    case 1:
+                        if !viewModel.books.isEmpty {
+                            VStack {
+                                HStack {
+                                    Text("Suchergebnisse:")
+                                        .font(.title2)
+                                        .bold()
+                                        .padding(.top,4)
+                                        .padding(.leading)
+                                    Spacer()
+                                }
+                                BooksResultView()
+                                    .environmentObject(viewModel)
+                            }
+                        }
+                    case 2:
+                        if !viewModel.authors.isEmpty {
                             HStack {
                                 Text("Suchergebnisse:")
                                     .font(.title2)
@@ -56,20 +73,11 @@ struct SearchView: View {
                                     .padding(.leading)
                                 Spacer()
                             }
-                            BooksResultView()
+                            AuthorsResultView()
                                 .environmentObject(viewModel)
                         }
-                    } else if selectedIndex == 2 {
-                        HStack {
-                            Text("Suchergebnisse:")
-                                .font(.title2)
-                                .bold()
-                                .padding(.top,4)
-                                .padding(.leading)
-                            Spacer()
-                        }
-                        AuthorsResultView()
-                            .environmentObject(viewModel)
+                    default:
+                        fatalError()
                     }
                 }
             }
@@ -100,14 +108,23 @@ struct SearchView: View {
                 if !searchString.isEmpty {
                     switch selectedIndex {
                     case 0:
+                        searchString = ""
+                        viewModel.book = nil
                         viewModel.getBookByIsbn(searchString)
                     case 1:
+                        searchString = ""
                         viewModel.getBooksByTitle(searchString)
                     case 2:
+                        searchString = ""
                         viewModel.getAuthors(searchString)
                     default:
                         fatalError()
                     }
+                }
+            }
+            .sheet(isPresented: $viewModel.showSafari) {
+                if let url = viewModel.book?.buyURL {
+                    SafariView(url: url)
                 }
             }
             .sheet(isPresented: $scannerViewModel.isScanning) {
@@ -119,9 +136,7 @@ struct SearchView: View {
                         switch selectedIndex {
                         case 0:
                             scannerViewModel.startBarcodeScanner()
-                        case 1:
-                            scannerViewModel.startTextScanner()
-                        case 2:
+                        case 1, 2:
                             scannerViewModel.startTextScanner()
                         default:
                             break
@@ -139,3 +154,4 @@ struct SearchView: View {
 #Preview {
     SearchView()
 }
+

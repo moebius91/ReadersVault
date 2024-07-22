@@ -19,19 +19,17 @@ struct VerticalBookListsView: View {
             })
             .buttonStyle(BorderlessButtonStyle())
             ForEach(viewModel.lists) { list in
-                HStack {
-                    NavigationLink(
-                        destination: {
-                            BookListDetailView()
-                                .environmentObject(viewModel)
-                                .onAppear {
-                                    viewModel.saveList(list)
-                                    viewModel.getBooksByList(list)
-                                }
-                        }
-                    ) {
-                        Text(list.title ?? "no title")
+                NavigationLink(
+                    destination: {
+                        BookListDetailView()
+                            .environmentObject(viewModel)
+                            .onAppear {
+                                viewModel.saveList(list)
+                                viewModel.getBooksByList(list)
+                            }
                     }
+                ) {
+                    Text(list.title ?? "no title")
                 }
                 .swipeActions {
                     Button(role: .destructive, action: {
@@ -45,7 +43,7 @@ struct VerticalBookListsView: View {
             }
             .frame(maxWidth: .infinity)
         } header: {
-            Text("Deine Listen")
+            Text("Eigene Listen")
                 .bold()
                 .font(.title2)
         }
@@ -56,11 +54,17 @@ struct VerticalBookListsView: View {
 
 #Preview {
     NavigationStack {
-        let viewModel = LibraryViewModel()
-        viewModel.getCDBooks()
-        viewModel.getCDLists()
-        
-        return VerticalBookListsView()
-            .environmentObject(viewModel)
+        VStack(alignment: .leading) {
+            let viewModel = LibraryViewModel()
+            viewModel.getCDBooks()
+            viewModel.getCDLists()
+            
+            return VerticalBookListsView()
+                .environmentObject(viewModel)
+        }
     }
+}
+
+#Preview("LibraryView") {
+    LibraryView()
 }

@@ -22,7 +22,7 @@ Die folgenden Features sind geplant und, sofern abgehakt, bereits implementiert.
 - [x] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
 - [ ] Buchnotizen
 - [ ] Themensortierte, buchübergreifende Notizsammelbecken
-- [ ] Barcode-Scanner
+- [x] Barcode-Scanner
 - [x] Favoriten setzen
 
 

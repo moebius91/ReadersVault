@@ -50,7 +50,7 @@ struct SingleBookResultView: View {
                 }
                 .buttonStyle(BorderedProminentButtonStyle())
                 Button("Kaufen") {
-                    // Verlinkung zu Amazon
+                    viewModel.showSafari = true
                 }
                 .buttonStyle(BorderedButtonStyle())
             }

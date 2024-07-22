@@ -17,7 +17,7 @@ struct BookListDetailView: View {
             List(viewModel.books) { book in
                 Text(book.title ?? "no title")
             }
-            .navigationTitle(viewModel.list?.title ?? "Books")
+            .navigationTitle(viewModel.list?.title ?? "Deine Bücher")
             .toolbar {
                 Button("", systemImage: "plus") {
                     isPresented.toggle()

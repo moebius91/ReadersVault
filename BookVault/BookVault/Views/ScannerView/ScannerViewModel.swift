@@ -76,15 +76,13 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
     func processItem(item: RecognizedItem) {
         switch item {
         case .text(let text):
-//            print("Text Observation - \(text.observation)")
-//            print("Text transcript - \(text.transcript)")
             scannedText = text.transcript
             break
         case .barcode(let barcode):
             // mit Hilfe von ChatGPT erstellt
+            // Ich wusste nicht, wie ich die ISBN aus dem vom Scanner gelieferte Ergebnis extrahiere.
             if barcode.observation.symbology == .ean13 {
                 let payload: String = barcode.observation.payloadStringValue ?? ""
-//                print("EAN-13 Barcode detected: \(payload)")
                 scannedText = payload
             }
         @unknown default:

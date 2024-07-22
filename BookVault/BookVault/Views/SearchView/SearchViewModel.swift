@@ -13,6 +13,8 @@ class SearchViewModel: ObservableObject {
     @Published var books: [ApiBook] = []
     @Published var authors: [String] = []
     
+    @Published var showSafari: Bool = false
+    
     private let repository: ApiRepository = ApiRepository.shared
     
     func saveBook(_ book: ApiBook) {
@@ -63,7 +65,7 @@ class SearchViewModel: ObservableObject {
         let cdBook = CDBook(context: PersistentStore.shared.context)
         cdBook.id = UUID()
         cdBook.title = self.book?.title
-        cdBook.image = self.book?.image
+        cdBook.coverUrl = self.book?.image
         cdBook.isbn = self.book?.isbn
         cdBook.isbn10 = self.book?.isbn10
         cdBook.isbn13 = self.book?.isbn13
@@ -76,7 +78,15 @@ class SearchViewModel: ObservableObject {
             }
         }
         
-        PersistentStore.shared.save()
+        if let imageUrl = book?.image {
+            downloadImage(from: imageUrl) { data in
+                cdBook.coverImage = data
+                PersistentStore.shared.save()
+            }
+        } else {
+            PersistentStore.shared.save()
+        }
+        
     }
     
     
@@ -100,5 +110,20 @@ class SearchViewModel: ObservableObject {
         } catch {
             return nil
         }
+    }
+    
+    private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, error == nil {
+                DispatchQueue.main.async {
+                    completion(data)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+        .resume()
     }
 }

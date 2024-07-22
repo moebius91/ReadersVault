@@ -7,12 +7,15 @@
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="authors" inverseEntity="CDBook"/>
     </entity>
     <entity name="CDBook" representedClassName="CDBook" syncable="YES" codeGenerationType="class">
+        <attribute name="coverImage" optional="YES" attributeType="Binary"/>
+        <attribute name="coverUrl" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="URI"/>
         <attribute name="isbn" optional="YES" attributeType="String"/>
         <attribute name="isbn10" optional="YES" attributeType="String"/>
         <attribute name="isbn13" optional="YES" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isLoaned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isOwned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="publisher" optional="YES" attributeType="String"/>
         <attribute name="short_description" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -23,6 +26,7 @@
     </entity>
     <entity name="CDList" representedClassName="CDList" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isPredefined" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="lists" inverseEntity="CDBook"/>
     </entity>
