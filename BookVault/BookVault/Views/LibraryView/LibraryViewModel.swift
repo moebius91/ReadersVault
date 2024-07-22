@@ -38,7 +38,7 @@ class LibraryViewModel: ObservableObject {
     func getOwnCDBooks() {
         let fetchRequest = CDBook.fetchRequest()
         
-        fetchRequest.predicate = NSPredicate(format: "isOwned = %@ OR (isOwned = %@", NSNumber(value: true), NSNumber(value: false), NSNumber(value: true))
+        fetchRequest.predicate = NSPredicate(format: "isOwned = %@ OR (isOwned = %@ AND isLoaned = %@)", NSNumber(value: true), NSNumber(value: false), NSNumber(value: true))
         
         do {
             self.books = try PersistentStore.shared.context.fetch(fetchRequest)
