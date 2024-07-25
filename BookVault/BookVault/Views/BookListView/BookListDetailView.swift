@@ -9,9 +9,9 @@ import SwiftUI
 
 struct BookListDetailView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
-    
+
     @State private var isPresented: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             List(viewModel.books) { book in
@@ -37,7 +37,7 @@ struct BookListDetailView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.list != nil ? viewModel.getCDBooks() : viewModel.getOwnCDBooks()
+                        viewModel.getCDBooks()
                     }
                     .navigationTitle("Bücher hinzufügen")
                 }
@@ -49,19 +49,19 @@ struct BookListDetailView: View {
 #Preview {
     let viewModel = LibraryViewModel()
     viewModel.getCDBooks()
-    
+
     let list = CDList(context: PersistentStore.shared.context)
     list.title = "Dies ist ein Titel"
-    
+
     viewModel.books.forEach { book in
         list.addToBooks(book)
     }
-    
+
     viewModel.getCDLists()
     viewModel.saveList(list)
-    
+
     viewModel.getBooksByList(viewModel.lists.first ?? viewModel.list!)
-    
+
     return BookListDetailView()
         .environmentObject(viewModel)
         .onAppear {

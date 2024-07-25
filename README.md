@@ -20,7 +20,7 @@ Die folgenden Features sind geplant und, sofern abgehakt, bereits implementiert.
 
 - [x] ISBN-Suche
 - [x] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
-- [ ] Buchnotizen
+- [x] Buchnotizen
 - [ ] Themensortierte, buchübergreifende Notizsammelbecken
 - [x] Barcode-Scanner
 - [x] Favoriten setzen
@@ -33,6 +33,7 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
 
 ```
 └── BookVault
+    ├── Extensions
     ├── Models
     │   ├── ApiModel
     │   └── CoreData
@@ -41,16 +42,28 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
     ├── Preview Content
     │   └── Preview Assets.xcassets
     ├── Repositories
-    │   └── ApiRepository
+    │   ├── ApiRepository
+    │   └── ScannerRepository
     └── Views
+        ├── BookDetailView
+        │   └── BookDetailSubViews
         ├── BookListView
         ├── CommunityView
         ├── HomeView
+        ├── LibraryView
+        │   └── LibrarySubViews
         ├── NavigatorView
         │   └── Enums
+        ├── NoteDetailView
+        ├── NotesBookSelectionView
+        ├── NotesEditView
         ├── NotesListView
+        │   └── NotesListSubViews
+        ├── SafariView
+        ├── ScannerView
         ├── SearchView
-        └── SettingsView
+        │   └── SearchViewSubViews
+        └── SettingsView_deprecated
 ```
 
 Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.

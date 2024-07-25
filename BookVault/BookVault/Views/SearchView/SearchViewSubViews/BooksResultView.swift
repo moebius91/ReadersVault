@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BooksResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
-    
+
     var body: some View {
         List(viewModel.books, id: \.self) { book in
             NavigationLink(destination: {
@@ -44,9 +44,9 @@ struct BooksResultView: View {
 }
 
 #Preview {
-    var viewModel = SearchViewModel()
+    let viewModel = SearchViewModel()
     viewModel.getBooksByTitle("Tim Burton")
-    
+
     return BooksResultView()
         .environmentObject(viewModel)
 }

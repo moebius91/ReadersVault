@@ -9,14 +9,13 @@ import SwiftUI
 
 struct BookDetailView: View {
     @StateObject var viewModel: BookDetailViewModel
-    
+
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text(viewModel.title)) {
                     HStack {
                         Spacer()
-                        
                         if let imageData = viewModel.coverImage, let uiImage = UIImage(data: imageData) {
                             Image(uiImage: uiImage)
                                 .resizable()
@@ -64,8 +63,9 @@ struct BookDetailView: View {
                         }
                         HStack {
                             Text("ISBN-10: ")
-                                .bold()                              .font(.subheadline)
-                            Text(viewModel.isbn10)
+                                .bold()
+                                .font(.subheadline)
+                            Text("\(viewModel.isbn10 == "")")
                                 .font(.subheadline)
                         }
                         HStack {
@@ -81,16 +81,16 @@ struct BookDetailView: View {
                                 .foregroundColor(viewModel.isFavorite ? .green : .gray)
                             Text("Favorit")
                         }
-                        
+
                         HStack {
                             Image(systemName: viewModel.isOwned ? "checkmark.circle.fill" : "circle")
                                 .foregroundColor(viewModel.isOwned ? .green : .gray)
                             Text("Im Besitz")
                         }
-                        
+
                         HStack {
                             if (!viewModel.isOwned && !viewModel.isLoaned) || (viewModel.isOwned && !viewModel.isLoaned) {
-                                
+
                             } else {
                                 Image(systemName: viewModel.isLoaned ? "checkmark.circle.fill" : "circle")
                                     .foregroundColor(viewModel.isLoaned ? .green : .gray)
@@ -105,18 +105,43 @@ struct BookDetailView: View {
                             Text("Beschreibung")
                                 .font(.headline)
                                 .padding(.top, 5)
-                            
+
                             Text(viewModel.shortDescription)
                                 .font(.body)
                                 .padding(.bottom, 5)
                         }
-                        
+
                         if !viewModel.titleLong.isEmpty {
                             Text("Long Title")
                                 .font(.headline)
-                            
+
                             Text(viewModel.titleLong)
                                 .font(.body)
+                        }
+                    }
+                }
+                if !viewModel.notes.isEmpty {
+                    Section(header: Text("Notizen")) {
+                        List(viewModel.notes) { note in
+                            NavigationLink(destination: {
+                                NoteDetailView(note: note)
+                            }) {
+                                Text(note.title ?? "no name")
+                            }
+                        }
+                    }
+                }
+                if !viewModel.tags.isEmpty {
+                    Section(header: Text("Schlagworte")) {
+                        List(viewModel.tags) { tag in
+                            Text(tag.name ?? "no name")
+                        }
+                    }
+                }
+                if !viewModel.categories.isEmpty {
+                    Section(header: Text("Kategorien")) {
+                        List(viewModel.categories) { category in
+                            Text(category.name ?? "no name")
                         }
                     }
                 }
@@ -141,13 +166,18 @@ struct BookDetailView: View {
 #Preview {
     let libraryViewModel = LibraryViewModel()
     libraryViewModel.getCDBooks()
+
     let book = libraryViewModel.books.first
-    
+
     guard book != nil else {
         return TestView()
     }
-    
+
     let viewModel = BookDetailViewModel(book: book!)
-    
+
     return BookDetailView(viewModel: viewModel)
+}
+
+#Preview("Navi") {
+    NavigatorView()
 }

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct AuthorsResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
-    
+
     var body: some View {
         List(viewModel.authors, id: \.self) { author in
-            
+
             NavigationLink(destination: {
                 BooksResultView()
                     .environmentObject(viewModel)
@@ -28,9 +28,9 @@ struct AuthorsResultView: View {
 }
 
 #Preview {
-    var viewModel = SearchViewModel()
+    let viewModel = SearchViewModel()
     viewModel.getAuthors("Tim Burton")
-    
+
     return AuthorsResultView()
         .environmentObject(viewModel)
 }

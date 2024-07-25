@@ -57,6 +57,15 @@
 		C1EFDD082C4A91E2003032BF /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD072C4A91E2003032BF /* BookDetailView.swift */; };
 		C1EFDD0A2C4A93E1003032BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD092C4A93E1003032BF /* TestView.swift */; };
 		C1EFDD0C2C4A9A1D003032BF /* BookDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD0B2C4A9A1D003032BF /* BookDetailEditView.swift */; };
+		C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD102C4FC5FE003032BF /* NotesListViewModel.swift */; };
+		C1EFDD132C4FDF97003032BF /* TagSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD122C4FDF97003032BF /* TagSelectionView.swift */; };
+		C1EFDD1A2C5009E5003032BF /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD192C5009E5003032BF /* CustomSearchBar.swift */; };
+		C1EFDD1C2C500C3A003032BF /* CreateTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD1B2C500C3A003032BF /* CreateTagView.swift */; };
+		C1EFDD1F2C504540003032BF /* NotesBookSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD1E2C504540003032BF /* NotesBookSelectionView.swift */; };
+		C1EFDD222C504BDF003032BF /* NotesEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD212C504BDF003032BF /* NotesEditView.swift */; };
+		C1EFDD432C515589003032BF /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD422C515589003032BF /* CategorySelectionView.swift */; };
+		C1EFDD452C51571E003032BF /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD442C51571E003032BF /* CreateCategoryView.swift */; };
+		C1EFDD482C51646E003032BF /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD472C51646E003032BF /* NoteDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +112,16 @@
 		C1EFDD072C4A91E2003032BF /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		C1EFDD092C4A93E1003032BF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		C1EFDD0B2C4A9A1D003032BF /* BookDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailEditView.swift; sourceTree = "<group>"; };
+		C1EFDD102C4FC5FE003032BF /* NotesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewModel.swift; sourceTree = "<group>"; };
+		C1EFDD122C4FDF97003032BF /* TagSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionView.swift; sourceTree = "<group>"; };
+		C1EFDD192C5009E5003032BF /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		C1EFDD1B2C500C3A003032BF /* CreateTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTagView.swift; sourceTree = "<group>"; };
+		C1EFDD1E2C504540003032BF /* NotesBookSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesBookSelectionView.swift; sourceTree = "<group>"; };
+		C1EFDD212C504BDF003032BF /* NotesEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesEditView.swift; sourceTree = "<group>"; };
+		C1EFDD252C50F73A003032BF /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C1EFDD422C515589003032BF /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		C1EFDD442C51571E003032BF /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
+		C1EFDD472C51646E003032BF /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +146,7 @@
 		C125BFB32C32C652000636AF = {
 			isa = PBXGroup;
 			children = (
+				C1EFDD252C50F73A003032BF /* .swiftlint.yml */,
 				C125BFBE2C32C652000636AF /* BookVault */,
 				C125BFBD2C32C652000636AF /* Products */,
 			);
@@ -210,7 +230,11 @@
 		C125BFDC2C340D92000636AF /* NotesListView */ = {
 			isa = PBXGroup;
 			children = (
+				C1EFDD182C5009D8003032BF /* NotesListSubViews */,
 				C125BFDD2C340D9C000636AF /* NotesListView.swift */,
+				C1EFDD102C4FC5FE003032BF /* NotesListViewModel.swift */,
+				C1EFDD122C4FDF97003032BF /* TagSelectionView.swift */,
+				C1EFDD422C515589003032BF /* CategorySelectionView.swift */,
 			);
 			path = NotesListView;
 			sourceTree = "<group>";
@@ -282,6 +306,9 @@
 		C162C0C02C3D7A0E00C84781 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C1EFDD462C516464003032BF /* NoteDetailView */,
+				C1EFDD202C504BD5003032BF /* NotesEditView */,
+				C1EFDD1D2C50450B003032BF /* NotesBookSelectionView */,
 				C1EFDD042C4A91CC003032BF /* BookDetailView */,
 				C1B038EF2C49320200013EB1 /* SafariView */,
 				C18E6A282C469EA600FFB734 /* ScannerView */,
@@ -366,11 +393,53 @@
 		C1EFDD042C4A91CC003032BF /* BookDetailView */ = {
 			isa = PBXGroup;
 			children = (
+				C1EFDD0D2C4E9BC2003032BF /* BookDetailSubViews */,
 				C1EFDD052C4A91D6003032BF /* BookDetailViewModel.swift */,
 				C1EFDD072C4A91E2003032BF /* BookDetailView.swift */,
-				C1EFDD0B2C4A9A1D003032BF /* BookDetailEditView.swift */,
 			);
 			path = BookDetailView;
+			sourceTree = "<group>";
+		};
+		C1EFDD0D2C4E9BC2003032BF /* BookDetailSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFDD0B2C4A9A1D003032BF /* BookDetailEditView.swift */,
+			);
+			path = BookDetailSubViews;
+			sourceTree = "<group>";
+		};
+		C1EFDD182C5009D8003032BF /* NotesListSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFDD192C5009E5003032BF /* CustomSearchBar.swift */,
+				C1EFDD1B2C500C3A003032BF /* CreateTagView.swift */,
+				C1EFDD442C51571E003032BF /* CreateCategoryView.swift */,
+			);
+			path = NotesListSubViews;
+			sourceTree = "<group>";
+		};
+		C1EFDD1D2C50450B003032BF /* NotesBookSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFDD1E2C504540003032BF /* NotesBookSelectionView.swift */,
+			);
+			path = NotesBookSelectionView;
+			sourceTree = "<group>";
+		};
+		C1EFDD202C504BD5003032BF /* NotesEditView */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFDD212C504BDF003032BF /* NotesEditView.swift */,
+			);
+			path = NotesEditView;
+			sourceTree = "<group>";
+		};
+		C1EFDD462C516464003032BF /* NoteDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFDD472C51646E003032BF /* NoteDetailView.swift */,
+			);
+			path = NoteDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +452,7 @@
 				C125BFB82C32C652000636AF /* Sources */,
 				C125BFB92C32C652000636AF /* Frameworks */,
 				C125BFBA2C32C652000636AF /* Resources */,
+				C1EFDD232C50ED8A003032BF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -452,15 +522,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C1EFDD232C50ED8A003032BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C125BFB82C32C652000636AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1EFDD452C51571E003032BF /* CreateCategoryView.swift in Sources */,
 				C18E6A272C469DC700FFB734 /* ScannerRepository.swift in Sources */,
 				C125BFD22C3327CE000636AF /* NavigatorView.swift in Sources */,
 				C125BFD82C333144000636AF /* BookListDetailView.swift in Sources */,
 				C1A3FD0E2C403F30001E7F13 /* VerticalBookListsView.swift in Sources */,
+				C1EFDD132C4FDF97003032BF /* TagSelectionView.swift in Sources */,
 				C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */,
 				C16949932C411A290047820D /* LibraryView.swift in Sources */,
 				C125BFD02C332180000636AF /* Tab.swift in Sources */,
@@ -468,9 +560,11 @@
 				C18D58C82C3D30D200ADF7F2 /* BooksResultView.swift in Sources */,
 				C18E6A382C46D3E900FFB734 /* TestScannerView.swift in Sources */,
 				C18E6A182C4510E100FFB734 /* String+Extension.swift in Sources */,
+				C1EFDD482C51646E003032BF /* NoteDetailView.swift in Sources */,
 				C1EFC3C22C3C1E0700DB15B3 /* SearchViewModel.swift in Sources */,
 				C18D58D02C3D423E00ADF7F2 /* ApiAuthorsResult.swift in Sources */,
 				C18D58CE2C3D420800ADF7F2 /* ApiTitlesResult.swift in Sources */,
+				C1EFDD432C515589003032BF /* CategorySelectionView.swift in Sources */,
 				C1383C592C38356300CDB87A /* BookVault.xcdatamodeld in Sources */,
 				C1383C442C3832DC00CDB87A /* ApiBook.swift in Sources */,
 				C18E6A302C46A9F000FFB734 /* ScannerViewByMedium.swift in Sources */,
@@ -478,10 +572,13 @@
 				C18E6A3A2C46D61C00FFB734 /* DocumentScannerView.swift in Sources */,
 				C125BFE12C340DAE000636AF /* SettingsView.swift in Sources */,
 				C18E6A322C46AB8800FFB734 /* RoundedRectLabel.swift in Sources */,
+				C1EFDD222C504BDF003032BF /* NotesEditView.swift in Sources */,
 				C18D58D22C3D437700ADF7F2 /* AuthorsResultView.swift in Sources */,
 				C125BFDB2C340D65000636AF /* SearchView.swift in Sources */,
+				C1EFDD1C2C500C3A003032BF /* CreateTagView.swift in Sources */,
 				C1383C5A2C38356300CDB87A /* PersistentStore.swift in Sources */,
 				C1EFDD0C2C4A9A1D003032BF /* BookDetailEditView.swift in Sources */,
+				C1EFDD1F2C504540003032BF /* NotesBookSelectionView.swift in Sources */,
 				C1383C4C2C38330500CDB87A /* ApiError.swift in Sources */,
 				C18D58CA2C3D30DD00ADF7F2 /* SingleBookResultView.swift in Sources */,
 				C1EFDD062C4A91D6003032BF /* BookDetailViewModel.swift in Sources */,
@@ -490,11 +587,13 @@
 				C1A3FD0A2C403DBC001E7F13 /* HorizontalBookListView.swift in Sources */,
 				C1EFDD082C4A91E2003032BF /* BookDetailView.swift in Sources */,
 				C18E6A2A2C469EC300FFB734 /* ScannerViewModel.swift in Sources */,
+				C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,
 				C1EFDD0A2C4A93E1003032BF /* TestView.swift in Sources */,
 				C1383C502C3833BE00CDB87A /* CommunityView.swift in Sources */,
 				C125BFC02C32C652000636AF /* BookVaultApp.swift in Sources */,
+				C1EFDD1A2C5009E5003032BF /* CustomSearchBar.swift in Sources */,
 				C1B038F12C49321300013EB1 /* SafariView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +730,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BookVault/Preview Content\"";
 				DEVELOPMENT_TEAM = 3WCF4J63JK;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to scan text and codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -662,6 +762,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BookVault/Preview Content\"";
 				DEVELOPMENT_TEAM = 3WCF4J63JK;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Your camera is used to scan text and codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

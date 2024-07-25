@@ -10,12 +10,12 @@ import Firebase
 
 @main
 struct BookVaultApp: App {
-    
+
     init() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
     }
-    
+
     var body: some Scene {
         WindowGroup {
             NavigatorView()

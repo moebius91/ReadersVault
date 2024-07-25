@@ -12,15 +12,15 @@ class SearchViewModel: ObservableObject {
     @Published var book: ApiBook?
     @Published var books: [ApiBook] = []
     @Published var authors: [String] = []
-    
+
     @Published var showSafari: Bool = false
-    
+
     private let repository: ApiRepository = ApiRepository.shared
-    
+
     func saveBook(_ book: ApiBook) {
         self.book = book
     }
-    
+
     func getBookByIsbn(_ isbn: String) {
         Task {
             do {
@@ -30,7 +30,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getAuthors(_ name: String) {
         Task {
             do {
@@ -40,7 +40,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getBooksByAuthor(_ name: String) {
         Task {
             do {
@@ -50,7 +50,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getBooksByTitle(_ title: String) {
         Task {
             do {
@@ -60,7 +60,7 @@ class SearchViewModel: ObservableObject {
             }
         }
     }
-    
+
     func saveBookInCoreData() {
         let cdBook = CDBook(context: PersistentStore.shared.context)
         cdBook.id = UUID()
@@ -70,14 +70,14 @@ class SearchViewModel: ObservableObject {
         cdBook.isbn10 = self.book?.isbn10
         cdBook.isbn13 = self.book?.isbn13
         cdBook.publisher = self.book?.publisher
-        
+
         self.book?.authors?.forEach { name in
             if let author = checkAndCreateAuthor(name) {
                 cdBook.addToAuthors(author)
                 author.addToBooks(cdBook)
             }
         }
-        
+
         if let imageUrl = book?.image {
             downloadImage(from: imageUrl) { data in
                 cdBook.coverImage = data
@@ -86,15 +86,14 @@ class SearchViewModel: ObservableObject {
         } else {
             PersistentStore.shared.save()
         }
-        
+
     }
-    
-    
+
     // Hilfsfunktionen
     private func checkAndCreateAuthor(_ name: String) -> CDAuthor? {
         let fetchRequest = CDAuthor.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-        
+
         do {
             let results = try PersistentStore.shared.context.fetch(fetchRequest)
             if let existingAuthor = results.first {
@@ -103,7 +102,7 @@ class SearchViewModel: ObservableObject {
                 let newAuthor = CDAuthor(context: PersistentStore.shared.context)
                 newAuthor.id = UUID()
                 newAuthor.name = name
-                
+
                 PersistentStore.shared.save()
                 return newAuthor
             }
@@ -111,9 +110,9 @@ class SearchViewModel: ObservableObject {
             return nil
         }
     }
-    
+
     private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data, error == nil {
                 DispatchQueue.main.async {
                     completion(data)

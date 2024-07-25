@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VerticalBookListsView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
-    
+
     var body: some View {
         Section {
             Button(action: {
@@ -51,14 +51,13 @@ struct VerticalBookListsView: View {
     }
 }
 
-
 #Preview {
     NavigationStack {
         VStack(alignment: .leading) {
             let viewModel = LibraryViewModel()
             viewModel.getCDBooks()
             viewModel.getCDLists()
-            
+
             return VerticalBookListsView()
                 .environmentObject(viewModel)
         }

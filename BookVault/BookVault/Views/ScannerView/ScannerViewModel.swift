@@ -16,57 +16,57 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
     enum ScanMode {
             case barcode, text
     }
-    
+
     @Published var scannedText: String = ""
     @Published var isScanning: Bool = false
     @Published var scanMode: ScanMode = .barcode
-    
+
     let repository = ScannerRepository()
     var scannerViewController: DataScannerViewController?
     private var roundBoxMappings: [UUID: UIView] = [:]
-    
+
     override init() {
         super.init()
         configureScanner()
     }
-    
+
     private func configureScanner() {
         scannerViewController = repository.configureScanner(delegate: self, scanMode: scanMode)
     }
-    
+
     private func startScanning() {
         guard let scannerViewController = scannerViewController else { return }
         try? scannerViewController.startScanning()
         isScanning = true
     }
-    
+
     func startBarcodeScanner() {
         scanMode = .barcode
         startScanning()
     }
-    
+
     func startTextScanner() {
         scanMode = .text
         startScanning()
     }
-    
+
     func stopScanning() {
         scannerViewController?.stopScanning()
         isScanning = false
     }
-    
+
     func processAddedItems(items: [RecognizedItem]) {
         for item in items {
             processItem(item: item)
         }
     }
-    
+
     func processRemovedItems(items: [RecognizedItem]) {
         for item in items {
             removeRoundBoxFromItem(item: item)
         }
     }
-    
+
     func processUpdatedItems(items: [RecognizedItem]) {
         for item in items {
             updateRoundBoxToItem(item: item)
@@ -77,7 +77,6 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
         switch item {
         case .text(let text):
             scannedText = text.transcript
-            break
         case .barcode(let barcode):
             // mit Hilfe von ChatGPT erstellt
             // Ich wusste nicht, wie ich die ISBN aus dem vom Scanner gelieferte Ergebnis extrahiere.
@@ -91,14 +90,14 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
         let frame = getRoundBoxFrame(item: item)
         addRoundBoxToItem(frame: frame, text: scannedText, item: item)
     }
-    
+
     func addRoundBoxToItem(frame: CGRect, text: String, item: RecognizedItem) {
         let roundedRectView = RoundedRectLabel(frame: frame)
         roundedRectView.setText(text: text)
         scannerViewController?.overlayContainerView.addSubview(roundedRectView)
         roundBoxMappings[item.id] = roundedRectView
     }
-    
+
     func removeRoundBoxFromItem(item: RecognizedItem) {
         if let roundBoxView = roundBoxMappings[item.id] {
             if roundBoxView.superview != nil {
@@ -107,7 +106,7 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
             }
         }
     }
-    
+
     func updateRoundBoxToItem(item: RecognizedItem) {
         if let roundBoxView = roundBoxMappings[item.id] {
             if roundBoxView.superview != nil {
@@ -116,7 +115,7 @@ class ScannerViewModel: NSObject, ObservableObject, DataScannerViewControllerDel
             }
         }
     }
-    
+
     func getRoundBoxFrame(item: RecognizedItem) -> CGRect {
         let frame = CGRect(
             x: item.bounds.topLeft.x,

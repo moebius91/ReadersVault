@@ -10,33 +10,57 @@ import CoreData
 
 struct HorizontalBookListView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
-    
+
     var body: some View {
         if !viewModel.books.isEmpty {
             Section {
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(viewModel.books, id:\.self) { book in
+                        ForEach(viewModel.books, id: \.self) { book in
                             NavigationLink(destination: {
                                 BookDetailView(viewModel: BookDetailViewModel(book: book))
                             }, label: {
                                 VStack {
                                     ZStack(alignment: .topLeading) {
-                                        AsyncImage(
-                                            url: book.coverUrl,
-                                            content: { image in
-                                                image
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
-                                                
-                                            }, placeholder: {
-                                                Image("photo.artframe")
-                                            }
-                                        )
-                                        .frame(width: 75, height: 120)
-                                        .padding(0)
-                                        
+                                        if let imageData = book.coverImage, let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 75, height: 120)
+                                                .padding(0)
+                                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                                                .clipped()
+                                        } else {
+                                            AsyncImage(
+                                                url: book.coverUrl,
+                                                content: { image in
+                                                    image
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                                                },
+                                                placeholder: {
+                                                    Image("photo.artframe")
+                                                }
+                                            )
+                                            .frame(width: 75, height: 120)
+                                            .padding(0)
+                                        }
+//                                        AsyncImage(
+//                                            url: book.coverUrl,
+//                                            content: { image in
+//                                                image
+//                                                    .resizable()
+//                                                    .scaledToFill()
+//                                                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
+//                                                
+//                                            }, placeholder: {
+//                                                Image("photo.artframe")
+//                                            }
+//                                        )
+//                                        .frame(width: 75, height: 120)
+//                                        .padding(0)
+
                                         Button(action: {
                                             viewModel.updateBookFavorite(book)
                                         }) {
@@ -97,15 +121,14 @@ struct HorizontalBookListView: View {
             Text("Keine Bücher in der Bibliothek vorhanden.")
         }
     }
-    
-}
 
+}
 
 #Preview {
     NavigationStack {
         let viewModel = LibraryViewModel()
         viewModel.getCDBooks()
-        
+
         return HorizontalBookListView()
             .environmentObject(viewModel)
     }

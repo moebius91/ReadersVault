@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SingleBookResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
-    
+
     var body: some View {
         VStack {
             VStack {
@@ -46,7 +46,7 @@ struct SingleBookResultView: View {
             .padding()
             HStack {
                 Button("Zur Bibliothek hinzufügen") {
-                    viewModel.saveBookInCoreData() 
+                    viewModel.saveBookInCoreData()
                 }
                 .buttonStyle(BorderedProminentButtonStyle())
                 Button("Kaufen") {
@@ -60,9 +60,9 @@ struct SingleBookResultView: View {
 }
 
 #Preview {
-    var viewModel = SearchViewModel()
+    let viewModel = SearchViewModel()
     viewModel.getBookByIsbn("9783424200447")
-    
+
     return SingleBookResultView()
         .environmentObject(viewModel)
 }

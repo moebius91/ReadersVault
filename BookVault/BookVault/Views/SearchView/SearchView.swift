@@ -10,15 +10,14 @@ import SwiftUI
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @StateObject private var scannerViewModel = ScannerViewModel()
-    
+
     @State private var searchString: String = ""
     @State private var selectedIndex = 0
-    
+
     let searchOptions = ["ISBN", "Titel", "Autor"]
-    
+
     // 9783424200447
-    
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -40,7 +39,7 @@ struct SearchView: View {
                                 Text("Suchergebnis:")
                                     .font(.title2)
                                     .bold()
-                                    .padding(.top,4)
+                                    .padding(.top, 4)
                                     .padding(.leading)
                                 Spacer()
                             }
@@ -55,7 +54,7 @@ struct SearchView: View {
                                     Text("Suchergebnisse:")
                                         .font(.title2)
                                         .bold()
-                                        .padding(.top,4)
+                                        .padding(.top, 4)
                                         .padding(.leading)
                                     Spacer()
                                 }
@@ -69,7 +68,7 @@ struct SearchView: View {
                                 Text("Suchergebnisse:")
                                     .font(.title2)
                                     .bold()
-                                    .padding(.top,4)
+                                    .padding(.top, 4)
                                     .padding(.leading)
                                 Spacer()
                             }
@@ -154,4 +153,3 @@ struct SearchView: View {
 #Preview {
     SearchView()
 }
-

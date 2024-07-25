@@ -10,10 +10,10 @@ import SwiftUI
 let bookList: [String] = ["Buch 1", "Buch 2", "Buch 3", "Buch 4", "Buch 5"]
 
 struct HomeView: View {
-    
+
     @State private var settingsPresented = false
     @State private var searchString = ""
-    
+
     var body: some View {
         NavigationStack {
             // Liste Empfehlungen
@@ -60,7 +60,7 @@ struct HomeView: View {
             .searchable(text: $searchString)
             .onChange(of: searchString) {
                 // ViewModel Suchfunktion
-                
+
             }
             .toolbar {
                 Button("Einstellungen", systemImage: "gear") {

@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import PhotosUI
+import SwiftUI
 
 class BookDetailViewModel: ObservableObject {
     @Published var book: CDBook
-    
+
     @Published var coverUrl: URL
     @Published var coverImage: Data?
     @Published var isbn: String
@@ -22,9 +24,15 @@ class BookDetailViewModel: ObservableObject {
     @Published var shortDescription: String
     @Published var title: String
     @Published var titleLong: String
-    
+
     @Published var isSheetShown = false
-    
+    @Published var photosPickerItem: PhotosPickerItem?
+    @Published var selectedImage: UIImage?
+
+    @Published var tags: [CDTag] = []
+    @Published var categories: [CDCategory] = []
+    @Published var notes: [CDNote] = []
+
     init(book: CDBook) {
         self.book = book
         self.coverUrl = book.coverUrl ?? URL(string: "https://example.com")!
@@ -39,20 +47,70 @@ class BookDetailViewModel: ObservableObject {
         self.shortDescription = book.short_description ?? ""
         self.title = book.title ?? ""
         self.titleLong = book.title_long ?? ""
+
+        self.getNotesTagsAndCategoriesForBook()
     }
-    
+
     func getBookFromDB() {
         let fetchRequest = CDBook.fetchRequest()
-        
+
         fetchRequest.predicate = NSPredicate(format: "id = %@", book.id! as any CVarArg)
-        
+
         do {
             self.book = try PersistentStore.shared.context.fetch(fetchRequest).first!
         } catch {
             return
         }
     }
-    
+
+    func getNotesTagsAndCategoriesForBook() {
+        getTagsForBook()
+        getCategoriesForBook()
+        getNotesForBook()
+    }
+
+    func getTagsForBook() {
+        guard let bookId = self.book.id else { return }
+
+        let fetchRequest = CDTag.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
+
+        do {
+            self.tags = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+
+    func getCategoriesForBook() {
+        guard let bookId = self.book.id else { return }
+
+        let fetchRequest = CDCategory.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
+
+        do {
+            self.categories = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+
+    func getNotesForBook() {
+        guard let bookId = self.book.id else { return }
+
+        let fetchRequest = CDNote.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(format: "book.id == %@", bookId.uuidString)
+
+        do {
+            self.notes = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+
     func updateCDBook() {
         book.title = self.title
         book.title_long = self.titleLong
@@ -65,15 +123,55 @@ class BookDetailViewModel: ObservableObject {
         book.publisher = self.publisher
         book.short_description = self.shortDescription
         book.coverUrl = self.coverUrl
-        
-        PersistentStore.shared.save()
-        self.getBookFromDB()
+
+        if self.photosPickerItem != nil {
+            self.photosPickerItem?.loadTransferable(type: Data.self) { result in
+                if let data = try? result.get() {
+                    self.book.coverImage = data
+
+                    PersistentStore.shared.save()
+                    self.getBookFromDB()
+                } else {
+                    PersistentStore.shared.save()
+                    self.getBookFromDB()
+                }
+            }
+        } else {
+            PersistentStore.shared.save()
+            self.getBookFromDB()
+        }
     }
-    
+
+    func restoreCoverFromApi() {
+        if let imageUrl = book.coverUrl {
+            downloadImage(from: imageUrl) { data in
+                self.book.coverImage = data
+                self.coverImage = data
+                self.updateCDBook()
+            }
+        }
+    }
+
     func deleteBook(_ book: CDBook) {
         PersistentStore.shared.context.delete(book)
-        
+
         PersistentStore.shared.save()
-        self.getBookFromDB()
+    }
+
+    // Hilfsfunktionen
+
+    private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let data = data, error == nil {
+                DispatchQueue.main.async {
+                    completion(data)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+        .resume()
     }
 }

@@ -10,9 +10,9 @@ import SwiftUI
 // Entnommen einer Tagesaufgabe
 enum Tab: String, Identifiable, CaseIterable {
     case home, library, search, community, notes
-    
+
     var id: String { rawValue }
-    
+
     var title: String {
         switch self {
         case .home: return "Startseite"
@@ -22,7 +22,7 @@ enum Tab: String, Identifiable, CaseIterable {
         case .notes: return "Notizen"
         }
     }
-    
+
     var icon: String {
         switch self {
         case .home: return "house"
@@ -32,7 +32,7 @@ enum Tab: String, Identifiable, CaseIterable {
         case .notes: return "list.clipboard"
         }
     }
-    
+
     var view: AnyView {
         switch self {
         case .home: return AnyView(HomeView())

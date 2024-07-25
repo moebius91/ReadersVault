@@ -9,23 +9,24 @@ import SwiftUI
 
 struct LibraryView: View {
     @StateObject private var viewModel = LibraryViewModel()
-    
+    @State var path = NavigationPath()
+
     @State private var newListTitle: String = ""
     @State private var isPresented: Bool = false
-    
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 HorizontalBookListView()
                     .environmentObject(viewModel)
                 VerticalBookListsView()
                     .environmentObject(viewModel)
             }
-            .toolbar {
-                Button("Hinzufügen", systemImage: "plus") {
-                    isPresented.toggle()
-                }
-            }
+//            .toolbar {
+//                Button("Hinzufügen", systemImage: "plus") {
+//                    isPresented.toggle()
+//                }
+//            }
             .sheet(isPresented: $isPresented) {
                 Form {
                     SearchView()
@@ -46,7 +47,6 @@ struct LibraryView: View {
                     }, label: {
                         Text("Liste hinzufügen")
                     })
-                    //                Spacer()
                 }
                 .padding()
             }
@@ -67,4 +67,8 @@ struct LibraryView: View {
 
 #Preview {
     LibraryView()
+}
+
+#Preview("Navigator") {
+    NavigatorView()
 }
