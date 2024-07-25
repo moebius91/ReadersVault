@@ -32,6 +32,7 @@ class BookDetailViewModel: ObservableObject {
     @Published var tags: [CDTag] = []
     @Published var categories: [CDCategory] = []
     @Published var notes: [CDNote] = []
+    @Published var lists: [CDList] = []
 
     init(book: CDBook) {
         self.book = book
@@ -48,7 +49,7 @@ class BookDetailViewModel: ObservableObject {
         self.title = book.title ?? ""
         self.titleLong = book.title_long ?? ""
 
-        self.getNotesTagsAndCategoriesForBook()
+        self.getNotesListsTagsAndCategoriesForBook()
     }
 
     func getBookFromDB() {
@@ -63,10 +64,11 @@ class BookDetailViewModel: ObservableObject {
         }
     }
 
-    func getNotesTagsAndCategoriesForBook() {
+    func getNotesListsTagsAndCategoriesForBook() {
+        getNotesForBook()
+        getListsForBook()
         getTagsForBook()
         getCategoriesForBook()
-        getNotesForBook()
     }
 
     func getTagsForBook() {
@@ -106,6 +108,20 @@ class BookDetailViewModel: ObservableObject {
 
         do {
             self.notes = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+
+    func getListsForBook() {
+        guard let bookId = self.book.id else { return }
+
+        let fetchRequest = CDList.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
+
+        do {
+            self.lists = try PersistentStore.shared.context.fetch(fetchRequest)
         } catch {
             return
         }

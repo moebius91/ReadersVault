@@ -120,6 +120,17 @@ struct BookDetailView: View {
                         }
                     }
                 }
+                if !viewModel.lists.isEmpty {
+                    Section(header: Text("Listen")) {
+                        List(viewModel.lists) { note in
+//                            NavigationLink(destination: {
+//                                NoteDetailView(note: note)
+//                            }) {
+                                Text(note.title ?? "no name")
+//                            }
+                        }
+                    }
+                }
                 if !viewModel.notes.isEmpty {
                     Section(header: Text("Notizen")) {
                         List(viewModel.notes) { note in
