@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SingleBookResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
+    @Binding var isSheetShown: Bool
 
     var body: some View {
         VStack {
@@ -46,7 +47,8 @@ struct SingleBookResultView: View {
             .padding()
             HStack {
                 Button("Zur Bibliothek hinzufügen") {
-                    viewModel.saveBookInCoreData()
+                    isSheetShown = true
+//                    viewModel.saveBookInCoreData()
                 }
                 .buttonStyle(BorderedProminentButtonStyle())
                 Button("Kaufen") {
@@ -60,9 +62,10 @@ struct SingleBookResultView: View {
 }
 
 #Preview {
+    @State var isSheetShown = false
     let viewModel = SearchViewModel()
     viewModel.getBookByIsbn("9783424200447")
 
-    return SingleBookResultView()
+    return SingleBookResultView(isSheetShown: $isSheetShown)
         .environmentObject(viewModel)
 }

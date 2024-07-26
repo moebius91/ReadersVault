@@ -14,6 +14,7 @@ struct SearchView: View {
     @State private var searchString: String = ""
     @State private var selectedIndex = 0
     @State private var isEditing: Bool = false
+    @State private var isSheetShown: Bool = false
 
     @FocusState private var isTextFieldFocused: Bool
 
@@ -93,7 +94,7 @@ struct SearchView: View {
                                         .padding(.leading)
                                     Spacer()
                                 }
-                                SingleBookResultView()
+                                SingleBookResultView(isSheetShown: $isSheetShown)
                                     .environmentObject(viewModel)
                                 Spacer()
                             }
@@ -108,7 +109,7 @@ struct SearchView: View {
                                             .padding(.leading)
                                         Spacer()
                                     }
-                                    BooksResultView()
+                                    BooksResultView(isSheetShown: $isSheetShown)
                                         .environmentObject(viewModel)
                                 }
                             }
@@ -122,7 +123,7 @@ struct SearchView: View {
                                         .padding(.leading)
                                     Spacer()
                                 }
-                                AuthorsResultView()
+                                AuthorsResultView(isSheetShown: $isSheetShown)
                                     .environmentObject(viewModel)
                             }
                         default:
@@ -177,6 +178,12 @@ struct SearchView: View {
                         default:
                             fatalError()
                         }
+                    }
+                }
+                .sheet(isPresented: $isSheetShown) {
+                    if let apiBook = viewModel.book {
+                        NewBookEditView(isSheetShown: $isSheetShown)
+                            .environmentObject(NewBookEditViewModel(book: apiBook))
                     }
                 }
                 .sheet(isPresented: $viewModel.showSafari) {

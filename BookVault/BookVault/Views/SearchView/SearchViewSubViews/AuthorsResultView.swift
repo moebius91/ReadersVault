@@ -9,12 +9,13 @@ import SwiftUI
 
 struct AuthorsResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
+    @Binding var isSheetShown: Bool
 
     var body: some View {
         List(viewModel.authors, id: \.self) { author in
 
             NavigationLink(destination: {
-                BooksResultView()
+                BooksResultView(isSheetShown: $isSheetShown)
                     .environmentObject(viewModel)
                     .onAppear {
                         viewModel.getBooksByAuthor(author)
@@ -28,9 +29,12 @@ struct AuthorsResultView: View {
 }
 
 #Preview {
+    @State var isSheetShown: Bool = false
     let viewModel = SearchViewModel()
     viewModel.getAuthors("Tim Burton")
 
-    return AuthorsResultView()
-        .environmentObject(viewModel)
+    return NavigationStack {
+        AuthorsResultView(isSheetShown: $isSheetShown)
+            .environmentObject(viewModel)
+    }
 }

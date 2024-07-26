@@ -14,6 +14,7 @@ class SearchViewModel: ObservableObject {
     @Published var authors: [String] = []
 
     @Published var showSafari: Bool = false
+    @Published var isSheetShown: Bool = false
 
     private let repository: ApiRepository = ApiRepository.shared
 

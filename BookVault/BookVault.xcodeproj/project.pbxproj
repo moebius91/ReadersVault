@@ -35,6 +35,8 @@
 		C1383C6C2C3C0FFD00CDB87A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C1383C6B2C3C0FFD00CDB87A /* FirebaseFirestore */; };
 		C1383C6E2C3C0FFD00CDB87A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1383C6D2C3C0FFD00CDB87A /* FirebaseFirestoreSwift */; };
 		C167B08C2C526F6400BD6FFA /* ScannerSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B08B2C526F6400BD6FFA /* ScannerSearchBar.swift */; };
+		C167B0932C53EE9400BD6FFA /* NewBookEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B0922C53EE9400BD6FFA /* NewBookEditView.swift */; };
+		C167B0952C53EEA700BD6FFA /* NewBookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B0942C53EEA700BD6FFA /* NewBookEditViewModel.swift */; };
 		C16949932C411A290047820D /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16949922C411A290047820D /* LibraryView.swift */; };
 		C16949952C411A340047820D /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16949942C411A340047820D /* LibraryViewModel.swift */; };
 		C18D58C82C3D30D200ADF7F2 /* BooksResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18D58C72C3D30D200ADF7F2 /* BooksResultView.swift */; };
@@ -91,6 +93,8 @@
 		C1383C582C38356300CDB87A /* BookVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookVault.xcdatamodel; sourceTree = "<group>"; };
 		C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C167B08B2C526F6400BD6FFA /* ScannerSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerSearchBar.swift; sourceTree = "<group>"; };
+		C167B0922C53EE9400BD6FFA /* NewBookEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookEditView.swift; sourceTree = "<group>"; };
+		C167B0942C53EEA700BD6FFA /* NewBookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookEditViewModel.swift; sourceTree = "<group>"; };
 		C16949922C411A290047820D /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		C16949942C411A340047820D /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		C18D58C72C3D30D200ADF7F2 /* BooksResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksResultView.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 		C162C0C02C3D7A0E00C84781 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C167B0912C53EE8400BD6FFA /* NewBookEditView */,
 				C1EFDD462C516464003032BF /* NoteDetailView */,
 				C1EFDD202C504BD5003032BF /* NotesEditView */,
 				C1EFDD1D2C50450B003032BF /* NotesBookSelectionView */,
@@ -325,6 +330,15 @@
 				C1EFDD092C4A93E1003032BF /* TestView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C167B0912C53EE8400BD6FFA /* NewBookEditView */ = {
+			isa = PBXGroup;
+			children = (
+				C167B0922C53EE9400BD6FFA /* NewBookEditView.swift */,
+				C167B0942C53EEA700BD6FFA /* NewBookEditViewModel.swift */,
+			);
+			path = NewBookEditView;
 			sourceTree = "<group>";
 		};
 		C16949912C411A1C0047820D /* LibraryView */ = {
@@ -558,6 +572,7 @@
 				C1EFDD132C4FDF97003032BF /* TagSelectionView.swift in Sources */,
 				C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */,
 				C16949932C411A290047820D /* LibraryView.swift in Sources */,
+				C167B0932C53EE9400BD6FFA /* NewBookEditView.swift in Sources */,
 				C125BFD02C332180000636AF /* Tab.swift in Sources */,
 				C1A3FD082C3FEBFD001E7F13 /* BookListDetailViewModel.swift in Sources */,
 				C18D58C82C3D30D200ADF7F2 /* BooksResultView.swift in Sources */,
@@ -589,6 +604,7 @@
 				C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */,
 				C167B08C2C526F6400BD6FFA /* ScannerSearchBar.swift in Sources */,
 				C1A3FD0A2C403DBC001E7F13 /* HorizontalBookListView.swift in Sources */,
+				C167B0952C53EEA700BD6FFA /* NewBookEditViewModel.swift in Sources */,
 				C1EFDD082C4A91E2003032BF /* BookDetailView.swift in Sources */,
 				C18E6A2A2C469EC300FFB734 /* ScannerViewModel.swift in Sources */,
 				C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */,

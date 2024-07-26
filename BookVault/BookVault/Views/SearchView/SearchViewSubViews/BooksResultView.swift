@@ -9,11 +9,12 @@ import SwiftUI
 
 struct BooksResultView: View {
     @EnvironmentObject private var viewModel: SearchViewModel
+    @Binding var isSheetShown: Bool
 
     var body: some View {
         List(viewModel.books, id: \.self) { book in
             NavigationLink(destination: {
-                SingleBookResultView()
+                SingleBookResultView(isSheetShown: $isSheetShown)
                     .environmentObject(viewModel)
                     .onAppear {
                         viewModel.saveBook(book)
@@ -44,9 +45,10 @@ struct BooksResultView: View {
 }
 
 #Preview {
+    @State var isSheetShown: Bool = false
     let viewModel = SearchViewModel()
     viewModel.getBooksByTitle("Tim Burton")
 
-    return BooksResultView()
+    return BooksResultView(isSheetShown: $isSheetShown)
         .environmentObject(viewModel)
 }
