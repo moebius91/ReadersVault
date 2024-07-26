@@ -1,6 +1,6 @@
 //
 //  PersistentStore.swift
-//  BookVault
+//  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 03.07.24.
 //

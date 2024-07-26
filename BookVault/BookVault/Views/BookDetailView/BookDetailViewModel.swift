@@ -1,6 +1,6 @@
 //
 //  BookDetailViewModel.swift
-//  BookVault
+//  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 19.07.24.
 //
