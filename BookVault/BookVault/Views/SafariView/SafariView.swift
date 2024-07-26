@@ -1,6 +1,6 @@
 //
 //  SafariView.swift
-//  BookVault
+//  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 18.07.24.
 //

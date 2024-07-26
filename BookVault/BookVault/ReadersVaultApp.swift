@@ -1,6 +1,6 @@
 //
-//  BookVaultApp.swift
-//  BookVault
+//  ReadersVaultApp.swift
+//  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 01.07.24.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 @main
-struct BookVaultApp: App {
+struct ReadersVaultApp: App {
 
     init() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)

@@ -1,6 +1,6 @@
 //
 //  ScannerRepository.swift
-//  BookVault
+//  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 16.07.24.
 //  Auf Basis von: https://medium.com/@ramesh_aran86/how-to-use-visionkit-in-swiftui-for-text-and-barcode-scanning-on-ios-e3f66c9006f2
