@@ -30,7 +30,7 @@ struct SearchView: View {
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 16)
-                        .padding(.top, 44)
+                        .padding(.top, 42)
                         .transition(.opacity)
                         .animation(.easeInOut(duration: 0.5), value: isEditing)
                 }
@@ -62,7 +62,7 @@ struct SearchView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.top, isEditing ? 0 : 10)
+                .padding(.top, isEditing ? 0 : 8)
                 .animation(.easeInOut(duration: 0.3), value: isEditing)
 
                 if isEditing {
