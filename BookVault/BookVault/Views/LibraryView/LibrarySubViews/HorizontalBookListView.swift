@@ -101,7 +101,7 @@ struct HorizontalBookListView: View {
                             VStack {
                                 NavigationLink(destination: {
                                     // Eigene View für die Vorgegebenen Liste erstellen
-                                    BookListDetailView()
+                                    AllBookListView()
                                         .environmentObject(viewModel)
                                 }, label: {
                                     Text("Alle\nBücher")

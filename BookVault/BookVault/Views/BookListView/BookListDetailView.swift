@@ -12,7 +12,6 @@ struct BookListDetailView: View {
 
     @State private var isNewPresented: Bool = false
     @State private var isEditPresented: Bool = false
-    @State private var isAlertShown: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -39,7 +38,7 @@ struct BookListDetailView: View {
                     }
                 }
             }
-            .navigationTitle(viewModel.list?.title ?? "Deine Bücher")
+            .navigationTitle(viewModel.list?.title ?? "")
             .toolbar {
                 Button("", systemImage: "plus") {
                     isNewPresented.toggle()
@@ -70,6 +69,9 @@ struct BookListDetailView: View {
                     .navigationTitle("Bücher hinzufügen")
                 }
             }
+        }
+        .onDisappear {
+            viewModel.list = nil
         }
     }
 }
