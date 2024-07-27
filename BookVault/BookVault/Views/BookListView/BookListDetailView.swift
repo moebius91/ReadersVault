@@ -10,7 +10,9 @@ import SwiftUI
 struct BookListDetailView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
 
-    @State private var isPresented: Bool = false
+    @State private var isNewPresented: Bool = false
+    @State private var isEditPresented: Bool = false
+    @State private var isAlertShown: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -20,14 +22,36 @@ struct BookListDetailView: View {
                 }, label: {
                     Text(book.title ?? "no title")
                 })
+                .swipeActions {
+                    Button(role: .destructive, action: {
+                        viewModel.deleteBook(book)
+                    }) {
+                        Image(systemName: "trash")
+                    }
+                }
+                .swipeActions(edge: .leading) {
+                    Button(action: {
+                        viewModel.book = book
+                        isEditPresented = true
+                    }) {
+                        Image(systemName: "pencil")
+                            .tint(.blue)
+                    }
+                }
             }
             .navigationTitle(viewModel.list?.title ?? "Deine Bücher")
             .toolbar {
                 Button("", systemImage: "plus") {
-                    isPresented.toggle()
+                    isNewPresented.toggle()
                 }
             }
-            .sheet(isPresented: $isPresented) {
+            .sheet(isPresented: $isEditPresented) {
+                if let book = viewModel.book {
+                    BookDetailEditView()
+                        .environmentObject(BookDetailViewModel(book: book))
+                }
+            }
+            .sheet(isPresented: $isNewPresented) {
                 NavigationStack {
                     Form {
                         Section {
@@ -37,7 +61,7 @@ struct BookListDetailView: View {
                             }
                         }
                         Button("Bücher hinzufügen") {
-                            isPresented.toggle()
+                            isNewPresented.toggle()
                         }
                     }
                     .onAppear {
