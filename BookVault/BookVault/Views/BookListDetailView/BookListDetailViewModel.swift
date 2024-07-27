@@ -43,21 +43,20 @@ class BookListDetailViewModel: ObservableObject {
     }
 
     func getBooksByList(_ list: CDList) {
-        let fetchRequest = CDBook.fetchRequest()
-
-        fetchRequest.predicate = NSPredicate(format: "title = %@", list.title ?? "no title")
-
-        do {
-            self.books = try PersistentStore.shared.context.fetch(fetchRequest)
-        } catch {
-            return
-        }
+        self.books = list.books?.allObjects as? [CDBook] ?? []
     }
 
     func updateBookFavorite(_ book: CDBook) {
         book.isFavorite.toggle()
 
         saveAndFetchBooks()
+    }
+
+    func deleteBookFromList(_ list: CDList, book: CDBook) {
+        list.removeFromBooks(book)
+
+        PersistentStore.shared.save()
+        getBooksByList(list)
     }
 
     func deleteBook(_ book: CDBook) {
