@@ -46,10 +46,12 @@ class NotesListViewModel: ObservableObject {
 
         selectedTags.forEach { tag in
             cdNote.addToTags(tag)
+            tag.addToNotes(cdNote)
         }
 
         selectedCategories.forEach { category in
             cdNote.addToCategories(category)
+            category.addToNotes(cdNote)
         }
 
         saveAndFetchNotes()

@@ -122,12 +122,14 @@ struct BookDetailView: View {
                 }
                 if !viewModel.lists.isEmpty {
                     Section(header: Text("Listen")) {
-                        List(viewModel.lists) { note in
-//                            NavigationLink(destination: {
-//                                NoteDetailView(note: note)
-//                            }) {
-                                Text(note.title ?? "no name")
-//                            }
+                        List(viewModel.lists) { list in
+                            NavigationLink(destination: {
+                                BookListDetailView()
+                                    .environmentObject(BookListDetailViewModel())
+                                    .environmentObject(list)
+                            }, label: {
+                                Text(list.title ?? "no name")
+                            })
                         }
                     }
                 }

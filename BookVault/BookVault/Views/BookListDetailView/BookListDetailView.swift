@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BookListDetailView: View {
-    @EnvironmentObject var viewModel: LibraryViewModel
+    @EnvironmentObject var viewModel: BookListDetailViewModel
+    @EnvironmentObject var list: CDList
 
     @State private var isNewPresented: Bool = false
     @State private var isEditPresented: Bool = false
@@ -23,7 +24,7 @@ struct BookListDetailView: View {
                 })
                 .swipeActions {
                     Button(role: .destructive, action: {
-                        viewModel.deleteBook(book)
+                        viewModel.deleteBookFromList(list, book: book)
                     }) {
                         Image(systemName: "trash")
                     }
@@ -38,7 +39,7 @@ struct BookListDetailView: View {
                     }
                 }
             }
-            .navigationTitle(viewModel.list?.title ?? "")
+            .navigationTitle(list.title ?? "no title")
             .toolbar {
                 Button("", systemImage: "plus") {
                     isNewPresented.toggle()
@@ -50,25 +51,14 @@ struct BookListDetailView: View {
                         .environmentObject(BookDetailViewModel(book: book))
                 }
             }
-            .sheet(isPresented: $isNewPresented) {
-                NavigationStack {
-                    Form {
-                        Section {
-                            Text("Folgende Bücher können hinzugefügt werden:")
-                            List(viewModel.books) { book in
-                                Text(book.title ?? "no title")
-                            }
-                        }
-                        Button("Bücher hinzufügen") {
-                            isNewPresented.toggle()
-                        }
-                    }
-                    .onAppear {
-                        viewModel.getCDBooks()
-                    }
-                    .navigationTitle("Bücher hinzufügen")
-                }
+            .sheet(isPresented: $isNewPresented, onDismiss: {
+                viewModel.getBooksByList(list)
+            }) {
+                BookListAddBookView(list: list, isNewPresented: $isNewPresented)
             }
+        }
+        .onAppear {
+            viewModel.getBooksByList(list)
         }
         .onDisappear {
             viewModel.list = nil
@@ -77,26 +67,16 @@ struct BookListDetailView: View {
 }
 
 #Preview {
-    let viewModel = LibraryViewModel()
-    viewModel.getCDBooks()
+    let viewModel = BookListDetailViewModel()
+    viewModel.getCDLists()
 
-    let list = CDList(context: PersistentStore.shared.context)
-    list.title = "Dies ist ein Titel"
-
-    viewModel.books.forEach { book in
-        list.addToBooks(book)
+    if let list = viewModel.lists.first {
+        return BookListDetailView()
+            .environmentObject(viewModel)
+            .environmentObject(list)
     }
 
-    viewModel.getCDLists()
-    viewModel.saveList(list)
-
-    viewModel.getBooksByList(viewModel.lists.first ?? viewModel.list!)
-
-    return BookListDetailView()
-        .environmentObject(viewModel)
-        .onAppear {
-            viewModel.getBooksByList(viewModel.lists.first ?? viewModel.list!)
-        }
+    return TestView()
 }
 
 #Preview("LibraryView") {

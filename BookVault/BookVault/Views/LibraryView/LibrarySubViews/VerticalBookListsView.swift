@@ -22,11 +22,8 @@ struct VerticalBookListsView: View {
                 NavigationLink(
                     destination: {
                         BookListDetailView()
-                            .environmentObject(viewModel)
-                            .onAppear {
-                                viewModel.saveList(list)
-                                viewModel.getBooksByList(list)
-                            }
+                            .environmentObject(BookListDetailViewModel())
+                            .environmentObject(list)
                     }
                 ) {
                     Text(list.title ?? "no title")

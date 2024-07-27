@@ -72,59 +72,19 @@ class BookDetailViewModel: ObservableObject {
     }
 
     func getTagsForBook() {
-        guard let bookId = self.book.id else { return }
-
-        let fetchRequest = CDTag.fetchRequest()
-
-        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
-
-        do {
-            self.tags = try PersistentStore.shared.context.fetch(fetchRequest)
-        } catch {
-            return
-        }
+        self.tags = self.book.tags?.allObjects as? [CDTag] ?? []
     }
 
     func getCategoriesForBook() {
-        guard let bookId = self.book.id else { return }
-
-        let fetchRequest = CDCategory.fetchRequest()
-
-        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
-
-        do {
-            self.categories = try PersistentStore.shared.context.fetch(fetchRequest)
-        } catch {
-            return
-        }
+        self.categories = self.book.categories?.allObjects as? [CDCategory] ?? []
     }
 
     func getNotesForBook() {
-        guard let bookId = self.book.id else { return }
-
-        let fetchRequest = CDNote.fetchRequest()
-
-        fetchRequest.predicate = NSPredicate(format: "book.id == %@", bookId.uuidString)
-
-        do {
-            self.notes = try PersistentStore.shared.context.fetch(fetchRequest)
-        } catch {
-            return
-        }
+        self.notes = self.book.notes?.allObjects as? [CDNote] ?? []
     }
 
     func getListsForBook() {
-        guard let bookId = self.book.id else { return }
-
-        let fetchRequest = CDList.fetchRequest()
-
-        fetchRequest.predicate = NSPredicate(format: "SUBQUERY(books, $book, $book.id == %@).@count > 0", bookId.uuidString)
-
-        do {
-            self.lists = try PersistentStore.shared.context.fetch(fetchRequest)
-        } catch {
-            return
-        }
+        self.lists = self.book.lists?.allObjects as? [CDList] ?? []
     }
 
     func updateCDBook() {
