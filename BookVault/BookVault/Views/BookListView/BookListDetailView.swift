@@ -15,7 +15,11 @@ struct BookListDetailView: View {
     var body: some View {
         NavigationStack {
             List(viewModel.books) { book in
-                Text(book.title ?? "no title")
+                NavigationLink(destination: {
+                    BookDetailView(viewModel: BookDetailViewModel(book: book))
+                }, label: {
+                    Text(book.title ?? "no title")
+                })
             }
             .navigationTitle(viewModel.list?.title ?? "Deine Bücher")
             .toolbar {
@@ -67,4 +71,8 @@ struct BookListDetailView: View {
         .onAppear {
             viewModel.getBooksByList(viewModel.lists.first ?? viewModel.list!)
         }
+}
+
+#Preview("LibraryView") {
+    LibraryView()
 }
