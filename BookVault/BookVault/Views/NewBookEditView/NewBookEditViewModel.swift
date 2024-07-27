@@ -25,6 +25,7 @@ class NewBookEditViewModel: ObservableObject {
     @Published var isFavorite: Bool = false
     @Published var isOwned: Bool = false
     @Published var isLoaned: Bool = false
+    @Published var isRead: Bool = false
     @Published var authors: [String] = []
 
     @Published var isSheetShown = false
@@ -68,6 +69,7 @@ class NewBookEditViewModel: ObservableObject {
         cdBook.isFavorite = self.isFavorite
         cdBook.isOwned = self.isOwned
         cdBook.isLoaned = self.isLoaned
+        cdBook.isRead = self.isRead
 
         self.authors.forEach { name in
             if let author = checkAndCreateAuthor(name) {

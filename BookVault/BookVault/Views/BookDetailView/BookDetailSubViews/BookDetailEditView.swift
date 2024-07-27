@@ -63,7 +63,8 @@ struct BookDetailEditView: View {
             }
             Section(header: Text("Header")) {
                 TextField("Kurze Beschreibung", text: $viewModel.shortDescription)
-                Toggle("Favorite", isOn: $viewModel.isFavorite)
+                Toggle("Favorit?", isOn: $viewModel.isFavorite)
+                Toggle("Gelesen?", isOn: $viewModel.isRead)
                 Toggle("Im Besitz?", isOn: $viewModel.isOwned)
                 if viewModel.isOwned {
                     Toggle("Geliehen?", isOn: $viewModel.isLoaned)

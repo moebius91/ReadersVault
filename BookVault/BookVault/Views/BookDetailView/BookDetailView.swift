@@ -77,30 +77,41 @@ struct BookDetailView: View {
                         }
                         Spacer()
                         HStack {
-                            Image(systemName: viewModel.isFavorite ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(viewModel.isFavorite ? .green : .gray)
-                            Text("Favorit")
+                            HStack {
+                                Image(systemName: viewModel.isFavorite ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(viewModel.isFavorite ? .green : .gray)
+                                Text("Favorit")
+                            }
+                            Spacer()
+                            HStack {
+                                Text("Gelesen")
+                                Image(systemName: viewModel.isRead ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(viewModel.isRead ? .green : .gray)
+                            }
                         }
 
                         HStack {
-                            Image(systemName: viewModel.isOwned ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(viewModel.isOwned ? .green : .gray)
-                            Text("Im Besitz")
-                        }
-
-                        HStack {
-                            if (!viewModel.isOwned && !viewModel.isLoaned) || (viewModel.isOwned && !viewModel.isLoaned) {
-
-                            } else {
-                                Image(systemName: viewModel.isLoaned ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(viewModel.isLoaned ? .green : .gray)
-                                if !viewModel.isOwned && viewModel.isLoaned {
-                                    Text("Verliehen")
-                                } else if viewModel.isOwned && viewModel.isLoaned {
-                                    Text("Geliehen")
+                            HStack {
+                                Image(systemName: viewModel.isOwned ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(viewModel.isOwned ? .green : .gray)
+                                Text("Im Besitz")
+                            }
+                            Spacer()
+                            HStack {
+                                if (!viewModel.isOwned && !viewModel.isLoaned) || (viewModel.isOwned && !viewModel.isLoaned) {
+                                    
+                                } else {
+                                    if !viewModel.isOwned && viewModel.isLoaned {
+                                        Text("Verliehen")
+                                    } else if viewModel.isOwned && viewModel.isLoaned {
+                                        Text("Geliehen")
+                                    }
+                                    Image(systemName: viewModel.isLoaned ? "checkmark.circle.fill" : "circle")
+                                        .foregroundColor(viewModel.isLoaned ? .green : .gray)
                                 }
                             }
                         }
+
                         if !viewModel.shortDescription.isEmpty {
                             Text("Beschreibung")
                                 .font(.headline)
