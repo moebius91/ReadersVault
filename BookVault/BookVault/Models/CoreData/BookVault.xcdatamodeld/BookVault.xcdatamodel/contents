@@ -13,6 +13,7 @@
         <attribute name="isbn" optional="YES" attributeType="String"/>
         <attribute name="isbn10" optional="YES" attributeType="String"/>
         <attribute name="isbn13" optional="YES" attributeType="String"/>
+        <attribute name="isDesired" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isLoaned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isOwned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
