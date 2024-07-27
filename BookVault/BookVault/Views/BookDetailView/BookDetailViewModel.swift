@@ -20,6 +20,7 @@ class BookDetailViewModel: ObservableObject {
     @Published var isFavorite: Bool
     @Published var isOwned: Bool
     @Published var isLoaned: Bool
+    @Published var isRead: Bool
     @Published var publisher: String
     @Published var shortDescription: String
     @Published var title: String
@@ -44,6 +45,7 @@ class BookDetailViewModel: ObservableObject {
         self.isFavorite = book.isFavorite
         self.isOwned = book.isOwned
         self.isLoaned = book.isLoaned
+        self.isRead = book.isRead
         self.publisher = book.publisher ?? ""
         self.shortDescription = book.short_description ?? ""
         self.title = book.title ?? ""
@@ -96,6 +98,7 @@ class BookDetailViewModel: ObservableObject {
         book.isFavorite = self.isFavorite
         book.isOwned = self.isOwned
         book.isLoaned = self.isLoaned
+        book.isRead = self.isRead
         book.publisher = self.publisher
         book.short_description = self.shortDescription
         book.coverUrl = self.coverUrl

@@ -17,6 +17,7 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isLoaned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isOwned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="publisher" optional="YES" attributeType="String"/>
         <attribute name="short_description" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
