@@ -94,7 +94,7 @@ class NewBookEditViewModel: ObservableObject {
             }
         }
     }
-    
+
     // Hilfsfunktionen
     private func checkAndCreateAuthor(_ name: String) -> CDAuthor? {
         let fetchRequest = CDAuthor.fetchRequest()
