@@ -8,44 +8,66 @@
 import SwiftUI
 
 struct NoteDetailView: View {
-    var note: CDNote
+    @EnvironmentObject var viewModel: NoteDetailViewModel
 
     @State private var isSheetShown = false
 
     var body: some View {
         Section {
-            Text("NoteDetailView")
-            //            Spacer()
-                .toolbar {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(viewModel.note.content ?? "")
+                    Spacer()
+                }
+                Spacer()
+            }
+            .toolbar {
+                Button(action: {
+                    viewModel.editTitle = viewModel.note.title ?? ""
+                    viewModel.editContent = viewModel.note.content ?? ""
+                    isSheetShown = true
+                }, label: {
+                    Label("Bearbeiten", systemImage: "pencil")
+                })
+            }
+        }
+        .padding(.horizontal)
+        .sheet(isPresented: $isSheetShown) {
+            VStack{
+                HStack {
+                    Spacer()
                     Button(action: {
-                        isSheetShown = true
+                        isSheetShown = false
                     }, label: {
-                        Label("Bearbeiten", systemImage: "pencil")
+                        Label("", systemImage: "xmark")
                     })
                 }
+                Text("Notiz bearbeiten:")
+                    .bold()
+                Form {
+                    Section {
+                        TextField("Titel", text: $viewModel.editTitle)
+                        TextField("Inhalt", text: $viewModel.editContent)
+                    }
+                    Section {
+                        Button(action: {
+                            viewModel.updateNote()
+                            isSheetShown = false
+                        }, label: {
+                            Text("Speichern")
+                        })
+                    }
+                }
+                Spacer()
+            }
+            .padding()
         }
-        .sheet(isPresented: $isSheetShown) {
-            Button(action: {
-                isSheetShown = false
-            }, label: {
-                Text("Schließen")
-            })
-        }
-        .navigationTitle(note.title ?? "no title")
+        .navigationTitle("Notiz: \(viewModel.note.title ?? "no title")")
     }
 }
 
 #Preview {
-    let fetchRequest = CDNote.fetchRequest()
-    var note: CDNote = CDNote()
-
-    do {
-        note = try PersistentStore.shared.context.fetch(fetchRequest).first!
-    } catch {
-        return TestView()
-    }
-
-    return NavigationStack {
-        NoteDetailView(note: note)
+    NavigationStack {
+        NotesListView()
     }
 }

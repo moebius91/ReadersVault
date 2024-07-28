@@ -11,21 +11,31 @@ struct NotesListView: View {
     @StateObject private var viewModel = NotesListViewModel()
     @State var path = NavigationPath()
 
+    @State var isPresented = false
+
     var body: some View {
         NavigationStack(path: $path) {
             if !viewModel.books.isEmpty {
                 List(viewModel.notes) { note in
                     NavigationLink(destination: {
-                        NoteDetailView(note: note)
+                        NoteDetailView()
+                            .environmentObject(NoteDetailViewModel(note: note))
                     }, label: {
                         Text(note.title ?? "no title")
                     })
+                    .swipeActions(edge: .leading) {
+                        Button(action: {
+                            isPresented = true
+                        }) {
+                            Label("Löschen", systemImage: "pencil")
+                                .tint(.blue)
+                        }
+                    }
                     .swipeActions {
                         Button(role: .destructive, action: {
                             viewModel.deleteCDNotes(note)
                         }) {
                             Label("Löschen", systemImage: "trash")
-                                .foregroundStyle(.red)
                         }
                     }
                 }
@@ -51,6 +61,12 @@ struct NotesListView: View {
         .onAppear {
             viewModel.getCDNotes()
             viewModel.getCDBooks()
+        }
+        .sheet(isPresented: $isPresented, onDismiss: {
+            viewModel.getCDNotes()
+            viewModel.getCDBooks()
+        }) {
+            // NotizbearbeitenView hinzufügen
         }
     }
 }

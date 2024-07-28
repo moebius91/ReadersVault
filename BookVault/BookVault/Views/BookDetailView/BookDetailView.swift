@@ -148,7 +148,8 @@ struct BookDetailView: View {
                     Section(header: Text("Notizen")) {
                         List(viewModel.notes) { note in
                             NavigationLink(destination: {
-                                NoteDetailView(note: note)
+                                NoteDetailView()
+                                    .environmentObject(note)
                             }) {
                                 Text(note.title ?? "no name")
                             }
