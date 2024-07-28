@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TagSelectionView: View {
-    @EnvironmentObject var viewModel: NotesListViewModel
+    @StateObject var viewModel = TagSelectionViewModel()
+    @Binding var selectedTags: Set<CDTag>
 
     var body: some View {
         VStack {
@@ -18,17 +19,17 @@ struct TagSelectionView: View {
                 HStack {
                     Text(tag.name ?? "no name")
                     Spacer()
-                    if viewModel.selectedTags.contains(tag) {
+                    if selectedTags.contains(tag) {
                         Image(systemName: "checkmark")
                             .foregroundStyle(.blue)
                     }
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    if viewModel.selectedTags.contains(tag) {
-                        viewModel.selectedTags.remove(tag)
+                    if selectedTags.contains(tag) {
+                        selectedTags.remove(tag)
                     } else {
-                        viewModel.selectedTags.insert(tag)
+                        selectedTags.insert(tag)
                     }
                 }
             }
@@ -41,7 +42,7 @@ struct TagSelectionView: View {
             })
             Spacer()
         }
-        .navigationTitle("Select Tags")
+        .navigationTitle("Wähle Schlagworte")
         .onAppear {
             viewModel.getCDTags()
         }
@@ -53,15 +54,7 @@ struct TagSelectionView: View {
 }
 
 #Preview {
-    let viewModel = NotesListViewModel()
-    viewModel.getCDTags()
+    @State var selectedTags: Set<CDTag> = []
 
-    return TagSelectionView()
-        .environmentObject(viewModel)
-}
-
-#Preview("NotesListView") {
-    return NavigationStack {
-        NotesListView()
-    }
+    return TagSelectionView(selectedTags: $selectedTags)
 }
