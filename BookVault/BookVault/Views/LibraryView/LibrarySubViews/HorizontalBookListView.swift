@@ -42,7 +42,7 @@ struct HorizontalBookListView: View {
                                                             .clipShape(RoundedRectangle(cornerRadius: 15.0))
                                                     },
                                                     placeholder: {
-                                                        Image("photo.artframe")
+                                                        Image(systemName: "photo.artframe")
                                                     }
                                                 )
                                                 .frame(width: 100, height: 150)
@@ -88,7 +88,7 @@ struct HorizontalBookListView: View {
                             VStack {
                                 NavigationLink(destination: {
                                     AllBookListView()
-                                        .environmentObject(viewModel)
+                                        .environmentObject(AllBookListViewModel(books: viewModel.books))
                                 }, label: {
                                     Text("Alle\nBücher")
                                 })

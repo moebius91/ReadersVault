@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateCategoryView: View {
-    @EnvironmentObject var viewModel: NotesListViewModel
+    @EnvironmentObject var viewModel: CategorySelectionViewModel
 
     @State private var categoryName: String = ""
 

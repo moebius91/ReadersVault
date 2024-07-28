@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AllBookListView: View {
-    @EnvironmentObject var viewModel: LibraryViewModel
+    @EnvironmentObject var viewModel: AllBookListViewModel
 
     @State private var isNewPresented: Bool = false
     @State private var isEditPresented: Bool = false
@@ -39,25 +39,33 @@ struct AllBookListView: View {
                 }
             }
             .navigationTitle("Deine Bücher")
-//            .toolbar {
-//                Button("", systemImage: "plus") {
-//                    isNewPresented.toggle()
-//                }
-//            }
+            .toolbar {
+                Button("", systemImage: "plus") {
+                    isNewPresented.toggle()
+                }
+            }
             .sheet(isPresented: $isEditPresented) {
                 if let book = viewModel.book {
                     BookDetailEditView()
                         .environmentObject(BookDetailViewModel(book: book))
                 }
             }
+            .sheet(isPresented: $isNewPresented, onDismiss: {
+                viewModel.getCDBooks()
+            }) {
+                AllBookListNewBookView(isSheetShown: $isNewPresented)
+                    .environmentObject(viewModel)
+            }
         }
     }
 }
 
 #Preview {
-    let viewModel = LibraryViewModel()
-    viewModel.getCDBooks()
-    
+    let libraryViewModel = LibraryViewModel()
+    libraryViewModel.getCDBooks()
+
+    let viewModel = AllBookListViewModel(books: libraryViewModel.books)
+
     return AllBookListView()
         .environmentObject(viewModel)
 }

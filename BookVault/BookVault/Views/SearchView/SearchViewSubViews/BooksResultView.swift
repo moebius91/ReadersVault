@@ -30,7 +30,7 @@ struct BooksResultView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 15.0))
                         },
                         placeholder: {
-                            Image("photo.artframe")
+                            Image(systemName: "photo.artframe")
                                 .foregroundColor(.black)
                         })
                     .frame(width: 75, height: 150)
