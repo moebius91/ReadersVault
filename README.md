@@ -34,36 +34,89 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
 ```
 └── BookVault
     ├── Extensions
+    │   └── String+Extension.swift
+    ├── GoogleService-Info.plist
     ├── Models
     │   ├── ApiModel
+    │   │   ├── ApiAuthorsResult.swift
+    │   │   ├── ApiBook.swift
+    │   │   ├── ApiBookResult.swift
+    │   │   └── ApiTitlesResult.swift
     │   └── CoreData
-    │       └── BookVault.xcdatamodeld
-    │           └── BookVault.xcdatamodel
-    ├── Preview Content
-    │   └── Preview Assets.xcassets
+    │       ├── BookVault.xcdatamodeld
+    │       │   └── BookVault.xcdatamodel
+    │       │       └── contents
+    │       └── PersistentStore.swift
+    ├── ReadersVaultApp.swift
     ├── Repositories
     │   ├── ApiRepository
+    │   │   ├── ApiError.swift
+    │   │   └── ApiRepository.swift
     │   └── ScannerRepository
+    │       └── ScannerRepository.swift
     └── Views
+        ├── AllBookListView
+        │   └── AllBookListView.swift
         ├── BookDetailView
-        │   └── BookDetailSubViews
-        ├── BookListView
+        │   ├── BookDetailSubViews
+        │   │   └── BookDetailEditView.swift
+        │   ├── BookDetailView.swift
+        │   └── BookDetailViewModel.swift
+        ├── BookListDetailView
+        │   ├── BookListAddBookView
+        │   │   ├── BookListAddBookView.swift
+        │   │   └── BookListAddBookViewModel.swift
+        │   ├── BookListDetailView.swift
+        │   └── BookListDetailViewModel.swift
         ├── CommunityView
+        │   └── CommunityView.swift
         ├── HomeView
+        │   └── HomeView.swift
         ├── LibraryView
-        │   └── LibrarySubViews
+        │   ├── LibrarySubViews
+        │   │   ├── HorizontalBookListView.swift
+        │   │   └── VerticalBookListsView.swift
+        │   ├── LibraryView.swift
+        │   └── LibraryViewModel.swift
         ├── NavigatorView
-        │   └── Enums
+        │   ├── Enums
+        │   │   └── Tab.swift
+        │   └── NavigatorView.swift
+        ├── NewBookEditView
+        │   ├── NewBookEditView.swift
+        │   └── NewBookEditViewModel.swift
         ├── NoteDetailView
+        │   └── NoteDetailView.swift
         ├── NotesBookSelectionView
+        │   └── NotesBookSelectionView.swift
         ├── NotesEditView
+        │   └── NotesEditView.swift
         ├── NotesListView
-        │   └── NotesListSubViews
+        │   ├── CategorySelectionView.swift
+        │   ├── NotesListSubViews
+        │   │   ├── CreateCategoryView.swift
+        │   │   ├── CreateTagView.swift
+        │   │   └── CustomSearchBar.swift
+        │   ├── NotesListView.swift
+        │   ├── NotesListViewModel.swift
+        │   └── TagSelectionView.swift
         ├── SafariView
+        │   └── SafariView.swift
         ├── ScannerView
+        │   ├── DocumentScannerView.swift
+        │   ├── RoundedRectLabel.swift
+        │   ├── ScannerViewModel.swift
+        │   └── TestScannerView.swift
         ├── SearchView
+        │   ├── SearchView.swift
+        │   ├── SearchViewModel.swift
         │   └── SearchViewSubViews
+        │       ├── AuthorsResultView.swift
+        │       ├── BooksResultView.swift
+        │       ├── ScannerSearchBar.swift
+        │       └── SingleBookResultView.swift
         └── SettingsView_deprecated
+            └── SettingsView.swift
 ```
 
 Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.
