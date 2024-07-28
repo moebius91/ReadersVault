@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CategorySelectionView: View {
-    @EnvironmentObject var viewModel: NotesListViewModel
+    @StateObject var viewModel = CategorySelectionViewModel()
+    @Binding var selectedCategories: Set<CDCategory>
 
     var body: some View {
         VStack {
@@ -18,17 +19,17 @@ struct CategorySelectionView: View {
                 HStack {
                     Text(category.name ?? "no name")
                     Spacer()
-                    if viewModel.selectedCategories.contains(category) {
+                    if selectedCategories.contains(category) {
                         Image(systemName: "checkmark")
                             .foregroundStyle(.blue)
                     }
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    if viewModel.selectedCategories.contains(category) {
-                        viewModel.selectedCategories.remove(category)
+                    if selectedCategories.contains(category) {
+                        selectedCategories.remove(category)
                     } else {
-                        viewModel.selectedCategories.insert(category)
+                        selectedCategories.insert(category)
                     }
                 }
             }
@@ -53,9 +54,7 @@ struct CategorySelectionView: View {
 }
 
 #Preview {
-    let viewModel = NotesListViewModel()
-    viewModel.getCDCategories()
+    @State var selectedCategories: Set<CDCategory> = []
 
-    return CategorySelectionView()
-        .environmentObject(viewModel)
+    return CategorySelectionView(selectedCategories: $selectedCategories)
 }
