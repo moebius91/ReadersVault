@@ -22,85 +22,71 @@ struct HorizontalBookListView: View {
                             }, label: {
                                 VStack {
                                     ZStack(alignment: .topLeading) {
-                                        if let imageData = book.coverImage, let uiImage = UIImage(data: imageData) {
-                                            Image(uiImage: uiImage)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 75, height: 120)
-                                                .padding(0)
-                                                .clipShape(RoundedRectangle(cornerRadius: 15.0))
-                                                .clipped()
-                                        } else {
-                                            AsyncImage(
-                                                url: book.coverUrl,
-                                                content: { image in
-                                                    image
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .clipShape(RoundedRectangle(cornerRadius: 15.0))
-                                                },
-                                                placeholder: {
-                                                    Image("photo.artframe")
-                                                }
-                                            )
-                                            .frame(width: 75, height: 120)
-                                            .padding(0)
-                                        }
-//                                        AsyncImage(
-//                                            url: book.coverUrl,
-//                                            content: { image in
-//                                                image
-//                                                    .resizable()
-//                                                    .scaledToFill()
-//                                                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
-//                                                
-//                                            }, placeholder: {
-//                                                Image("photo.artframe")
-//                                            }
-//                                        )
-//                                        .frame(width: 75, height: 120)
-//                                        .padding(0)
-
-                                        Button(action: {
-                                            viewModel.updateBookFavorite(book)
-                                        }) {
-                                            if book.isFavorite {
-                                                Image(systemName: "star.fill")
+                                        HStack {
+                                            Spacer()
+                                            if let imageData = book.coverImage, let uiImage = UIImage(data: imageData) {
+                                                Image(uiImage: uiImage)
                                                     .resizable()
-                                                    .frame(width: 24, height: 24)
-                                                    .padding(4)
-                                                    .foregroundStyle(.yellow)
-                                                    .offset(x: 0, y: 4)
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 100, height: 150)
+                                                    .padding(0)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                                                    .clipped()
                                             } else {
-                                                Image(systemName: "star")
-                                                    .resizable()
-                                                    .frame(width: 24, height: 24)
-                                                    .padding(4)
-                                                    .foregroundStyle(.yellow)
-                                                    .offset(x: 0, y: 4)
+                                                AsyncImage(
+                                                    url: book.coverUrl,
+                                                    content: { image in
+                                                        image
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .clipShape(RoundedRectangle(cornerRadius: 15.0))
+                                                    },
+                                                    placeholder: {
+                                                        Image("photo.artframe")
+                                                    }
+                                                )
+                                                .frame(width: 100, height: 150)
+                                                .padding(0)
+                                            }
+                                            Spacer()
+                                        }
+                                        HStack {
+                                            Button(action: {
+                                                viewModel.updateBookFavorite(book)
+                                            }) {
+                                                if book.isFavorite {
+                                                    Image(systemName: "star.fill")
+                                                        .resizable()
+                                                        .foregroundStyle(.yellow)
+                                                        .frame(width: 24, height: 24)
+                                                } else {
+                                                    Image(systemName: "star")
+                                                        .resizable()
+                                                        .foregroundStyle(.yellow)
+                                                        .frame(width: 24, height: 24)
+                                                }
                                             }
                                         }
-                                    }
-                                    Text(book.title?.truncate(length: 30) ?? "no title")
-                                        .foregroundStyle(.black)
                                         .padding(4)
+                                        .offset(x: 12, y: 4)
+                                    }
+                                    HStack {
+                                        Text(book.title?.truncate(length: 30) ?? "no title")
+                                            .foregroundStyle(.black)
+                                            .padding(0)
+                                    }
                                     Spacer()
-                                    Button(action: {
-                                        viewModel.deleteBook(book)
-                                    }, label: {
-                                        Text("Löschen")
-                                    })
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(0)
                                 .listRowSeparator(.hidden)
                                 .frame(width: 100)
                             })
                         }
-                        .padding(0)
+                        .padding(4)
                         if viewModel.books.count >= 1 {
                             VStack {
                                 NavigationLink(destination: {
-                                    // Eigene View für die Vorgegebenen Liste erstellen
                                     AllBookListView()
                                         .environmentObject(viewModel)
                                 }, label: {
@@ -111,7 +97,7 @@ struct HorizontalBookListView: View {
                     }
                     .padding(0)
                 }
-                .listStyle(.plain)
+                .padding(.top, 16)
             } header: {
                 Text("Bücher")
                     .bold()
