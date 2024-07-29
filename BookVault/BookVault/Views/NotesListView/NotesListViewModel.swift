@@ -8,6 +8,8 @@
 import Foundation
 
 class NotesListViewModel: ObservableObject {
+    @Published var note: CDNote = CDNote()
+
     @Published var notes: [CDNote] = []
     @Published var books: [CDBook] = []
 
@@ -17,6 +19,9 @@ class NotesListViewModel: ObservableObject {
     @Published var selectedTags: Set<CDTag> = []
     @Published var selectedCategories: Set<CDCategory> = []
     @Published var searchText: String = ""
+
+    @Published var editTitle = ""
+    @Published var editContent = ""
 
     func createNote(title: String, content: String) {
         let cdNote = CDNote(context: PersistentStore.shared.context)
@@ -47,6 +52,16 @@ class NotesListViewModel: ObservableObject {
         } catch {
             return
         }
+    }
+
+    func updateNote() {
+        note.title = self.editTitle
+        note.content = self.editContent
+
+        PersistentStore.shared.save()
+
+        self.editTitle = ""
+        self.editContent = ""
     }
 
     func deleteCDNotes(_ note: CDNote) {

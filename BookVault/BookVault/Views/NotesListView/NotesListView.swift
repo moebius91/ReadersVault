@@ -25,6 +25,9 @@ struct NotesListView: View {
                     })
                     .swipeActions(edge: .leading) {
                         Button(action: {
+                            viewModel.editTitle = note.title ?? ""
+                            viewModel.editContent = note.content ?? ""
+                            viewModel.note = note
                             isPresented = true
                         }) {
                             Label("Löschen", systemImage: "pencil")
@@ -67,6 +70,34 @@ struct NotesListView: View {
             viewModel.getCDBooks()
         }) {
             // NotizbearbeitenView hinzufügen
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        isPresented = false
+                    }, label: {
+                        Label("", systemImage: "xmark")
+                    })
+                }
+                Text("Notiz bearbeiten:")
+                    .bold()
+                Form {
+                    Section {
+                        TextField("Titel", text: $viewModel.editTitle)
+                        TextField("Inhalt", text: $viewModel.editContent)
+                    }
+                    Section {
+                        Button(action: {
+                            viewModel.updateNote()
+                            isPresented = false
+                        }, label: {
+                            Text("Speichern")
+                        })
+                    }
+                }
+                Spacer()
+            }
+            .padding()
         }
     }
 }

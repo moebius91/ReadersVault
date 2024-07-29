@@ -33,7 +33,7 @@ struct NoteDetailView: View {
         }
         .padding(.horizontal)
         .sheet(isPresented: $isSheetShown) {
-            VStack{
+            VStack {
                 HStack {
                     Spacer()
                     Button(action: {

@@ -34,7 +34,7 @@ class NoteDetailViewModel: ObservableObject {
         note.content = self.editContent
 
         PersistentStore.shared.save()
-        
+
         self.editTitle = ""
         self.editContent = ""
     }
