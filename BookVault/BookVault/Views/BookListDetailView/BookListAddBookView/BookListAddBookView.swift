@@ -60,7 +60,10 @@ struct BookListAddBookView: View {
         return BookListAddBookView(list: list, isNewPresented: $isNewPresented)
     }
 
-    return TestView()
+    return VStack {
+            Text("Diesen Text solltest Du eigentlich nicht sehen.")
+            Text("Ein Fehler ist aufgetreten.")
+        }
 }
 
 #Preview("LibraryView") {

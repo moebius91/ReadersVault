@@ -76,7 +76,10 @@ struct BookListDetailView: View {
             .environmentObject(list)
     }
 
-    return TestView()
+    return VStack {
+            Text("Diesen Text solltest Du eigentlich nicht sehen.")
+            Text("Ein Fehler ist aufgetreten.")
+        }
 }
 
 #Preview("LibraryView") {

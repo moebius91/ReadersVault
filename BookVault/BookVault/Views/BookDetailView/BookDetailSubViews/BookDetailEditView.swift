@@ -106,7 +106,10 @@ struct BookDetailEditView: View {
     let book = libraryViewModel.books.first
 
     guard book != nil else {
-        return TestView()
+        return VStack {
+            Text("Diesen Text solltest Du eigentlich nicht sehen.")
+            Text("Ein Fehler ist aufgetreten.")
+        }
     }
 
     let viewModel = BookDetailViewModel(book: book!)
@@ -123,7 +126,10 @@ struct BookDetailEditView: View {
     let book = libraryViewModel.books.first
 
     guard book != nil else {
-        return TestView()
+        return VStack {
+            Text("Diesen Text solltest Du eigentlich nicht sehen.")
+            Text("Ein Fehler ist aufgetreten.")
+        }
     }
 
     let viewModel = BookDetailViewModel(book: book!)
