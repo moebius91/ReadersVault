@@ -24,6 +24,10 @@
 		C12A25232C63B19A00A31416 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C12A25222C63B19A00A31416 /* FirebaseFirestore */; };
 		C12A25252C63B19A00A31416 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C12A25242C63B19A00A31416 /* FirebaseStorage */; };
 		C12A25272C63B19A00A31416 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = C12A25262C63B19A00A31416 /* FirebaseVertexAI-Preview */; };
+		C12A25312C64155D00A31416 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25302C64155D00A31416 /* LoginView.swift */; };
+		C12A25332C64157400A31416 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25322C64157400A31416 /* LoginViewModel.swift */; };
+		C12A25362C6418D800A31416 /* FireUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25352C6418D800A31416 /* FireUser.swift */; };
+		C12A25392C64209200A31416 /* VerificationPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25382C64209200A31416 /* VerificationPendingView.swift */; };
 		C1383C442C3832DC00CDB87A /* ApiBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C3F2C3832DC00CDB87A /* ApiBook.swift */; };
 		C1383C452C3832DC00CDB87A /* ApiBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C402C3832DC00CDB87A /* ApiBookResult.swift */; };
 		C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C412C3832DC00CDB87A /* ApiKeys.swift */; };
@@ -91,6 +95,10 @@
 		C125BFD72C333144000636AF /* BookListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListDetailView.swift; sourceTree = "<group>"; };
 		C125BFDA2C340D65000636AF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		C125BFDD2C340D9C000636AF /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
+		C12A25302C64155D00A31416 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C12A25322C64157400A31416 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C12A25352C6418D800A31416 /* FireUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireUser.swift; sourceTree = "<group>"; };
+		C12A25382C64209200A31416 /* VerificationPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationPendingView.swift; sourceTree = "<group>"; };
 		C1383C3F2C3832DC00CDB87A /* ApiBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBook.swift; sourceTree = "<group>"; };
 		C1383C402C3832DC00CDB87A /* ApiBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBookResult.swift; sourceTree = "<group>"; };
 		C1383C412C3832DC00CDB87A /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -326,9 +334,35 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		C12A252F2C6402FA00A31416 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				C12A25302C64155D00A31416 /* LoginView.swift */,
+				C12A25322C64157400A31416 /* LoginViewModel.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		C12A25342C6418C200A31416 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				C12A25352C6418D800A31416 /* FireUser.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		C12A25372C64206F00A31416 /* CommunitySubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C12A25382C64209200A31416 /* VerificationPendingView.swift */,
+			);
+			path = CommunitySubViews;
+			sourceTree = "<group>";
+		};
 		C1383C3E2C3832D200CDB87A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C12A25342C6418C200A31416 /* Firebase */,
 				C1383C572C38356300CDB87A /* CoreData */,
 				C1383C432C3832DC00CDB87A /* ApiModel */,
 			);
@@ -368,6 +402,8 @@
 		C1383C4E2C3833B200CDB87A /* CommunityView */ = {
 			isa = PBXGroup;
 			children = (
+				C12A25372C64206F00A31416 /* CommunitySubViews */,
+				C12A252F2C6402FA00A31416 /* LoginView */,
 				C1383C4F2C3833BE00CDB87A /* CommunityView.swift */,
 			);
 			path = CommunityView;
@@ -385,13 +421,13 @@
 		C162C0C02C3D7A0E00C84781 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C12A252E2C63B47600A31416 /* Common */,
-				C12A252D2C63B2FE00A31416 /* Notes */,
-				C12A252C2C63B2F300A31416 /* Community */,
-				C12A252B2C63B2E200A31416 /* Search */,
-				C12A252A2C63B2D100A31416 /* Library */,
-				C12A25292C63B2C500A31416 /* Home */,
 				C125BFCD2C332162000636AF /* NavigatorView */,
+				C12A25292C63B2C500A31416 /* Home */,
+				C12A252A2C63B2D100A31416 /* Library */,
+				C12A252B2C63B2E200A31416 /* Search */,
+				C12A252C2C63B2F300A31416 /* Community */,
+				C12A252D2C63B2FE00A31416 /* Notes */,
+				C12A252E2C63B47600A31416 /* Common */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -705,6 +741,7 @@
 				C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */,
 				C16949932C411A290047820D /* LibraryView.swift in Sources */,
 				C10F24512C555E9B00345D7F /* BookListAddBookViewModel.swift in Sources */,
+				C12A25362C6418D800A31416 /* FireUser.swift in Sources */,
 				C1AAB0FC2C56B97300D192CF /* AuthorSelectionView.swift in Sources */,
 				C167B0932C53EE9400BD6FFA /* NewBookEditView.swift in Sources */,
 				C1AAB1012C56BE3A00D192CF /* CreateAuthorView.swift in Sources */,
@@ -739,11 +776,13 @@
 				C10F244F2C555E9500345D7F /* BookListAddBookView.swift in Sources */,
 				C1383C4C2C38330500CDB87A /* ApiError.swift in Sources */,
 				C18D58CA2C3D30DD00ADF7F2 /* SingleBookResultView.swift in Sources */,
+				C12A25312C64155D00A31416 /* LoginView.swift in Sources */,
 				C1EFDD062C4A91D6003032BF /* BookDetailViewModel.swift in Sources */,
 				C1AAB0EE2C56ADF200D192CF /* AllBookListViewModel.swift in Sources */,
 				C1383C452C3832DC00CDB87A /* ApiBookResult.swift in Sources */,
 				C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */,
 				C167B08C2C526F6400BD6FFA /* ScannerSearchBar.swift in Sources */,
+				C12A25332C64157400A31416 /* LoginViewModel.swift in Sources */,
 				C1AAB0F82C56B6FB00D192CF /* TagSelectionViewModel.swift in Sources */,
 				C1A3FD0A2C403DBC001E7F13 /* HorizontalBookListView.swift in Sources */,
 				C167B0952C53EEA700BD6FFA /* NewBookEditViewModel.swift in Sources */,
@@ -753,6 +792,7 @@
 				C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,
+				C12A25392C64209200A31416 /* VerificationPendingView.swift in Sources */,
 				C1383C502C3833BE00CDB87A /* CommunityView.swift in Sources */,
 				C125BFC02C32C652000636AF /* ReadersVaultApp.swift in Sources */,
 				C1EFDD1A2C5009E5003032BF /* CustomSearchBar.swift in Sources */,
