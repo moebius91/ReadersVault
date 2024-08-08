@@ -38,7 +38,7 @@ enum Tab: String, Identifiable, CaseIterable {
         case .home: return AnyView(HomeView())
         case .library: return AnyView(LibraryView())
         case .search: return AnyView(SearchView())
-        case .community: return AnyView(CommunityView())
+        case .community: return AnyView(CommunityNavigatorView())
         case .notes: return AnyView(NotesListView())
         }
     }
