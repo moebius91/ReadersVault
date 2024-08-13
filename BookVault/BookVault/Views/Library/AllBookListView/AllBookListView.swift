@@ -17,7 +17,7 @@ struct AllBookListView: View {
         NavigationStack {
             List(viewModel.books) { book in
                 NavigationLink(destination: {
-                    BookDetailView(viewModel: BookDetailViewModel(book: book))
+                    BookDetailView(viewModel: BookDetailViewModel(book: book), syncViewModel: BookDetailSyncViewModel(book: book))
                 }, label: {
                     Text(book.title ?? "no title")
                 })

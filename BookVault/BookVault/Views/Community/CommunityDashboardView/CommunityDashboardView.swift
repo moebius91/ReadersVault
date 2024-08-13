@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct CommunityDashboardView: View {
-    @EnvironmentObject var loginViewModel: LoginViewModel
-
     @StateObject var viewModel = CommunityDashboardViewModel()
 
     var body: some View {
         VStack {
             NavigationLink(destination: {
                 GroupsView()
-                    .environmentObject(loginViewModel)
             }) {
                 CommunityGroupsView()
             }
@@ -42,7 +39,6 @@ struct CommunityDashboardView: View {
                 }
                 NavigationLink(destination: {
                     ProfileView()
-                        .environmentObject(loginViewModel)
                 }) {
                     VStack {
                         Spacer()
@@ -67,7 +63,6 @@ struct CommunityDashboardView: View {
 #Preview {
     NavigationStack {
         CommunityDashboardView()
-            .environmentObject(LoginViewModel())
     }
 }
 

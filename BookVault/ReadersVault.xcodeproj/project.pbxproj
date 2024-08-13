@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C10F244F2C555E9500345D7F /* BookListAddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F244E2C555E9500345D7F /* BookListAddBookView.swift */; };
 		C10F24512C555E9B00345D7F /* BookListAddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F24502C555E9B00345D7F /* BookListAddBookViewModel.swift */; };
+		C10FDCF22C6B542C0000545A /* BookDetailSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10FDCF12C6B542C0000545A /* BookDetailSyncView.swift */; };
+		C10FDCF42C6B74320000545A /* BookDetailSyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10FDCF32C6B74320000545A /* BookDetailSyncViewModel.swift */; };
+		C10FDCF82C6B75A10000545A /* FireBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10FDCF72C6B75A10000545A /* FireBook.swift */; };
 		C11EE60F2C5697C6005D560F /* NavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11EE60E2C5697C6005D560F /* NavigatorView.swift */; };
 		C125BFC02C32C652000636AF /* ReadersVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125BFBF2C32C652000636AF /* ReadersVaultApp.swift */; };
 		C125BFC42C32C653000636AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C125BFC32C32C653000636AF /* Assets.xcassets */; };
@@ -98,6 +101,9 @@
 /* Begin PBXFileReference section */
 		C10F244E2C555E9500345D7F /* BookListAddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListAddBookView.swift; sourceTree = "<group>"; };
 		C10F24502C555E9B00345D7F /* BookListAddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListAddBookViewModel.swift; sourceTree = "<group>"; };
+		C10FDCF12C6B542C0000545A /* BookDetailSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailSyncView.swift; sourceTree = "<group>"; };
+		C10FDCF32C6B74320000545A /* BookDetailSyncViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailSyncViewModel.swift; sourceTree = "<group>"; };
+		C10FDCF72C6B75A10000545A /* FireBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBook.swift; sourceTree = "<group>"; };
 		C11EE60E2C5697C6005D560F /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 		C125BFBC2C32C652000636AF /* ReadersVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadersVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C125BFBF2C32C652000636AF /* ReadersVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadersVaultApp.swift; sourceTree = "<group>"; };
@@ -204,6 +210,14 @@
 				C10F24502C555E9B00345D7F /* BookListAddBookViewModel.swift */,
 			);
 			path = BookListAddBookView;
+			sourceTree = "<group>";
+		};
+		C10FDCF02C6B47790000545A /* CommunityNavigatorView */ = {
+			isa = PBXGroup;
+			children = (
+				C12A25642C65675800A31416 /* CommunityNavigatorView.swift */,
+			);
+			path = CommunityNavigatorView;
 			sourceTree = "<group>";
 		};
 		C125BFB32C32C652000636AF = {
@@ -335,6 +349,7 @@
 		C12A252C2C63B2F300A31416 /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				C10FDCF02C6B47790000545A /* CommunityNavigatorView */,
 				C12A25502C65099D00A31416 /* ProfileView */,
 				C12A254D2C65097A00A31416 /* MessagesView */,
 				C12A25482C65089C00A31416 /* GroupsView */,
@@ -342,7 +357,6 @@
 				C12A253A2C64FB3100A31416 /* CommunityDashboardView */,
 				C12A252F2C6402FA00A31416 /* LoginView */,
 				C12A25372C64206F00A31416 /* VerificationPendingView */,
-				C12A25642C65675800A31416 /* CommunityNavigatorView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -383,6 +397,7 @@
 				C12A25532C6544E600A31416 /* FireGroup.swift */,
 				C12A25552C65469800A31416 /* FireGroupPost.swift */,
 				C12A25612C65539300A31416 /* FireBulletinBoardPost.swift */,
+				C10FDCF72C6B75A10000545A /* FireBook.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -672,6 +687,8 @@
 			isa = PBXGroup;
 			children = (
 				C1EFDD0B2C4A9A1D003032BF /* BookDetailEditView.swift */,
+				C10FDCF12C6B542C0000545A /* BookDetailSyncView.swift */,
+				C10FDCF32C6B74320000545A /* BookDetailSyncViewModel.swift */,
 			);
 			path = BookDetailSubViews;
 			sourceTree = "<group>";
@@ -812,6 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10FDCF42C6B74320000545A /* BookDetailSyncViewModel.swift in Sources */,
 				C1EFDD452C51571E003032BF /* CreateCategoryView.swift in Sources */,
 				C18E6A272C469DC700FFB734 /* ScannerRepository.swift in Sources */,
 				C125BFD82C333144000636AF /* BookListDetailView.swift in Sources */,
@@ -859,6 +877,7 @@
 				C125BFDB2C340D65000636AF /* SearchView.swift in Sources */,
 				C12A25542C6544E600A31416 /* FireGroup.swift in Sources */,
 				C1EFDD1C2C500C3A003032BF /* CreateTagView.swift in Sources */,
+				C10FDCF22C6B542C0000545A /* BookDetailSyncView.swift in Sources */,
 				C1383C5A2C38356300CDB87A /* PersistentStore.swift in Sources */,
 				C1AAB0FA2C56B96900D192CF /* AuthorSelectionViewModel.swift in Sources */,
 				C12A254A2C6508F000A31416 /* GroupsView.swift in Sources */,
@@ -884,6 +903,7 @@
 				C12A25522C6509A800A31416 /* ProfileView.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,
+				C10FDCF82C6B75A10000545A /* FireBook.swift in Sources */,
 				C12A25392C64209200A31416 /* VerificationPendingView.swift in Sources */,
 				C125BFC02C32C652000636AF /* ReadersVaultApp.swift in Sources */,
 				C1EFDD1A2C5009E5003032BF /* CustomSearchBar.swift in Sources */,

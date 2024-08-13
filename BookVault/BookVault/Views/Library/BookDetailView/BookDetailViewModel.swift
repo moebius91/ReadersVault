@@ -26,7 +26,9 @@ class BookDetailViewModel: ObservableObject {
     @Published var title: String
     @Published var titleLong: String
 
-    @Published var isSheetShown = false
+    @Published var isEditSheetShown = false
+    @Published var isSyncSheetShown = false
+    @Published var isAlertShown = false
     @Published var photosPickerItem: PhotosPickerItem?
     @Published var selectedImage: UIImage?
 

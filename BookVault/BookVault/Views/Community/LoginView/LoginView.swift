@@ -152,7 +152,7 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
-        .environmentObject(LoginViewModel())
+        .environmentObject(LoginViewModel.shared)
 }
 
 #Preview("Navi") {

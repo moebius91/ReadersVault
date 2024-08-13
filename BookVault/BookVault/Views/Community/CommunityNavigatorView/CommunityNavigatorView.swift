@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct CommunityNavigatorView: View {
-    @StateObject private var viewModel: LoginViewModel = .init()
+    @StateObject private var viewModel = LoginViewModel.shared
 
     var body: some View {
         NavigationStack {
             VStack {
-                switch viewModel.user != nil {
+                switch viewModel.isLoggedIn() {
                 case true:
                     if !viewModel.isEmailVerified {
                         VerificationPendingView()
-                            .environmentObject(viewModel)
                     } else {
                         CommunityDashboardView()
-                            .environmentObject(viewModel)
                     }
                 case false:
                     LoginView()

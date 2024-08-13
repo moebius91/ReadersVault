@@ -66,6 +66,6 @@ struct BulletinBoardView: View {
 #Preview {
     NavigationStack {
         BulletinBoardView()
-            .environmentObject(LoginViewModel())
+            .environmentObject(LoginViewModel.shared)
     }
 }

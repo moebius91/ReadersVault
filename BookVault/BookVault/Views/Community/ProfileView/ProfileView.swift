@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
 
-    @EnvironmentObject var loginViewModel: LoginViewModel
+    @StateObject var loginViewModel = LoginViewModel.shared
 
     var body: some View {
         Text("Profile")

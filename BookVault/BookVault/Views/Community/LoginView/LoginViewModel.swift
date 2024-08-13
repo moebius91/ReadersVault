@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class LoginViewModel: ObservableObject {
+    static let shared = LoginViewModel()
+
     @Published var email: String = ""
     @Published var username: String = ""
     @Published var password: String = ""
@@ -25,12 +27,16 @@ class LoginViewModel: ObservableObject {
     private let firebaseAuthenticaiton = Auth.auth()
     private let firebaseFirestore = Firestore.firestore()
 
-    init() {
+    private init() {
         if let currentUser = self.firebaseAuthenticaiton.currentUser {
             self.fetchFirestoreUser(withId: currentUser.uid)
             self.isEmailVerified = currentUser.isEmailVerified
             self.checkEmailVerificationStatus()
         }
+    }
+
+    func isLoggedIn() -> Bool {
+        return user != nil
     }
 
     func login() {
