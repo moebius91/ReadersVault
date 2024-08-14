@@ -71,7 +71,7 @@ class BookDetailSyncViewModel: ObservableObject {
             print("ISBN13 leer.")
             return
         }
-
+ 
         self.listener = self.firebaseFirestore.collection("users").document(userId).collection(collectionName)
             .whereField("isbn13", isEqualTo: isbn13)
             .addSnapshotListener { snapshot, error in

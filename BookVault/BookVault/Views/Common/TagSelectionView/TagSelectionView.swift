@@ -58,3 +58,16 @@ struct TagSelectionView: View {
 
     return TagSelectionView(selectedTags: $selectedTags)
 }
+
+#Preview("NoteEdit") {
+    @State var path = NavigationPath()
+
+    let viewModel = NotesListViewModel()
+    viewModel.getCDBooks()
+    viewModel.book = viewModel.books.first!
+
+    return NavigationStack {
+        NotesEditView(path: $path)
+            .environmentObject(viewModel)
+    }
+}

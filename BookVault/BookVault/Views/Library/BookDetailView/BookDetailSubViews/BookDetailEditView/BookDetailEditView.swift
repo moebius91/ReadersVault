@@ -84,17 +84,6 @@ struct BookDetailEditView: View {
                         Spacer()
                     }
                 })
-//                Button(action: {
-//                    viewModel.deleteBook(viewModel.book)
-//                    viewModel.isSheetShown = false
-//                }, label: {
-//                    HStack {
-//                        Spacer()
-//                        Text("Löschen")
-//                            .foregroundStyle(.red)
-//                        Spacer()
-//                    }
-//                })
             }
         }
     }
