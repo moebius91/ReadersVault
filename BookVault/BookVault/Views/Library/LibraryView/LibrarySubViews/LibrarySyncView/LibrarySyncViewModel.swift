@@ -83,7 +83,7 @@ class LibrarySyncViewModel: ObservableObject {
                 }
 
                 self.books = books
-                self.filterBooks()
+                self.filterBooksByISBN13()
             }
     }
 
@@ -108,9 +108,8 @@ class LibrarySyncViewModel: ObservableObject {
         }
     }
 
-    private func filterBooks() {
+    private func filterBooksByISBN13() {
         let cdBooksISBNSet = Set(cdBooks.map { $0.isbn13 })
-        print(cdBooksISBNSet)
         self.filteredBooks = self.books.filter { !cdBooksISBNSet.contains($0.isbn13) }
     }
 
