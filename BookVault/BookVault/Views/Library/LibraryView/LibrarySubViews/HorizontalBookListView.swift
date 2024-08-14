@@ -18,7 +18,7 @@ struct HorizontalBookListView: View {
                     HStack {
                         ForEach(viewModel.books, id: \.self) { book in
                             NavigationLink(destination: {
-                                BookDetailView(viewModel: BookDetailViewModel(book: book))
+                                BookDetailView(viewModel: BookDetailViewModel(book: book), syncViewModel: BookDetailSyncViewModel(book: book))
                             }, label: {
                                 VStack {
                                     ZStack(alignment: .topLeading) {

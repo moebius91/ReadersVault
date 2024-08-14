@@ -76,7 +76,7 @@ struct BookDetailEditView: View {
                 Button(action: {
                     viewModel.updateCDBook()
                     viewModel.getBookFromDB()
-                    viewModel.isSheetShown = false
+                    viewModel.isEditSheetShown = false
                 }, label: {
                     HStack {
                         Spacer()
@@ -84,17 +84,6 @@ struct BookDetailEditView: View {
                         Spacer()
                     }
                 })
-//                Button(action: {
-//                    viewModel.deleteBook(viewModel.book)
-//                    viewModel.isSheetShown = false
-//                }, label: {
-//                    HStack {
-//                        Spacer()
-//                        Text("Löschen")
-//                            .foregroundStyle(.red)
-//                        Spacer()
-//                    }
-//                })
             }
         }
     }
@@ -133,8 +122,9 @@ struct BookDetailEditView: View {
     }
 
     let viewModel = BookDetailViewModel(book: book!)
+    let syncViewModel = BookDetailSyncViewModel(book: book!)
 
-    return BookDetailView(viewModel: viewModel)
+    return BookDetailView(viewModel: viewModel, syncViewModel: syncViewModel)
 }
 
 #Preview("Navi") {

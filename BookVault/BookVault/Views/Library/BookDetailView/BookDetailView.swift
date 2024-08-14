@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BookDetailView: View {
     @StateObject var viewModel: BookDetailViewModel
+    @StateObject var syncViewModel: BookDetailSyncViewModel
+    @StateObject var loginViewModel = LoginViewModel.shared
 
     var body: some View {
         NavigationStack {
@@ -174,16 +176,47 @@ struct BookDetailView: View {
             .navigationTitle("Buchdetails")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if loginViewModel.isLoggedIn() {
+                    if !syncViewModel.isBookSynced {
+                        Button(action: {
+                            viewModel.isSyncSheetShown = true
+                        }, label: {
+                            Label("Bearbeiten", systemImage: "arrow.triangle.2.circlepath")
+                        })
+                        .tint(.blue)
+                    } else {
+                        Button(action: {
+                            viewModel.isAlertShown = true
+                        }, label: {
+                            Label("Bearbeiten", systemImage: "xmark.circle")
+                        })
+                        .tint(.red)
+                    }
+                }
                 Button(action: {
-                    viewModel.isSheetShown = true
+                    viewModel.isEditSheetShown = true
                 }, label: {
                     Label("Bearbeiten", systemImage: "pencil")
                 })
             }
-            .sheet(isPresented: $viewModel.isSheetShown) {
+            .sheet(isPresented: $viewModel.isEditSheetShown) {
                 BookDetailEditView()
                     .environmentObject(viewModel)
             }
+            .sheet(isPresented: $viewModel.isSyncSheetShown) {
+                BookDetailSyncView(isSyncSheetShown: $viewModel.isSyncSheetShown)
+                    .environmentObject(syncViewModel)
+            }
+            .alert("Backup löschen?", isPresented: $viewModel.isAlertShown) {
+                Button(role: .destructive, action: {
+                    syncViewModel.deleteBook(withISBN13: viewModel.book.isbn13 ?? "")
+                }) {
+                    Label("Löschen", systemImage: "xmark")
+                }
+            }
+        }
+        .onAppear {
+            syncViewModel.fetchBook()
         }
     }
 }
@@ -202,8 +235,9 @@ struct BookDetailView: View {
     }
 
     let viewModel = BookDetailViewModel(book: book!)
+    let syncViewModel = BookDetailSyncViewModel(book: book!)
 
-    return BookDetailView(viewModel: viewModel)
+    return BookDetailView(viewModel: viewModel, syncViewModel: syncViewModel)
 }
 
 #Preview("Navi") {

@@ -16,6 +16,9 @@ struct NotesListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             if !viewModel.books.isEmpty {
+                if !viewModel.notes.isEmpty {
+                    Text("Du hast keine Notizen.")
+                }
                 List(viewModel.notes) { note in
                     NavigationLink(destination: {
                         NoteDetailView()

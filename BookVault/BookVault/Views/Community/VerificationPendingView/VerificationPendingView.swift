@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct VerificationPendingView: View {
-    @EnvironmentObject var viewModel: LoginViewModel
+    @StateObject var viewModel = LoginViewModel.shared
 
     var body: some View {
         VStack {
@@ -63,5 +63,5 @@ struct VerificationPendingView: View {
 
 #Preview {
     VerificationPendingView()
-        .environmentObject(LoginViewModel())
+//        .environmentObject(LoginViewModel.shared)
 }
