@@ -22,7 +22,6 @@ struct BookDetailSyncView: View {
             }
             .padding()
         }
-        Text("Hello, Sync")
     }
 }
 
