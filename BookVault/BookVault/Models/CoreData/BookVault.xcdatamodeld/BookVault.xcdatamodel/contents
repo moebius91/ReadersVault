@@ -26,7 +26,7 @@
         <relationship name="authors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDAuthor" inverseName="books" inverseEntity="CDAuthor"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="books" inverseEntity="CDCategory"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDList" inverseName="books" inverseEntity="CDList"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="book" inverseEntity="CDNote"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDNote" inverseName="book" inverseEntity="CDNote"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="books" inverseEntity="CDTag"/>
         <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="books" inverseEntity="CDVault"/>
     </entity>
