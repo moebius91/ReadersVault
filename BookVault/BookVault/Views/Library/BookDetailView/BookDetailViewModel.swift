@@ -40,6 +40,9 @@ class BookDetailViewModel: ObservableObject {
 
     @Published var allLists: [CDList] = []
 
+    @Published var selectedTags: Set<CDTag> = []
+    @Published var selectedCategories: Set<CDCategory> = []
+
     var filteredLists: [CDList] {
         var filteredLists: Set<CDList> = []
         allLists.forEach { list in
@@ -134,6 +137,16 @@ class BookDetailViewModel: ObservableObject {
         book.publisher = self.publisher
         book.short_description = self.shortDescription
         book.coverUrl = self.coverUrl
+
+        self.selectedTags.forEach { tag in
+            book.addToTags(tag)
+            tag.addToBooks(book)
+        }
+
+        self.selectedCategories.forEach { category in
+            book.addToCategories(category)
+            category.addToBooks(book)
+        }
 
         if self.photosPickerItem != nil {
             self.photosPickerItem?.loadTransferable(type: Data.self) { result in

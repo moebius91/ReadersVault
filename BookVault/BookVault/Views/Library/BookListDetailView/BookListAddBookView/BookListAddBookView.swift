@@ -17,8 +17,7 @@ struct BookListAddBookView: View {
             CustomSearchBar(text: $viewModel.searchText)
                 .padding(.horizontal)
             Form {
-                Section {
-                    Text("Folgende Bücher können hinzugefügt werden:")
+                Section("Deine Bücher") {
                     List(viewModel.filteredBooks) { book in
                         HStack {
                             Text(book.title ?? "no title")
@@ -26,6 +25,9 @@ struct BookListAddBookView: View {
                             if viewModel.selectedBooks.contains(book) {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(.blue)
+                            } else {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(.ultraThinMaterial)
                             }
                         }
                         .onTapGesture {
