@@ -17,6 +17,16 @@ struct NotesBookSelectionView: View {
             .font(.title3)
             .bold()
         Form {
+            Section {
+                if viewModel.book != nil {
+                    NavigationLink(value: "NotesEditView", label: {
+                        HStack {
+                            Text("Weiter")
+                                .foregroundStyle(.blue)
+                        }
+                    })
+                }
+            }
             List(viewModel.books) { book in
                 HStack {
                     if let imageData = book.coverImage, let uiImage = UIImage(data: imageData) {
@@ -67,16 +77,9 @@ struct NotesBookSelectionView: View {
                     NavigationLink(value: "NotesEditView", label: {
                         HStack {
                             Text("Weiter")
+                                .foregroundStyle(.blue)
                         }
                     })
-//                    NavigationLink(destination: {
-//                        NotesEditView(path: $path)
-//                            .environmentObject(viewModel)
-//                    }) {
-//                        HStack {
-//                            Text("Weiter")
-//                        }
-//                    }
                 }
             }
         }
