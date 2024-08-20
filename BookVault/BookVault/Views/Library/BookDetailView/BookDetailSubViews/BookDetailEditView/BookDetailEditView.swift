@@ -58,9 +58,17 @@ struct BookDetailEditView: View {
                     TextField("Title", text: $viewModel.title)
                     TextField("Langer Titel", text: $viewModel.titleLong)
                     TextField("Publisher", text: $viewModel.publisher)
+                        .disabled(true)
+                        .foregroundColor(.gray)
                     TextField("ISBN", text: $viewModel.isbn)
+                        .disabled(true)
+                        .foregroundColor(.gray)
                     TextField("ISBN 10", text: $viewModel.isbn10)
+                        .disabled(true)
+                        .foregroundColor(.gray)
                     TextField("ISBN 13", text: $viewModel.isbn13)
+                        .disabled(true)
+                        .foregroundColor(.gray)
                 }
                 Section(header: Text("Header")) {
                     TextField("Kurze Beschreibung", text: $viewModel.shortDescription)
@@ -103,6 +111,7 @@ struct BookDetailEditView: View {
                     Button(action: {
                         viewModel.updateCDBook()
                         viewModel.getBookFromDB()
+                        viewModel.getNotesListsTagsAndCategoriesForBook()
                         viewModel.isEditSheetShown = false
                     }, label: {
                         HStack {
@@ -112,6 +121,16 @@ struct BookDetailEditView: View {
                         }
                     })
                 }
+            }
+        }
+        .onAppear {
+            viewModel.getNotesListsTagsAndCategoriesForBook()
+            viewModel.tags.forEach { tag in
+                viewModel.selectedTags.insert(tag)
+            }
+
+            viewModel.categories.forEach { category in
+                viewModel.selectedCategories.insert(category)
             }
         }
     }
