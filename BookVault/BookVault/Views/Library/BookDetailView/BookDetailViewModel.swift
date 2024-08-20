@@ -29,6 +29,8 @@ class BookDetailViewModel: ObservableObject {
     @Published var isEditSheetShown = false
     @Published var isSyncSheetShown = false
     @Published var isListSheetShown = false
+    @Published var isNoteSheetShown = false
+
     @Published var isAlertShown = false
     @Published var photosPickerItem: PhotosPickerItem?
     @Published var selectedImage: UIImage?
@@ -70,6 +72,28 @@ class BookDetailViewModel: ObservableObject {
         self.titleLong = book.title_long ?? ""
 
         self.getNotesListsTagsAndCategoriesForBook()
+    }
+
+    func createNote(title: String, content: String) {
+        let cdNote = CDNote(context: PersistentStore.shared.context)
+        cdNote.id = UUID()
+        cdNote.title = title
+        cdNote.content = content
+        cdNote.createdAt = Date()
+        cdNote.book = self.book
+
+        selectedTags.forEach { tag in
+            cdNote.addToTags(tag)
+            tag.addToNotes(cdNote)
+        }
+
+        selectedCategories.forEach { category in
+            cdNote.addToCategories(category)
+            category.addToNotes(cdNote)
+        }
+
+        PersistentStore.shared.save()
+        getNotesForBook()
     }
 
     func getAllLists() {
@@ -174,6 +198,13 @@ class BookDetailViewModel: ObservableObject {
                 self.updateCDBook()
             }
         }
+    }
+
+    func removeNote(_ note: CDNote) {
+        self.book.removeFromNotes(note)
+        PersistentStore.shared.context.delete(note)
+        PersistentStore.shared.save()
+        getNotesForBook()
     }
 
     func removeBookFromList(_ list: CDList) {
