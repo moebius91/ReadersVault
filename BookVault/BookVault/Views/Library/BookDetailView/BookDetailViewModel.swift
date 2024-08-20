@@ -28,6 +28,7 @@ class BookDetailViewModel: ObservableObject {
 
     @Published var isEditSheetShown = false
     @Published var isSyncSheetShown = false
+    @Published var isListSheetShown = false
     @Published var isAlertShown = false
     @Published var photosPickerItem: PhotosPickerItem?
     @Published var selectedImage: UIImage?
@@ -36,6 +37,18 @@ class BookDetailViewModel: ObservableObject {
     @Published var categories: [CDCategory] = []
     @Published var notes: [CDNote] = []
     @Published var lists: [CDList] = []
+
+    @Published var allLists: [CDList] = []
+
+    var filteredLists: [CDList] {
+        var filteredLists: Set<CDList> = []
+        allLists.forEach { list in
+            if !lists.contains(list) {
+                filteredLists.insert(list)
+            }
+        }
+        return Array(filteredLists)
+    }
 
     init(book: CDBook) {
         self.book = book
@@ -54,6 +67,16 @@ class BookDetailViewModel: ObservableObject {
         self.titleLong = book.title_long ?? ""
 
         self.getNotesListsTagsAndCategoriesForBook()
+    }
+
+    func getAllLists() {
+        let fetchRequest = CDList.fetchRequest()
+
+        do {
+            self.allLists = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
     }
 
     func getBookFromDB() {
@@ -89,6 +112,13 @@ class BookDetailViewModel: ObservableObject {
 
     func getListsForBook() {
         self.lists = self.book.lists?.allObjects as? [CDList] ?? []
+    }
+
+    func addBookToList(_ list: CDList) {
+        list.addToBooks(self.book)
+        self.book.addToLists(list)
+
+        PersistentStore.shared.save()
     }
 
     func updateCDBook() {
@@ -131,6 +161,12 @@ class BookDetailViewModel: ObservableObject {
                 self.updateCDBook()
             }
         }
+    }
+
+    func removeBookFromList(_ list: CDList) {
+        list.removeFromBooks(self.book)
+        PersistentStore.shared.save()
+        getListsForBook()
     }
 
     func deleteBook(_ book: CDBook) {

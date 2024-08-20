@@ -42,6 +42,7 @@ struct BookDetailView: View {
                         }
                         Spacer()
                     }
+                    .padding(.top, 8)
                     VStack(alignment: .leading) {
                         Text(viewModel.title)
                             .font(.title2)
@@ -101,7 +102,7 @@ struct BookDetailView: View {
                             Spacer()
                             HStack {
                                 if (!viewModel.isOwned && !viewModel.isLoaned) || (viewModel.isOwned && !viewModel.isLoaned) {
-                                    
+                                    // Nichts anzuzeigen
                                 } else {
                                     if !viewModel.isOwned && viewModel.isLoaned {
                                         Text("Verliehen")
@@ -132,6 +133,7 @@ struct BookDetailView: View {
                                 .font(.body)
                         }
                     }
+                    .padding(.bottom, 8)
                 }
                 if !viewModel.lists.isEmpty {
                     Section(header: Text("Listen")) {
@@ -143,6 +145,13 @@ struct BookDetailView: View {
                             }, label: {
                                 Text(list.title ?? "no name")
                             })
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    viewModel.removeBookFromList(list)
+                                }) {
+                                    Label("Löschen", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
@@ -176,28 +185,43 @@ struct BookDetailView: View {
             .navigationTitle("Buchdetails")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if loginViewModel.isLoggedIn() {
-                    if !syncViewModel.isBookSynced {
-                        Button(action: {
-                            viewModel.isSyncSheetShown = true
-                        }, label: {
-                            Label("Bearbeiten", systemImage: "arrow.triangle.2.circlepath")
-                        })
-                        .tint(.blue)
-                    } else {
-                        Button(action: {
-                            viewModel.isAlertShown = true
-                        }, label: {
-                            Label("Bearbeiten", systemImage: "xmark.circle")
-                        })
-                        .tint(.red)
-                    }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        viewModel.isListSheetShown = true
+                    }, label: {
+                        Label("", systemImage: "text.badge.plus")
+                    })
                 }
-                Button(action: {
-                    viewModel.isEditSheetShown = true
-                }, label: {
-                    Label("Bearbeiten", systemImage: "pencil")
-                })
+                ToolbarItem(placement: .topBarTrailing) {
+                    if loginViewModel.isLoggedIn() {
+                        if !syncViewModel.isBookSynced {
+                            Button(action: {
+                                viewModel.isSyncSheetShown = true
+                            }, label: {
+                                Label("Bearbeiten", systemImage: "arrow.triangle.2.circlepath")
+                            })
+                            .tint(.blue)
+                        } else {
+                            Button(action: {
+                                viewModel.isAlertShown = true
+                            }, label: {
+                                Label("Bearbeiten", systemImage: "xmark.circle")
+                            })
+                            .tint(.red)
+                        }
+                    }
+                    Button(action: {
+                        viewModel.isEditSheetShown = true
+                    }, label: {
+                        Label("Bearbeiten", systemImage: "pencil")
+                    })
+                }
+            }
+            .sheet(isPresented: $viewModel.isListSheetShown, onDismiss: {
+                viewModel.getListsForBook()
+            }) {
+                BookToListView()
+                    .environmentObject(viewModel)
             }
             .sheet(isPresented: $viewModel.isEditSheetShown) {
                 BookDetailEditView()
@@ -206,6 +230,8 @@ struct BookDetailView: View {
             .sheet(isPresented: $viewModel.isSyncSheetShown) {
                 BookDetailSyncView(isSyncSheetShown: $viewModel.isSyncSheetShown)
                     .environmentObject(syncViewModel)
+                    .padding()
+                Spacer()
             }
             .alert("Backup löschen?", isPresented: $viewModel.isAlertShown) {
                 Button(role: .destructive, action: {
