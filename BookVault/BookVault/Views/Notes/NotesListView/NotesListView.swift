@@ -12,11 +12,12 @@ struct NotesListView: View {
     @State var path = NavigationPath()
 
     @State var isPresented = false
+    @State var searchText = ""
 
     var body: some View {
         NavigationStack(path: $path) {
             if !viewModel.books.isEmpty {
-                if !viewModel.notes.isEmpty {
+                if viewModel.notes.isEmpty {
                     Text("Du hast keine Notizen.")
                 }
                 List(viewModel.notes) { note in
@@ -47,17 +48,32 @@ struct NotesListView: View {
                 }
                 .navigationTitle("Notizen")
                 .toolbar {
-                    NavigationLink(value: "NotesBookSelectionView", label: {
-                        Label("", systemImage: "plus")
-                    })
-                    .navigationDestination(for: String.self) { textValue in
-                        if textValue == "NotesBookSelectionView" {
-                            NotesBookSelectionView(path: $path)
-                                .environmentObject(viewModel)
-                        } else if textValue == "NotesEditView" {
-                            NotesEditView(path: $path)
-                                .environmentObject(viewModel)
-                        }
+                    ToolbarItem(placement: .topBarLeading) {
+                        NavigationLink(value: "VaultListView", label: {
+                            Text("Vaults")
+                        })
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(value: "NotesBookSelectionView", label: {
+                            Label("", systemImage: "plus")
+                        })
+                    }
+                }
+                .navigationDestination(for: String.self) { textValue in
+                    switch textValue {
+                    case "NotesBookSelectionView":
+                        NotesBookSelectionView(path: $path)
+                            .environmentObject(viewModel)
+                    case "NotesEditView":
+                        NotesEditView(path: $path)
+                            .environmentObject(viewModel)
+                    case "VaultListView":
+                        VaultListView(path: $path)
+                    case "BookDetailView":
+                        NotesBookSelectionView(path: $path)
+                            .environmentObject(viewModel)
+                    default:
+                        EmptyView()
                     }
                 }
             } else {

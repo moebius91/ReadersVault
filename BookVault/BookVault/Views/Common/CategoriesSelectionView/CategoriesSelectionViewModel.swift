@@ -1,5 +1,5 @@
 //
-//  CategorySelectionViewModel.swift
+//  CategoriesSelectionViewModel.swift
 //  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 28.07.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategorySelectionViewModel: ObservableObject {
+class CategoriesSelectionViewModel: ObservableObject {
     @Published var categories: [CDCategory] = []
 
     @Published var isPresented: Bool = false

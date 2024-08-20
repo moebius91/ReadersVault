@@ -1,5 +1,5 @@
 //
-//  TagSelectionViewModel.swift
+//  TagsSelectionViewModel.swift
 //  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 28.07.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TagSelectionViewModel: ObservableObject {
+class TagsSelectionViewModel: ObservableObject {
     @Published var tags: [CDTag] = []
 
     @Published var isPresented: Bool = false

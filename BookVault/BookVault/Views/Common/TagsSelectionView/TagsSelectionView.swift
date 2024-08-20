@@ -1,5 +1,5 @@
 //
-//  TagSelectionView.swift
+//  TagsSelectionView.swift
 //  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 23.07.24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct TagSelectionView: View {
-    @StateObject var viewModel = TagSelectionViewModel()
+struct TagsSelectionView: View {
+    @StateObject var viewModel = TagsSelectionViewModel()
     @Binding var selectedTags: Set<CDTag>
 
     var body: some View {
@@ -56,7 +56,7 @@ struct TagSelectionView: View {
 #Preview {
     @State var selectedTags: Set<CDTag> = []
 
-    return TagSelectionView(selectedTags: $selectedTags)
+    return TagsSelectionView(selectedTags: $selectedTags)
 }
 
 #Preview("NoteEdit") {

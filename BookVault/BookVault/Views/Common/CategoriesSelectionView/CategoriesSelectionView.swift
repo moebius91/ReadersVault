@@ -1,5 +1,5 @@
 //
-//  CategorySelectionView.swift
+//  CategoriesSelectionView.swift
 //  ReadersVault
 //
 //  Created by Jan-Nikolas Othersen on 24.07.24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CategorySelectionView: View {
-    @StateObject var viewModel = CategorySelectionViewModel()
+struct CategoriesSelectionView: View {
+    @StateObject var viewModel = CategoriesSelectionViewModel()
     @Binding var selectedCategories: Set<CDCategory>
 
     var body: some View {
@@ -56,5 +56,5 @@ struct CategorySelectionView: View {
 #Preview {
     @State var selectedCategories: Set<CDCategory> = []
 
-    return CategorySelectionView(selectedCategories: $selectedCategories)
+    return CategoriesSelectionView(selectedCategories: $selectedCategories)
 }

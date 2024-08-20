@@ -35,7 +35,7 @@ struct NotesEditView: View {
                 Section(content: {
                     NavigationLink(
                         destination: {
-                            TagSelectionView(selectedTags: $viewModel.selectedTags)
+                            TagsSelectionView(selectedTags: $viewModel.selectedTags)
                         }) {
                             Text("Schlagworte auswählen")
                         }
@@ -47,7 +47,7 @@ struct NotesEditView: View {
                     }
                     NavigationLink(
                         destination: {
-                            CategorySelectionView(selectedCategories: $viewModel.selectedCategories)
+                            CategoriesSelectionView(selectedCategories: $viewModel.selectedCategories)
                         }) {
                             Text("Kategorien auswählen")
                         }
