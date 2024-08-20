@@ -11,6 +11,9 @@ struct BookDetailView: View {
     @StateObject var viewModel: BookDetailViewModel
     @StateObject var syncViewModel: BookDetailSyncViewModel
     @StateObject var loginViewModel = LoginViewModel.shared
+    @StateObject var notesViewModel = NotesListViewModel()
+
+    @State var path = NavigationPath()
 
     var body: some View {
         NavigationStack {
@@ -160,9 +163,16 @@ struct BookDetailView: View {
                         List(viewModel.notes) { note in
                             NavigationLink(destination: {
                                 NoteDetailView()
-                                    .environmentObject(note)
+                                    .environmentObject(NoteDetailViewModel(note: note))
                             }) {
                                 Text(note.title ?? "no name")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    viewModel.removeNote(note)
+                                }) {
+                                    Label("Löschen", systemImage: "trash")
+                                }
                             }
                         }
                     }
@@ -234,6 +244,14 @@ struct BookDetailView: View {
                         Label("Bearbeiten", systemImage: "pencil")
                     })
                 }
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: {
+                        notesViewModel.book = viewModel.book
+                        viewModel.isNoteSheetShown = true
+                    }, label: {
+                        Text("Notiz hinzufügen")
+                    })
+                }
             }
             .sheet(isPresented: $viewModel.isListSheetShown, onDismiss: {
                 viewModel.getListsForBook()
@@ -250,6 +268,10 @@ struct BookDetailView: View {
                     .environmentObject(syncViewModel)
                     .padding()
                 Spacer()
+            }
+            .sheet(isPresented: $viewModel.isNoteSheetShown) {
+                BookNewNoteView()
+                    .environmentObject(viewModel)
             }
             .alert("Backup löschen?", isPresented: $viewModel.isAlertShown) {
                 Button(role: .destructive, action: {
