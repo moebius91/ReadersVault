@@ -10,6 +10,7 @@ import CoreData
 
 struct HorizontalBookListView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         if !viewModel.books.isEmpty {
@@ -72,7 +73,7 @@ struct HorizontalBookListView: View {
                                     }
                                     HStack {
                                         Text(book.title?.truncate(length: 30) ?? "no title")
-                                            .foregroundStyle(.black)
+                                            .foregroundStyle(colorScheme == .dark ? .white : .black)
                                             .padding(0)
                                     }
                                     Spacer()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateTagView: View {
-    @EnvironmentObject var viewModel: TagSelectionViewModel
+    @EnvironmentObject var viewModel: TagsSelectionViewModel
 
     @State private var tagName: String = ""
 

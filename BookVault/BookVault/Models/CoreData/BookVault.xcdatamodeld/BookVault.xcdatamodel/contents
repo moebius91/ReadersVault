@@ -5,6 +5,7 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="authors" inverseEntity="CDBook"/>
+        <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="authors" inverseEntity="CDVault"/>
     </entity>
     <entity name="CDBook" representedClassName="CDBook" syncable="YES" codeGenerationType="class">
         <attribute name="coverImage" optional="YES" attributeType="Binary"/>
@@ -27,12 +28,14 @@
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDList" inverseName="books" inverseEntity="CDList"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="book" inverseEntity="CDNote"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="books" inverseEntity="CDTag"/>
+        <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="books" inverseEntity="CDVault"/>
     </entity>
     <entity name="CDCategory" representedClassName="CDCategory" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="categories" inverseEntity="CDBook"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="categories" inverseEntity="CDNote"/>
+        <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="categories" inverseEntity="CDVault"/>
     </entity>
     <entity name="CDList" representedClassName="CDList" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -50,11 +53,22 @@
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDBook" inverseName="notes" inverseEntity="CDBook"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="notes" inverseEntity="CDCategory"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="notes" inverseEntity="CDTag"/>
+        <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="notes" inverseEntity="CDVault"/>
     </entity>
     <entity name="CDTag" representedClassName="CDTag" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="tags" inverseEntity="CDBook"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="tags" inverseEntity="CDNote"/>
+        <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="tags" inverseEntity="CDVault"/>
+    </entity>
+    <entity name="CDVault" representedClassName="CDVault" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="authors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDAuthor" inverseName="vaults" inverseEntity="CDAuthor"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="vaults" inverseEntity="CDBook"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="vaults" inverseEntity="CDCategory"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="vaults" inverseEntity="CDNote"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="vaults" inverseEntity="CDTag"/>
     </entity>
 </model>

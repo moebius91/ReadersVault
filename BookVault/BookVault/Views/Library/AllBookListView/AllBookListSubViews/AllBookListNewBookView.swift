@@ -94,7 +94,7 @@ struct AllBookListNewBookView: View {
                 Section(header: Text("Schlagworte und Kategorien")) {
                     NavigationLink(
                         destination: {
-                            TagSelectionView(selectedTags: $viewModel.selectedTags)
+                            TagsSelectionView(selectedTags: $viewModel.selectedTags)
                         }) {
                             Text("Schlagworte auswählen")
                         }
@@ -106,7 +106,7 @@ struct AllBookListNewBookView: View {
                     }
                     NavigationLink(
                         destination: {
-                            CategorySelectionView(selectedCategories: $viewModel.selectedCategories)
+                            CategoriesSelectionView(selectedCategories: $viewModel.selectedCategories)
                         }) {
                             Text("Kategorien auswählen")
                         }
