@@ -165,8 +165,23 @@ class BookDetailViewModel: ObservableObject {
 
     func removeBookFromList(_ list: CDList) {
         list.removeFromBooks(self.book)
+        self.book.removeFromLists(list)
         PersistentStore.shared.save()
         getListsForBook()
+    }
+
+    func removeTag(_ tag: CDTag) {
+        tag.removeFromBooks(self.book)
+        self.book.removeFromTags(tag)
+        PersistentStore.shared.save()
+        getTagsForBook()
+    }
+
+    func removeCategory(_ category: CDCategory) {
+        category.removeFromBooks(self.book)
+        self.book.removeFromCategories(category)
+        PersistentStore.shared.save()
+        getCategoriesForBook()
     }
 
     func deleteBook(_ book: CDBook) {

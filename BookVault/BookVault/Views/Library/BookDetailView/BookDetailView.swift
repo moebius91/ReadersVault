@@ -170,14 +170,32 @@ struct BookDetailView: View {
                 if !viewModel.tags.isEmpty {
                     Section(header: Text("Schlagworte")) {
                         List(viewModel.tags) { tag in
-                            Text(tag.name ?? "no name")
+                            VStack {
+                                Text(tag.name ?? "no name")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    viewModel.removeTag(tag)
+                                }) {
+                                    Label("Löschen", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
                 if !viewModel.categories.isEmpty {
                     Section(header: Text("Kategorien")) {
                         List(viewModel.categories) { category in
-                            Text(category.name ?? "no name")
+                            VStack {
+                                Text(category.name ?? "no name")
+                            }
+                            .swipeActions {
+                                Button(role: .destructive, action: {
+                                    viewModel.removeCategory(category)
+                                }) {
+                                    Label("Löschen", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                 }
