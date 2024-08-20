@@ -35,6 +35,9 @@ class NewBookEditViewModel: ObservableObject {
     @Published var tags: [CDTag] = []
     @Published var categories: [CDCategory] = []
 
+    @Published var selectedTags: Set<CDTag> = []
+    @Published var selectedCategories: Set<CDCategory> = []
+
     init(book: ApiBook) {
         self.book = book
         self.coverUrl = book.image ?? URL(string: "https://example.com")!
@@ -70,6 +73,16 @@ class NewBookEditViewModel: ObservableObject {
         cdBook.isOwned = self.isOwned
         cdBook.isLoaned = self.isLoaned
         cdBook.isRead = self.isRead
+
+        self.selectedTags.forEach { tag in
+            cdBook.addToTags(tag)
+            tag.addToBooks(cdBook)
+        }
+
+        self.selectedCategories.forEach { category in
+            cdBook.addToCategories(category)
+            category.addToBooks(cdBook)
+        }
 
         self.authors.forEach { name in
             if let author = checkAndCreateAuthor(name) {
