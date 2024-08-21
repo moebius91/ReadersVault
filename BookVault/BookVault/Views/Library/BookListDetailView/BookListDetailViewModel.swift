@@ -14,6 +14,9 @@ class BookListDetailViewModel: ObservableObject {
     @Published var list: CDList?
     @Published var lists: [CDList] = []
 
+    @Published var category: CDCategory?
+    @Published var categories: [CDCategory] = []
+
     func saveBook(_ book: CDBook) {
         self.book = book
     }
@@ -27,6 +30,16 @@ class BookListDetailViewModel: ObservableObject {
 
         do {
             self.books = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
+    }
+
+    func getCDCategories() {
+        let fetchRequest = CDCategory.fetchRequest()
+
+        do {
+            self.categories = try PersistentStore.shared.context.fetch(fetchRequest)
         } catch {
             return
         }
@@ -80,8 +93,10 @@ class BookListDetailViewModel: ObservableObject {
         saveAndFetchLists()
     }
 
-    func updateListTitle(_ list: CDList, _ title: String) {
+    func updateList(_ list: CDList, title: String, category: CDCategory) {
         list.title = title
+        list.category = category
+        category.list = list
 
         saveAndFetchLists()
     }
