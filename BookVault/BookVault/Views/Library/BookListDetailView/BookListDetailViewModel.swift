@@ -80,6 +80,12 @@ class BookListDetailViewModel: ObservableObject {
         saveAndFetchLists()
     }
 
+    func updateListTitle(_ list: CDList, _ title: String) {
+        list.title = title
+
+        saveAndFetchLists()
+    }
+
     func deleteList(_ list: CDList) {
         PersistentStore.shared.context.delete(list)
 
