@@ -97,6 +97,7 @@ class BookListDetailViewModel: ObservableObject {
         list.title = title
         list.category = category
         category.list = list
+        list.addBooksFromCategory()
 
         saveAndFetchLists()
     }

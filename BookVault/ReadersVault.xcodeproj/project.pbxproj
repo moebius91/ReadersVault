@@ -76,6 +76,8 @@
 		C1354C5A2C75E4BF0093411C /* BookListDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C592C75E4BF0093411C /* BookListDetailEditView.swift */; };
 		C1354C5D2C7607890093411C /* NewListEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C5C2C7607890093411C /* NewListEditView.swift */; };
 		C1354C5F2C7607930093411C /* NewListEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C5E2C7607930093411C /* NewListEditViewModel.swift */; };
+		C1354C612C76284D0093411C /* CDCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C602C76284D0093411C /* CDCategory+Extension.swift */; };
+		C1354C632C76288D0093411C /* CDList+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C622C76288D0093411C /* CDList+Extension.swift */; };
 		C1383C442C3832DC00CDB87A /* ApiBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C3F2C3832DC00CDB87A /* ApiBook.swift */; };
 		C1383C452C3832DC00CDB87A /* ApiBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C402C3832DC00CDB87A /* ApiBookResult.swift */; };
 		C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C412C3832DC00CDB87A /* ApiKeys.swift */; };
@@ -197,6 +199,8 @@
 		C1354C592C75E4BF0093411C /* BookListDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListDetailEditView.swift; sourceTree = "<group>"; };
 		C1354C5C2C7607890093411C /* NewListEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListEditView.swift; sourceTree = "<group>"; };
 		C1354C5E2C7607930093411C /* NewListEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListEditViewModel.swift; sourceTree = "<group>"; };
+		C1354C602C76284D0093411C /* CDCategory+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDCategory+Extension.swift"; sourceTree = "<group>"; };
+		C1354C622C76288D0093411C /* CDList+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDList+Extension.swift"; sourceTree = "<group>"; };
 		C1383C3F2C3832DC00CDB87A /* ApiBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBook.swift; sourceTree = "<group>"; };
 		C1383C402C3832DC00CDB87A /* ApiBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBookResult.swift; sourceTree = "<group>"; };
 		C1383C412C3832DC00CDB87A /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -802,6 +806,8 @@
 				C1223FE32C6FB708007B1031 /* UTType+Extension.swift */,
 				C1223FFC2C6FDF8A007B1031 /* WidgetElement+Transferable.swift */,
 				C101CF322C7392FD00CF2C5E /* CDVault+Extension.swift */,
+				C1354C602C76284D0093411C /* CDCategory+Extension.swift */,
+				C1354C622C76288D0093411C /* CDList+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1126,6 +1132,7 @@
 				C12A255E2C65534800A31416 /* BulletinBoardView.swift in Sources */,
 				C18D58D22C3D437700ADF7F2 /* AuthorsResultView.swift in Sources */,
 				C12A25562C65469800A31416 /* FireGroupPost.swift in Sources */,
+				C1354C612C76284D0093411C /* CDCategory+Extension.swift in Sources */,
 				C101CF1F2C727BDA00CF2C5E /* NotesSelectionViewModel.swift in Sources */,
 				C1AAB1142C56EC2900D192CF /* NoteDetailViewModel.swift in Sources */,
 				C12A253E2C64FB4E00A31416 /* CommunityDashboardViewModel.swift in Sources */,
@@ -1146,6 +1153,7 @@
 				C101CF272C727C2100CF2C5E /* BooksSelecitonViewModel.swift in Sources */,
 				C12A25312C64155D00A31416 /* LoginView.swift in Sources */,
 				C1EFDD062C4A91D6003032BF /* BookDetailViewModel.swift in Sources */,
+				C1354C632C76288D0093411C /* CDList+Extension.swift in Sources */,
 				C1AAB0EE2C56ADF200D192CF /* AllBookListViewModel.swift in Sources */,
 				C12240012C6FEBE1007B1031 /* HomeElementView.swift in Sources */,
 				C1223FFB2C6FD703007B1031 /* HomeSingleBookView.swift in Sources */,

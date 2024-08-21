@@ -42,7 +42,6 @@ struct BookListDetailEditView: View {
             viewModel.getCDLists()
             viewModel.category = list.category
             title = list.title ?? "no title"
-            print(list)
         }
     }
 }

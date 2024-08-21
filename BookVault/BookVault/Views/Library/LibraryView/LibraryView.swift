@@ -38,6 +38,9 @@ struct LibraryView: View {
             }
             .sheet(isPresented: $viewModel.showNewListSheet) {
                 NewListEditView(showNewListSheet: $viewModel.showNewListSheet, showingAlert: $viewModel.showingAlert)
+                    .onDisappear {
+                        viewModel.getCDLists()
+                    }
             }
             .alert("Liste nicht erstellt!\nTitel darf nicht leer sein.", isPresented: $viewModel.showingAlert) {
                 Button("OK", role: .cancel) {
