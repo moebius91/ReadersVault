@@ -13,6 +13,7 @@ struct BookListDetailView: View {
 
     @State private var isNewPresented: Bool = false
     @State private var isEditPresented: Bool = false
+    @State private var title: String = ""
 
     var body: some View {
         NavigationStack {
@@ -29,26 +30,41 @@ struct BookListDetailView: View {
                         Image(systemName: "trash")
                     }
                 }
-                .swipeActions(edge: .leading) {
-                    Button(action: {
-                        viewModel.book = book
-                        isEditPresented = true
-                    }) {
-                        Image(systemName: "pencil")
-                            .tint(.blue)
-                    }
-                }
+//                .swipeActions(edge: .leading) {
+//                    Button(action: {
+//                        viewModel.book = book
+//                        isEditPresented = true
+//                    }) {
+//                        Image(systemName: "pencil")
+//                            .tint(.blue)
+//                    }
+//                }
             }
             .navigationTitle(list.title ?? "no title")
             .toolbar {
+                Button("", systemImage: "pencil") {
+                    isEditPresented.toggle()
+                }
                 Button("", systemImage: "plus") {
                     isNewPresented.toggle()
                 }
             }
             .sheet(isPresented: $isEditPresented) {
-                if let book = viewModel.book {
-                    BookDetailEditView()
-                        .environmentObject(BookDetailViewModel(book: book))
+                Form {
+                    Section("Titel bearbeiten") {
+                        TextField(list.title ?? "no title", text: $title)
+                    }
+                    Section {
+                        Button(action: {
+                            viewModel.updateListTitle(list, title)
+                            isEditPresented.toggle()
+                        }) {
+                            Text("Speichern")
+                        }
+                    }
+                }
+                .onAppear {
+                    title = list.title ?? "no title"
                 }
             }
             .sheet(isPresented: $isNewPresented, onDismiss: {
@@ -58,6 +74,7 @@ struct BookListDetailView: View {
             }
         }
         .onAppear {
+            title = list.title ?? "no title"
             viewModel.getBooksByList(list)
         }
         .onDisappear {
