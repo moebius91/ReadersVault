@@ -34,6 +34,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="categories" inverseEntity="CDBook"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDList" inverseName="category" inverseEntity="CDList"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDNote" inverseName="categories" inverseEntity="CDNote"/>
         <relationship name="vaults" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDVault" inverseName="categories" inverseEntity="CDVault"/>
     </entity>
@@ -42,6 +43,7 @@
         <attribute name="isPredefined" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBook" inverseName="lists" inverseEntity="CDBook"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="list" inverseEntity="CDCategory"/>
     </entity>
     <entity name="CDNote" representedClassName="CDNote" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String"/>
