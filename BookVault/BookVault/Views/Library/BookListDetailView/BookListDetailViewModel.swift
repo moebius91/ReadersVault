@@ -93,11 +93,12 @@ class BookListDetailViewModel: ObservableObject {
         saveAndFetchLists()
     }
 
-    func updateList(_ list: CDList, title: String, category: CDCategory) {
+    func updateList(_ list: CDList, title: String, category: CDCategory?) {
         list.title = title
-        list.category = category
-        category.list = list
-        list.addBooksFromCategory()
+        list.updateCategory(newCategory: category)
+        if let newCategory = category {
+            newCategory.list = list
+        }
 
         saveAndFetchLists()
     }

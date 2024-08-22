@@ -20,4 +20,18 @@ extension CDList {
             }
         }
     }
+
+    func updateCategory(newCategory: CDCategory?) {
+        if let oldCategory = self.category {
+            if let oldBooks = oldCategory.getAllBooks() {
+                for book in oldBooks {
+                    self.removeFromBooks(book)
+                }
+            }
+        }
+
+        self.category = newCategory
+
+        addBooksFromCategory()
+    }
 }

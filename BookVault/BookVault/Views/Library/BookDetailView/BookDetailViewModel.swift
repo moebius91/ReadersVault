@@ -224,7 +224,7 @@ class BookDetailViewModel: ObservableObject {
 
     func removeCategory(_ category: CDCategory) {
         category.removeFromBooks(self.book)
-        self.book.removeFromCategories(category)
+        self.book.removeFromCategory(category)
         PersistentStore.shared.save()
         getCategoriesForBook()
     }

@@ -27,9 +27,9 @@ class NewListEditViewModel: ObservableObject {
         cdList.title = title
 
         if let newCategory = self.category {
-            cdList.category = newCategory
+            cdList.updateCategory(newCategory: newCategory)
+//            cdList.category = newCategory
             newCategory.list = cdList
-            cdList.addBooksFromCategory()
         }
 
         PersistentStore.shared.save()

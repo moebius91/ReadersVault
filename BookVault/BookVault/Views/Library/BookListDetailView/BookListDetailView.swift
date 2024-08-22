@@ -52,6 +52,9 @@ struct BookListDetailView: View {
                 BookListDetailEditView(isEditPresented: $isEditPresented)
                     .environmentObject(viewModel)
                     .environmentObject(list)
+                    .onDisappear {
+                        viewModel.getBooksByList(list)
+                    }
             }
             .sheet(isPresented: $isNewPresented, onDismiss: {
                 viewModel.getBooksByList(list)

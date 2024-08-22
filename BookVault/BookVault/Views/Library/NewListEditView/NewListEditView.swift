@@ -24,7 +24,9 @@ struct NewListEditView: View {
                 Picker("Kategorie:", selection: $viewModel.category) {
                     Text("Keine Kategorie").tag(nil as CDCategory?)
                     ForEach(viewModel.categories) { category in
-                        Text(category.name ?? "no name").tag(category as CDCategory?)
+                        if category.list == nil {
+                            Text(category.name ?? "no name").tag(category as CDCategory?)
+                        }
                     }
                 }
             }

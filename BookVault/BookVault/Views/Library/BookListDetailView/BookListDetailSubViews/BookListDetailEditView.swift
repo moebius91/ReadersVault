@@ -32,6 +32,9 @@ struct BookListDetailEditView: View {
                     if let category = viewModel.category {
                         viewModel.updateList(list, title: title, category: category)
                         isEditPresented.toggle()
+                    } else {
+                        viewModel.updateList(list, title: title, category: nil)
+                        isEditPresented.toggle()
                     }
                 }) {
                     Text("Speichern")
