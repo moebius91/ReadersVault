@@ -12,8 +12,6 @@ struct LibraryView: View {
     @StateObject private var loginViewModel = LoginViewModel.shared
 
     @State var path = NavigationPath()
-
-    @State private var newListTitle: String = ""
     @State private var isPresented: Bool = false
 
     var body: some View {
@@ -38,23 +36,11 @@ struct LibraryView: View {
                 LibrarySyncView()
                     .environmentObject(LibrarySyncViewModel(books: viewModel.books))
             }
-            .sheet(isPresented: $viewModel.presentNewListSheet) {
-                Form {
-                    TextField("Titel der neuen Liste", text: $newListTitle)
-                        .padding(8)
-                    Button(action: {
-                        if !newListTitle.isEmpty {
-                            viewModel.createList(newListTitle)
-                            newListTitle = ""
-                            viewModel.presentNewListSheet = false
-                        } else {
-                            viewModel.showingAlert = true
-                        }
-                    }, label: {
-                        Text("Liste hinzufügen")
-                    })
-                }
-                .padding()
+            .sheet(isPresented: $viewModel.showNewListSheet) {
+                NewListEditView(showNewListSheet: $viewModel.showNewListSheet, showingAlert: $viewModel.showingAlert)
+                    .onDisappear {
+                        viewModel.getCDLists()
+                    }
             }
             .alert("Liste nicht erstellt!\nTitel darf nicht leer sein.", isPresented: $viewModel.showingAlert) {
                 Button("OK", role: .cancel) {

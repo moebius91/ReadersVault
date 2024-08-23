@@ -13,7 +13,7 @@ struct VerticalBookListsView: View {
     var body: some View {
         Section {
             Button(action: {
-                viewModel.presentNewListSheet = true
+                viewModel.showNewListSheet = true
             }, label: {
                 Text("Neue Liste")
             })

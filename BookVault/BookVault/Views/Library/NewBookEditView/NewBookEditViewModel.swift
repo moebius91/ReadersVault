@@ -81,7 +81,8 @@ class NewBookEditViewModel: ObservableObject {
 
         self.selectedCategories.forEach { category in
             cdBook.addToCategories(category)
-            category.addToBooks(cdBook)
+//            category.addToBooks(cdBook)
+            category.addBook(cdBook)
         }
 
         self.authors.forEach { name in

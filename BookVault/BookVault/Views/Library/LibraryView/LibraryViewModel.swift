@@ -14,7 +14,7 @@ class LibraryViewModel: ObservableObject {
     @Published var list: CDList?
     @Published var lists: [CDList] = []
 
-    @Published var presentNewListSheet: Bool = false
+    @Published var showNewListSheet: Bool = false
     @Published var showingAlert: Bool = false
 
     func saveBook(_ book: CDBook) {

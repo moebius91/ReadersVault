@@ -73,6 +73,12 @@
 		C12A25602C65535500A31416 /* BulletinBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A255F2C65535500A31416 /* BulletinBoardViewModel.swift */; };
 		C12A25622C65539300A31416 /* FireBulletinBoardPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25612C65539300A31416 /* FireBulletinBoardPost.swift */; };
 		C12A25652C65675800A31416 /* CommunityNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A25642C65675800A31416 /* CommunityNavigatorView.swift */; };
+		C1354C5A2C75E4BF0093411C /* BookListDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C592C75E4BF0093411C /* BookListDetailEditView.swift */; };
+		C1354C5D2C7607890093411C /* NewListEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C5C2C7607890093411C /* NewListEditView.swift */; };
+		C1354C5F2C7607930093411C /* NewListEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C5E2C7607930093411C /* NewListEditViewModel.swift */; };
+		C1354C612C76284D0093411C /* CDCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C602C76284D0093411C /* CDCategory+Extension.swift */; };
+		C1354C632C76288D0093411C /* CDList+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C622C76288D0093411C /* CDList+Extension.swift */; };
+		C1354C652C766F020093411C /* CDBook+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1354C642C766F020093411C /* CDBook+Extension.swift */; };
 		C1383C442C3832DC00CDB87A /* ApiBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C3F2C3832DC00CDB87A /* ApiBook.swift */; };
 		C1383C452C3832DC00CDB87A /* ApiBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C402C3832DC00CDB87A /* ApiBookResult.swift */; };
 		C1383C462C3832DC00CDB87A /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C412C3832DC00CDB87A /* ApiKeys.swift */; };
@@ -191,6 +197,12 @@
 		C12A255F2C65535500A31416 /* BulletinBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinBoardViewModel.swift; sourceTree = "<group>"; };
 		C12A25612C65539300A31416 /* FireBulletinBoardPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBulletinBoardPost.swift; sourceTree = "<group>"; };
 		C12A25642C65675800A31416 /* CommunityNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityNavigatorView.swift; sourceTree = "<group>"; };
+		C1354C592C75E4BF0093411C /* BookListDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListDetailEditView.swift; sourceTree = "<group>"; };
+		C1354C5C2C7607890093411C /* NewListEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListEditView.swift; sourceTree = "<group>"; };
+		C1354C5E2C7607930093411C /* NewListEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListEditViewModel.swift; sourceTree = "<group>"; };
+		C1354C602C76284D0093411C /* CDCategory+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDCategory+Extension.swift"; sourceTree = "<group>"; };
+		C1354C622C76288D0093411C /* CDList+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDList+Extension.swift"; sourceTree = "<group>"; };
+		C1354C642C766F020093411C /* CDBook+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBook+Extension.swift"; sourceTree = "<group>"; };
 		C1383C3F2C3832DC00CDB87A /* ApiBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBook.swift; sourceTree = "<group>"; };
 		C1383C402C3832DC00CDB87A /* ApiBookResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiBookResult.swift; sourceTree = "<group>"; };
 		C1383C412C3832DC00CDB87A /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -450,7 +462,7 @@
 		C125BFD62C33313D000636AF /* BookListDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				C10F244D2C555E8800345D7F /* BookListAddBookView */,
+				C1354C582C75E49C0093411C /* BookListDetailSubViews */,
 				C125BFD72C333144000636AF /* BookListDetailView.swift */,
 				C1A3FD072C3FEBFD001E7F13 /* BookListDetailViewModel.swift */,
 			);
@@ -488,6 +500,7 @@
 		C12A252A2C63B2D100A31416 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				C1354C5B2C7607770093411C /* NewListEditView */,
 				C167B0912C53EE8400BD6FFA /* NewBookEditView */,
 				C1EFDD042C4A91CC003032BF /* BookDetailView */,
 				C1AAB0F42C56B2CE00D192CF /* AuthorSelectionView */,
@@ -625,6 +638,24 @@
 				C12A25512C6509A800A31416 /* ProfileView.swift */,
 			);
 			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		C1354C582C75E49C0093411C /* BookListDetailSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C10F244D2C555E8800345D7F /* BookListAddBookView */,
+				C1354C592C75E4BF0093411C /* BookListDetailEditView.swift */,
+			);
+			path = BookListDetailSubViews;
+			sourceTree = "<group>";
+		};
+		C1354C5B2C7607770093411C /* NewListEditView */ = {
+			isa = PBXGroup;
+			children = (
+				C1354C5C2C7607890093411C /* NewListEditView.swift */,
+				C1354C5E2C7607930093411C /* NewListEditViewModel.swift */,
+			);
+			path = NewListEditView;
 			sourceTree = "<group>";
 		};
 		C1383C3E2C3832D200CDB87A /* Models */ = {
@@ -777,6 +808,9 @@
 				C1223FE32C6FB708007B1031 /* UTType+Extension.swift */,
 				C1223FFC2C6FDF8A007B1031 /* WidgetElement+Transferable.swift */,
 				C101CF322C7392FD00CF2C5E /* CDVault+Extension.swift */,
+				C1354C602C76284D0093411C /* CDCategory+Extension.swift */,
+				C1354C622C76288D0093411C /* CDList+Extension.swift */,
+				C1354C642C766F020093411C /* CDBook+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1061,6 +1095,7 @@
 				C1223FF32C6FD6D7007B1031 /* HomeStatsView.swift in Sources */,
 				C1AAB0FC2C56B97300D192CF /* AuthorSelectionView.swift in Sources */,
 				C167B0932C53EE9400BD6FFA /* NewBookEditView.swift in Sources */,
+				C1354C5F2C7607930093411C /* NewListEditViewModel.swift in Sources */,
 				C12A25602C65535500A31416 /* BulletinBoardViewModel.swift in Sources */,
 				C1223FE42C6FB708007B1031 /* UTType+Extension.swift in Sources */,
 				C1D5CDA62C6CA8A400BD5AC1 /* LibrarySyncView.swift in Sources */,
@@ -1100,6 +1135,7 @@
 				C12A255E2C65534800A31416 /* BulletinBoardView.swift in Sources */,
 				C18D58D22C3D437700ADF7F2 /* AuthorsResultView.swift in Sources */,
 				C12A25562C65469800A31416 /* FireGroupPost.swift in Sources */,
+				C1354C612C76284D0093411C /* CDCategory+Extension.swift in Sources */,
 				C101CF1F2C727BDA00CF2C5E /* NotesSelectionViewModel.swift in Sources */,
 				C1AAB1142C56EC2900D192CF /* NoteDetailViewModel.swift in Sources */,
 				C12A253E2C64FB4E00A31416 /* CommunityDashboardViewModel.swift in Sources */,
@@ -1120,15 +1156,18 @@
 				C101CF272C727C2100CF2C5E /* BooksSelecitonViewModel.swift in Sources */,
 				C12A25312C64155D00A31416 /* LoginView.swift in Sources */,
 				C1EFDD062C4A91D6003032BF /* BookDetailViewModel.swift in Sources */,
+				C1354C632C76288D0093411C /* CDList+Extension.swift in Sources */,
 				C1AAB0EE2C56ADF200D192CF /* AllBookListViewModel.swift in Sources */,
 				C12240012C6FEBE1007B1031 /* HomeElementView.swift in Sources */,
 				C1223FFB2C6FD703007B1031 /* HomeSingleBookView.swift in Sources */,
 				C1383C452C3832DC00CDB87A /* ApiBookResult.swift in Sources */,
 				C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */,
+				C1354C5D2C7607890093411C /* NewListEditView.swift in Sources */,
 				C167B08C2C526F6400BD6FFA /* ScannerSearchBar.swift in Sources */,
 				C1223FD32C6F9593007B1031 /* WidgetElement.swift in Sources */,
 				C12A25332C64157400A31416 /* LoginViewModel.swift in Sources */,
 				C1AAB0F82C56B6FB00D192CF /* TagsSelectionViewModel.swift in Sources */,
+				C1354C652C766F020093411C /* CDBook+Extension.swift in Sources */,
 				C1A3FD0A2C403DBC001E7F13 /* HorizontalBookListView.swift in Sources */,
 				C167B0952C53EEA700BD6FFA /* NewBookEditViewModel.swift in Sources */,
 				C101CF212C727BE100CF2C5E /* NotesSelectionView.swift in Sources */,
@@ -1140,6 +1179,7 @@
 				C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */,
 				C12A25522C6509A800A31416 /* ProfileView.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
+				C1354C5A2C75E4BF0093411C /* BookListDetailEditView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,
 				C10FDCF82C6B75A10000545A /* FireBook.swift in Sources */,
 				C12A25392C64209200A31416 /* VerificationPendingView.swift in Sources */,

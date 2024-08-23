@@ -13,7 +13,6 @@ struct BookListDetailView: View {
 
     @State private var isNewPresented: Bool = false
     @State private var isEditPresented: Bool = false
-    @State private var title: String = ""
 
     var body: some View {
         NavigationStack {
@@ -50,22 +49,12 @@ struct BookListDetailView: View {
                 }
             }
             .sheet(isPresented: $isEditPresented) {
-                Form {
-                    Section("Titel bearbeiten") {
-                        TextField(list.title ?? "no title", text: $title)
+                BookListDetailEditView(isEditPresented: $isEditPresented)
+                    .environmentObject(viewModel)
+                    .environmentObject(list)
+                    .onDisappear {
+                        viewModel.getBooksByList(list)
                     }
-                    Section {
-                        Button(action: {
-                            viewModel.updateListTitle(list, title)
-                            isEditPresented.toggle()
-                        }) {
-                            Text("Speichern")
-                        }
-                    }
-                }
-                .onAppear {
-                    title = list.title ?? "no title"
-                }
             }
             .sheet(isPresented: $isNewPresented, onDismiss: {
                 viewModel.getBooksByList(list)
@@ -74,7 +63,7 @@ struct BookListDetailView: View {
             }
         }
         .onAppear {
-            title = list.title ?? "no title"
+            viewModel.getCDCategories()
             viewModel.getBooksByList(list)
         }
         .onDisappear {

@@ -169,7 +169,8 @@ class BookDetailViewModel: ObservableObject {
 
         self.selectedCategories.forEach { category in
             book.addToCategories(category)
-            category.addToBooks(book)
+//            category.addToBooks(book)
+            category.addBook(book)
         }
 
         if self.photosPickerItem != nil {
@@ -223,7 +224,7 @@ class BookDetailViewModel: ObservableObject {
 
     func removeCategory(_ category: CDCategory) {
         category.removeFromBooks(self.book)
-        self.book.removeFromCategories(category)
+        self.book.removeFromCategory(category)
         PersistentStore.shared.save()
         getCategoriesForBook()
     }

@@ -238,6 +238,8 @@ struct BookDetailView: View {
                             .tint(.red)
                         }
                     }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         viewModel.isEditSheetShown = true
                     }, label: {
