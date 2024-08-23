@@ -43,4 +43,3 @@ struct VaultDetailView: View {
         VaultListView(path: $path)
     }
 }
-

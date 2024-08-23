@@ -17,5 +17,5 @@ struct HomeStatsView: View {
 }
 
 #Preview {
-    HomeStatsView(stats: ["":""])
+    HomeStatsView(stats: ["": ""])
 }

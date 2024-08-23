@@ -58,7 +58,7 @@ class BookListAddBookViewModel: ObservableObject {
     }
     
     private func removeAllBooksFromList(_ list: CDList) {
-        guard let book = list.books?.allObjects as? [CDBook] else {
+        guard let books = list.books?.allObjects as? [CDBook] else {
             return
         }
 

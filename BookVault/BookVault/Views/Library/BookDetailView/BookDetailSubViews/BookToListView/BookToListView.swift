@@ -53,13 +53,13 @@ struct BookToListView: View {
 #Preview {
     let libraryViewModel = LibraryViewModel()
     libraryViewModel.getCDBooks()
-    
+
     if let book = libraryViewModel.books.first {
         return NavigationStack { BookToListView()
                 .environmentObject(BookDetailViewModel(book: book))
         }
     }
-    
+
     return EmptyView()
 }
 

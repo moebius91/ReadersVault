@@ -37,7 +37,7 @@ class HomeViewModel: ObservableObject {
 //            self.dummieWidgets()
 //        }
     }
-    
+
     func cdBooksToWidgetBooks() {
         let libraryViewModel = LibraryViewModel()
         libraryViewModel.getCDBooks()

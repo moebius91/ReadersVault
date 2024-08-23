@@ -133,7 +133,6 @@ class BookDetailSyncViewModel: ObservableObject {
         }
     }
 
-
 //    func deleteBook(withId id: String?) {
 //        guard let userId = self.firebaseAuthentication.currentUser?.uid else {
 //            print("Benutzer ist nicht angemeldet.")
