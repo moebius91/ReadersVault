@@ -117,6 +117,7 @@
 		C1AAB1012C56BE3A00D192CF /* CreateAuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AAB1002C56BE3A00D192CF /* CreateAuthorView.swift */; };
 		C1AAB1142C56EC2900D192CF /* NoteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AAB1132C56EC2900D192CF /* NoteDetailViewModel.swift */; };
 		C1B038F12C49321300013EB1 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B038F02C49321300013EB1 /* SafariView.swift */; };
+		C1C564B92C78818C0056EC8E /* NavigationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C564B82C78818C0056EC8E /* NavigationValue.swift */; };
 		C1D5CDA62C6CA8A400BD5AC1 /* LibrarySyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5CDA52C6CA8A400BD5AC1 /* LibrarySyncView.swift */; };
 		C1D5CDA82C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5CDA72C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift */; };
 		C1E691482C74CF5E00D8A937 /* BookNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E691472C74CF5E00D8A937 /* BookNewNoteView.swift */; };
@@ -241,6 +242,7 @@
 		C1AAB1002C56BE3A00D192CF /* CreateAuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthorView.swift; sourceTree = "<group>"; };
 		C1AAB1132C56EC2900D192CF /* NoteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewModel.swift; sourceTree = "<group>"; };
 		C1B038F02C49321300013EB1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		C1C564B82C78818C0056EC8E /* NavigationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationValue.swift; sourceTree = "<group>"; };
 		C1D5CDA52C6CA8A400BD5AC1 /* LibrarySyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySyncView.swift; sourceTree = "<group>"; };
 		C1D5CDA72C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySyncViewModel.swift; sourceTree = "<group>"; };
 		C1E691472C74CF5E00D8A937 /* BookNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNewNoteView.swift; sourceTree = "<group>"; };
@@ -435,7 +437,6 @@
 		C125BFCD2C332162000636AF /* NavigatorView */ = {
 			isa = PBXGroup;
 			children = (
-				C125BFCE2C332174000636AF /* Enums */,
 				C11EE60E2C5697C6005D560F /* NavigatorView.swift */,
 			);
 			path = NavigatorView;
@@ -445,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				C125BFCF2C332180000636AF /* Tab.swift */,
+				C1C564B82C78818C0056EC8E /* NavigationValue.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -661,6 +663,7 @@
 		C1383C3E2C3832D200CDB87A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C125BFCE2C332174000636AF /* Enums */,
 				C1A3FD0F2C404B83001E7F13 /* Extensions */,
 				C1223FCF2C6F941A007B1031 /* HomeView */,
 				C12A25342C6418C200A31416 /* Firebase */,
@@ -1141,6 +1144,7 @@
 				C12A253E2C64FB4E00A31416 /* CommunityDashboardViewModel.swift in Sources */,
 				C125BFDB2C340D65000636AF /* SearchView.swift in Sources */,
 				C12A25542C6544E600A31416 /* FireGroup.swift in Sources */,
+				C1C564B92C78818C0056EC8E /* NavigationValue.swift in Sources */,
 				C1EFDD1C2C500C3A003032BF /* CreateTagView.swift in Sources */,
 				C10FDCF22C6B542C0000545A /* BookDetailSyncView.swift in Sources */,
 				C1223FFF2C6FE667007B1031 /* HomeWidgetView.swift in Sources */,

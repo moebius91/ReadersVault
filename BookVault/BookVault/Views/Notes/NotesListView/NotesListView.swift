@@ -49,31 +49,29 @@ struct NotesListView: View {
                 .navigationTitle("Notizen")
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        NavigationLink(value: "VaultListView", label: {
+                        NavigationLink(value: NavigationValue.vaultListView, label: {
                             Text("Vaults")
                         })
                     }
                     ToolbarItem(placement: .topBarTrailing) {
-                        NavigationLink(value: "NotesBookSelectionView", label: {
+                        NavigationLink(value: NavigationValue.notesBookSelectionView, label: {
                             Label("", systemImage: "plus")
                         })
                     }
                 }
-                .navigationDestination(for: String.self) { textValue in
-                    switch textValue {
-                    case "NotesBookSelectionView":
+                .navigationDestination(for: NavigationValue.self) { destination in
+                    switch destination {
+                    case .notesBookSelectionView:
                         NotesBookSelectionView(path: $path)
                             .environmentObject(viewModel)
-                    case "NotesEditView":
+                    case .notesEditView:
                         NotesEditView(path: $path)
                             .environmentObject(viewModel)
-                    case "VaultListView":
+                    case .vaultListView:
                         VaultListView(path: $path)
-                    case "BookDetailView":
+                    case .bookDetailView:
                         NotesBookSelectionView(path: $path)
                             .environmentObject(viewModel)
-                    default:
-                        EmptyView()
                     }
                 }
             } else {

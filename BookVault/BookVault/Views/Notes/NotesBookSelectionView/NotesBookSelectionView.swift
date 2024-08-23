@@ -19,7 +19,7 @@ struct NotesBookSelectionView: View {
         Form {
             Section {
                 if viewModel.book != nil {
-                    NavigationLink(value: "NotesEditView", label: {
+                    NavigationLink(value: NavigationValue.notesEditView, label: {
                         HStack {
                             Text("Weiter")
                                 .foregroundStyle(.blue)
@@ -74,7 +74,7 @@ struct NotesBookSelectionView: View {
             }
             Section {
                 if viewModel.book != nil {
-                    NavigationLink(value: "NotesEditView", label: {
+                    NavigationLink(value: NavigationValue.notesEditView, label: {
                         HStack {
                             Text("Weiter")
                                 .foregroundStyle(.blue)
