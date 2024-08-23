@@ -11,9 +11,12 @@ import FirebaseFirestore
 
 class LibrarySyncViewModel: ObservableObject {
     @Published var books: [FireBook] = []
-    @Published var filteredBooks: [FireBook] = []
+    @Published var fireBaseOnlyBooks: [FireBook] = []
+    @Published var localOnlyBooks: [CDBook] = []
 
-    private let cdBooks: [CDBook]
+    @Published var syncedBooks: [FireBook] = []
+
+    private var cdBooks: [CDBook]
 
     private var user: FireUser?
 
@@ -28,11 +31,19 @@ class LibrarySyncViewModel: ObservableObject {
         if let currentUser = self.firebaseAuthentication.currentUser {
             self.fetchFirestoreUser(withId: currentUser.uid)
             self.fetchBooks()
+            self.getLocalOnlyBooks()
+            self.getAllSyncedBooks()
         }
     }
 
     deinit {
         self.listener?.remove()
+    }
+
+    func start() {
+        self.fetchBooks()
+        self.getLocalOnlyBooks()
+        self.getAllSyncedBooks()
     }
 
     func syncFireBookToCoreData(fireBook: FireBook) {
@@ -52,6 +63,34 @@ class LibrarySyncViewModel: ObservableObject {
         downloadImage(from: fireBook.coverUrl) { data in
             cdBook.coverImage = data
             PersistentStore.shared.save()
+
+            self.getCDBooks()
+            self.fetchBooks()
+            self.getLocalOnlyBooks()
+            self.getAllSyncedBooks()
+        }
+    }
+
+    func syncCoreDataToFireBook(_ book: CDBook) {
+        guard let userId = self.firebaseAuthentication.currentUser?.uid else {
+            print("Benutzer ist nicht angemeldet.")
+            return
+        }
+
+        let newFireBook = cdBookToFireBook(book)
+
+        do {
+            try self.firebaseFirestore.collection("users").document(userId).collection(self.collectionName).addDocument(from: newFireBook) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                } else {
+                    self.fetchBooks()
+                    self.getLocalOnlyBooks()
+                    self.getAllSyncedBooks()
+                }
+            }
+        } catch {
+            print(error)
         }
     }
 
@@ -108,9 +147,62 @@ class LibrarySyncViewModel: ObservableObject {
         }
     }
 
+    private func cdBookToFireBook(_ book: CDBook) -> FireBook {
+        let fireBook = FireBook(
+            id: book.id?.uuidString ?? "",
+            isbn: book.isbn ?? "",
+            isbn10: book.isbn10 ?? "",
+            isbn13: book.isbn13 ?? "",
+            isFavorite: book.isFavorite,
+            isDesired: book.isDesired,
+            isRead: book.isRead,
+            isLoaned: book.isLoaned,
+            isOwned: book.isOwned,
+            publisher: book.publisher ?? "",
+            shortDescription: book.short_description ?? "",
+            title: book.title ?? "",
+            titleLong: book.title_long ?? "",
+            coverImage: Data(),
+            coverUrl: book.coverUrl ?? URL(string: "https://nocov.er")!
+        )
+
+        return fireBook
+    }
+
+    private func getLocalOnlyBooks() {
+        let fireBookISBNSet = Set(books.map { $0.isbn13 })
+        self.localOnlyBooks = self.cdBooks.filter { cdBook in
+            guard let isbn13 = cdBook.isbn13 else { return false }
+            return !fireBookISBNSet.contains(isbn13)
+        }
+    }
+
     private func filterBooksByISBN13() {
         let cdBooksISBNSet = Set(cdBooks.map { $0.isbn13 })
-        self.filteredBooks = self.books.filter { !cdBooksISBNSet.contains($0.isbn13) }
+        self.fireBaseOnlyBooks = self.books.filter { !cdBooksISBNSet.contains($0.isbn13) }
+    }
+
+    private func getAllSyncedBooks() {
+        let cdBooksISBNSet = Set(cdBooks.map { $0.isbn13 })
+        self.syncedBooks = self.books.filter { 
+            cdBooksISBNSet.contains($0.isbn13)
+        }
+        
+//        let fireBookISBNSet = Set(books.map { $0.isbn13 })
+//        self.syncedBooks = self.cdBooks.filter { cdBook in
+//            guard let isbn13 = cdBook.isbn13 else { return false }
+//            return fireBookISBNSet.contains(isbn13)
+//        }
+    }
+
+    private func getCDBooks() {
+        let fetchRequest = CDBook.fetchRequest()
+
+        do {
+            self.cdBooks = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
     }
 
     private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {

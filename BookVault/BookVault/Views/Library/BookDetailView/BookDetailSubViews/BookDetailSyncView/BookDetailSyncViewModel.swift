@@ -62,11 +62,6 @@ class BookDetailSyncViewModel: ObservableObject {
             return
         }
 
-//        guard let bookId = self.book.id?.uuidString else {
-//            print("Book-ID leer.")
-//            return
-//        }
-
         guard let isbn13 = self.book.isbn13 else {
             print("ISBN13 leer.")
             return
@@ -132,25 +127,6 @@ class BookDetailSyncViewModel: ObservableObject {
             self.fireBook = nil
         }
     }
-
-//    func deleteBook(withId id: String?) {
-//        guard let userId = self.firebaseAuthentication.currentUser?.uid else {
-//            print("Benutzer ist nicht angemeldet.")
-//            return
-//        }
-//
-//        guard let id else {
-//            print("Item hat keine ID!")
-//            return
-//        }
-//
-//        firebaseFirestore.collection("users").document(userId).collection(collectionName).document(id).delete() { error in
-//            if let error {
-//                print("Löschen fehlgeschlagen: \(error)")
-//            }
-//            print("Dokument id: \(id)")
-//        }
-//    }
 
     private func cdBookToFireBook() -> FireBook {
         let fireBook = FireBook(
