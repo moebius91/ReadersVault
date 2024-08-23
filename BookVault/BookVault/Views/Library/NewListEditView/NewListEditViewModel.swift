@@ -14,6 +14,8 @@ class NewListEditViewModel: ObservableObject {
     func getCDCategories() {
         let fetchRequest = CDCategory.fetchRequest()
 
+        fetchRequest.predicate = NSPredicate(format: "list == nil")
+
         do {
             self.categories = try PersistentStore.shared.context.fetch(fetchRequest)
         } catch {
