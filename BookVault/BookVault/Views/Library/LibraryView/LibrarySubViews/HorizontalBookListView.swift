@@ -17,7 +17,7 @@ struct HorizontalBookListView: View {
             Section {
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(viewModel.books, id: \.self) { book in
+                        ForEach(viewModel.books.prefix(5), id: \.self) { book in
                             NavigationLink(destination: {
                                 BookDetailView(viewModel: BookDetailViewModel(book: book), syncViewModel: BookDetailSyncViewModel(book: book))
                             }, label: {
