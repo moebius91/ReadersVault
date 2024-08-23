@@ -63,7 +63,7 @@ struct BookListDetailView: View {
             }
         }
         .onAppear {
-            viewModel.getCDCategories()
+            viewModel.getCDCategories(list: list)
             viewModel.getBooksByList(list)
         }
         .onDisappear {

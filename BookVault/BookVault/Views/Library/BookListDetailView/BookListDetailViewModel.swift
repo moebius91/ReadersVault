@@ -35,11 +35,16 @@ class BookListDetailViewModel: ObservableObject {
         }
     }
 
-    func getCDCategories() {
+    func getCDCategories(list: CDList) {
         let fetchRequest = CDCategory.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(format: "list == nil")
 
         do {
             self.categories = try PersistentStore.shared.context.fetch(fetchRequest)
+            if let category = list.category {
+                self.categories.append(category)
+            }
         } catch {
             return
         }

@@ -18,7 +18,6 @@ struct NewListEditView: View {
         Form {
             Section("Titel hinzufügen") {
                 TextField("Titel der neuen Liste", text: $newListTitle)
-                    .padding(8)
             }
             Section("Kategorie hinzufügen") {
                 Picker("Kategorie:", selection: $viewModel.category) {
