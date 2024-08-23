@@ -14,7 +14,7 @@ struct VaultDetailHorizontalView: View {
         ScrollView(.horizontal) {
             HStack {
                 ForEach(Array(viewModel.books), id: \.self) { book in
-                    NavigationLink(value: "BookDetailView") {
+                    NavigationLink(value: NavigationValue.bookDetailView) {
                         VaultDetailBookItemView(book: book)
                     }
                 }
