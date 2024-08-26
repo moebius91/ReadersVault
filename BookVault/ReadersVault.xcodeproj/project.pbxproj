@@ -120,6 +120,8 @@
 		C1C564C62C788CE10056EC8E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C1C564C52C788CE10056EC8E /* FirebaseStorage */; };
 		C1C564C82C788CE10056EC8E /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = C1C564C72C788CE10056EC8E /* FirebaseVertexAI-Preview */; };
 		C1C564CB2C78A3C90056EC8E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C564CA2C78A3C90056EC8E /* CustomTextField.swift */; };
+		C1C564CD2C7918740056EC8E /* ElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C564CC2C7918740056EC8E /* ElementType.swift */; };
+		C1C564D02C79E43C0056EC8E /* HomeBooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C564CF2C79E43C0056EC8E /* HomeBooksViewModel.swift */; };
 		C1D5CDA62C6CA8A400BD5AC1 /* LibrarySyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5CDA52C6CA8A400BD5AC1 /* LibrarySyncView.swift */; };
 		C1D5CDA82C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5CDA72C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift */; };
 		C1E691482C74CF5E00D8A937 /* BookNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E691472C74CF5E00D8A937 /* BookNewNoteView.swift */; };
@@ -246,6 +248,8 @@
 		C1B038F02C49321300013EB1 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C1C564B82C78818C0056EC8E /* NavigationValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationValue.swift; sourceTree = "<group>"; };
 		C1C564CA2C78A3C90056EC8E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		C1C564CC2C7918740056EC8E /* ElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementType.swift; sourceTree = "<group>"; };
+		C1C564CF2C79E43C0056EC8E /* HomeBooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBooksViewModel.swift; sourceTree = "<group>"; };
 		C1D5CDA52C6CA8A400BD5AC1 /* LibrarySyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySyncView.swift; sourceTree = "<group>"; };
 		C1D5CDA72C6CA8A900BD5AC1 /* LibrarySyncViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySyncViewModel.swift; sourceTree = "<group>"; };
 		C1E691472C74CF5E00D8A937 /* BookNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNewNoteView.swift; sourceTree = "<group>"; };
@@ -387,11 +391,10 @@
 			children = (
 				C12240082C70D2EF007B1031 /* HomeWidgetElementSelectionView.swift */,
 				C12240022C708970007B1031 /* HomeSettingsSheetView.swift */,
-				C1223FF02C6FD6C9007B1031 /* HomeBooksView.swift */,
+				C1C564CE2C79E42D0056EC8E /* HomeBooksView */,
 				C1223FF22C6FD6D7007B1031 /* HomeStatsView.swift */,
 				C1223FF62C6FD6EC007B1031 /* HomeListsView.swift */,
 				C1223FF82C6FD6F3007B1031 /* HomeSingleListView.swift */,
-				C1223FFA2C6FD703007B1031 /* HomeSingleBookView.swift */,
 				C1223FFE2C6FE667007B1031 /* HomeWidgetView.swift */,
 				C12240002C6FEBE1007B1031 /* HomeElementView.swift */,
 			);
@@ -451,6 +454,7 @@
 			children = (
 				C125BFCF2C332180000636AF /* Tab.swift */,
 				C1C564B82C78818C0056EC8E /* NavigationValue.swift */,
+				C1C564CC2C7918740056EC8E /* ElementType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -901,6 +905,16 @@
 			path = NewBookEditSubViews;
 			sourceTree = "<group>";
 		};
+		C1C564CE2C79E42D0056EC8E /* HomeBooksView */ = {
+			isa = PBXGroup;
+			children = (
+				C1223FFA2C6FD703007B1031 /* HomeSingleBookView.swift */,
+				C1223FF02C6FD6C9007B1031 /* HomeBooksView.swift */,
+				C1C564CF2C79E43C0056EC8E /* HomeBooksViewModel.swift */,
+			);
+			path = HomeBooksView;
+			sourceTree = "<group>";
+		};
 		C1D5CDA22C6CA87F00BD5AC1 /* BookDetailSyncView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1096,6 +1110,7 @@
 				C1E691482C74CF5E00D8A937 /* BookNewNoteView.swift in Sources */,
 				C10FDCF42C6B74320000545A /* BookDetailSyncViewModel.swift in Sources */,
 				C1EFDD452C51571E003032BF /* CreateCategoryView.swift in Sources */,
+				C1C564D02C79E43C0056EC8E /* HomeBooksViewModel.swift in Sources */,
 				C18E6A272C469DC700FFB734 /* ScannerRepository.swift in Sources */,
 				C17343A02C73E8D50093D68C /* VaultDetailBookItemView.swift in Sources */,
 				C125BFD82C333144000636AF /* BookListDetailView.swift in Sources */,
@@ -1197,6 +1212,7 @@
 				C1AAB0F12C56AFB200D192CF /* AllBookListNewBookView.swift in Sources */,
 				C1EFDD112C4FC5FE003032BF /* NotesListViewModel.swift in Sources */,
 				C12A25522C6509A800A31416 /* ProfileView.swift in Sources */,
+				C1C564CD2C7918740056EC8E /* ElementType.swift in Sources */,
 				C125BFD52C33281D000636AF /* HomeView.swift in Sources */,
 				C1354C5A2C75E4BF0093411C /* BookListDetailEditView.swift in Sources */,
 				C125BFDE2C340D9C000636AF /* NotesListView.swift in Sources */,

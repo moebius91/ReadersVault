@@ -49,6 +49,14 @@ struct HomeElementView: View {
 }
 
 #Preview {
+    let homeViewModel = HomeViewModel()
+
+    if let widget = homeViewModel.widgets.last {
+        if let element = widget.elements.first {
+            return HomeElementView(element: element)
+        }
+    }
+
     let viewModel = LibraryViewModel()
     viewModel.getCDBooks()
 

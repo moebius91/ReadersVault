@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct HomeSettingsSheetView: View {
+    enum WidgetType: String, CaseIterable, Identifiable {
+        case book = "Buch-Widget"
+        case statistic = "Statistiken"
+        case list = "Listen-Widget"
+        case note = "Notizen-Widget"
+
+        var id: String { rawValue }
+    }
+
     @EnvironmentObject private var viewModel: HomeViewModel
     @State private var title = ""
+    @State private var selection: WidgetType = .book
+
+    @State private var numberOfBooks: Int = 1
 
     var body: some View {
         NavigationStack {
@@ -33,11 +45,60 @@ struct HomeSettingsSheetView: View {
                 }
                 .frame(height: 25)
                 List {
-                    Section("Widget hinzufügen") {
-                        TextField("Widget Titel", text: $title)
+                    Section("Widget") {
+                        TextField("Widgetname", text: $title)
+                        Picker("Widget auswählen", selection: $selection) {
+                            ForEach(WidgetType.allCases) { type in
+                                Text(type.rawValue).tag(type)
+                            }
+                        }
+                        switch selection {
+                        case .book:
+                            Picker("Wie viele Bücher?", selection: $numberOfBooks) {
+                                Text("Eins").tag(1)
+                                Text("Zwei").tag(2)
+                            }
+                            Picker("Das erste Buch:", selection: $viewModel.firstBook) {
+                                Text("Kein Buch").tag(nil as CDBook?)
+                                ForEach(viewModel.filteredFirstBook) { book in
+                                    Text(book.title?.truncate(length: 30) ?? "no title").tag(book as CDBook?)
+                                }
+                            }
+                            if numberOfBooks == 2 {
+                                Picker("Das zweite Buch:", selection: $viewModel.secondBook) {
+                                    Text("Kein Buch").tag(nil as CDBook?)
+                                    ForEach(viewModel.filteredSecondBook) { book in
+                                        Text(book.title?.truncate(length: 30) ?? "no title").tag(book as CDBook?)
+                                    }
+                                }
+                            }
+                        case .list:
+                            Text("Test")
+                        case .note:
+                            Text("Test")
+                        case .statistic:
+                            Text("Statistiken")
+                        }
                         Button("Widget hinzufügen") {
-                            let newWidget = viewModel.createWidget(title: title, elements: [])
+                            var newWidget = viewModel.createWidget(title: title, elements: [])
+
                             if !title.isEmpty {
+                                switch selection {
+                                case .book:
+                                    if let firstBook = viewModel.firstBook {
+                                        if let secondBook = viewModel.secondBook {
+                                            newWidget = viewModel.createBookWidget(title: title, numberOfBooks: numberOfBooks, books: (firstBook, secondBook))
+                                        } else {
+                                            newWidget = viewModel.createBookWidget(title: title, numberOfBooks: numberOfBooks, books: (firstBook, nil))
+                                        }
+                                    }
+                                case .statistic:
+                                    newWidget = newWidget
+                                case .list:
+                                    newWidget = newWidget
+                                case .note:
+                                    newWidget = newWidget
+                                }
                                 viewModel.selectedWidgets.append(newWidget)
                                 viewModel.widgets.append(newWidget)
                             }
@@ -47,19 +108,7 @@ struct HomeSettingsSheetView: View {
                         Section("Widgets") {
                             ForEach(viewModel.selectedWidgets) { widget in
                                 VStack {
-                                    NavigationLink(destination: {
-                                        HomeWidgetElementSelectionView()
-                                            .onAppear {
-                                                viewModel.widget = widget
-                                                viewModel.addAllElementsFromWidgetToSelected(widget)
-                                                viewModel.cdBooksToWidgetBooks()
-                                            }
-                                            .onDisappear {
-                                                viewModel.selectedWidgetElements.removeAll()
-                                            }
-                                    }) {
-                                        Text(widget.title)
-                                    }
+                                    Text(widget.title)
                                 }
                                 .swipeActions {
                                     Button(role: .destructive, action: {
@@ -83,6 +132,7 @@ struct HomeSettingsSheetView: View {
                 }
             }
             .onAppear {
+                viewModel.getCDBooks()
                 viewModel.addAllWidgetsToSelected()
                 viewModel.widget = nil
             }
