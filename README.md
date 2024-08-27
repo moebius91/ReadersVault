@@ -12,6 +12,8 @@ Screenshots aus dem Simulator:
 <p>
   <img src="./img/app_design_1.png" width="200">
   <img src="./img/app_design_2.png" width="200">
+  <img src="./img/app_design_3.png" width="200">
+  <img src="./img/app_design_4.png" width="200">
 </p>
 
 
@@ -21,7 +23,7 @@ Die folgenden Features sind geplant und, sofern abgehakt, bereits implementiert.
 - [x] ISBN-Suche
 - [x] Bücherlisten (Bestand, Wunsch, Geliehen, Verliehen + eigene)
 - [x] Buchnotizen
-- [ ] Themensortierte, buchübergreifende Notizsammelbecken
+- [x] Themensortierte, buchübergreifende Notizsammelbecken (Vaults)
 - [x] Barcode-Scanner
 - [x] Favoriten setzen
 
@@ -33,8 +35,6 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
 
 ```
 └── BookVault
-    ├── Extensions
-    │   └── String+Extension.swift
     ├── GoogleService-Info.plist
     ├── Models
     │   ├── ApiModel
@@ -42,11 +42,35 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
     │   │   ├── ApiBook.swift
     │   │   ├── ApiBookResult.swift
     │   │   └── ApiTitlesResult.swift
-    │   └── CoreData
-    │       ├── BookVault.xcdatamodeld
-    │       │   └── BookVault.xcdatamodel
-    │       │       └── contents
-    │       └── PersistentStore.swift
+    │   ├── CoreData
+    │   │   ├── BookVault.xcdatamodeld
+    │   │   │   └── BookVault.xcdatamodel
+    │   │   │       └── contents
+    │   │   └── PersistentStore.swift
+    │   ├── Enums
+    │   │   ├── ElementType.swift
+    │   │   ├── NavigationValue.swift
+    │   │   └── Tab.swift
+    │   ├── Extensions
+    │   │   ├── CDBook+Extension.swift
+    │   │   ├── CDCategory+Extension.swift
+    │   │   ├── CDList+Extension.swift
+    │   │   ├── CDVault+Extension.swift
+    │   │   ├── String+Extension.swift
+    │   │   ├── UTType+Extension.swift
+    │   │   ├── Widget+Transferable.swift
+    │   │   └── WidgetElement+Transferable.swift
+    │   ├── Firebase
+    │   │   ├── FireBook.swift
+    │   │   ├── FireBulletinBoardPost.swift
+    │   │   ├── FireGroup.swift
+    │   │   ├── FireGroupPost.swift
+    │   │   └── FireUser.swift
+    │   └── HomeView
+    │       ├── Widget.swift
+    │       ├── WidgetBook.swift
+    │       ├── WidgetElement.swift
+    │       └── WidgetList.swift
     ├── ReadersVaultApp.swift
     ├── Repositories
     │   ├── ApiRepository
@@ -55,68 +79,163 @@ Jede View erhält ihren eigenen Ordner, wo die View und SubViews, sowie das View
     │   └── ScannerRepository
     │       └── ScannerRepository.swift
     └── Views
-        ├── AllBookListView
-        │   └── AllBookListView.swift
-        ├── BookDetailView
-        │   ├── BookDetailSubViews
-        │   │   └── BookDetailEditView.swift
-        │   ├── BookDetailView.swift
-        │   └── BookDetailViewModel.swift
-        ├── BookListDetailView
-        │   ├── BookListAddBookView
-        │   │   ├── BookListAddBookView.swift
-        │   │   └── BookListAddBookViewModel.swift
-        │   ├── BookListDetailView.swift
-        │   └── BookListDetailViewModel.swift
-        ├── CommunityView
-        │   └── CommunityView.swift
-        ├── HomeView
-        │   └── HomeView.swift
-        ├── LibraryView
-        │   ├── LibrarySubViews
-        │   │   ├── HorizontalBookListView.swift
-        │   │   └── VerticalBookListsView.swift
-        │   ├── LibraryView.swift
-        │   └── LibraryViewModel.swift
+        ├── Common
+        │   ├── BooksSelectionView
+        │   │   ├── BooksSelecitonViewModel.swift
+        │   │   └── BooksSelectionView.swift
+        │   ├── CategoriesSelectionView
+        │   │   ├── CategoriesSelectionSubViews
+        │   │   │   └── CreateCategoryView.swift
+        │   │   ├── CategoriesSelectionView.swift
+        │   │   └── CategoriesSelectionViewModel.swift
+        │   ├── NotesSelectionView
+        │   │   ├── NotesSelectionView.swift
+        │   │   └── NotesSelectionViewModel.swift
+        │   └── TagsSelectionView
+        │       ├── TagsSelectionSubViews
+        │       │   └── CreateTagView.swift
+        │       ├── TagsSelectionView.swift
+        │       └── TagsSelectionViewModel.swift
+        ├── Community
+        │   ├── BulletinBoardView
+        │   │   ├── BulletinBoardView.swift
+        │   │   └── BulletinBoardViewModel.swift
+        │   ├── CommunityDashboardView
+        │   │   ├── CommunityDashboardSubViews
+        │   │   │   ├── CommunityBlackboardView.swift
+        │   │   │   └── CommunityGroupsView.swift
+        │   │   ├── CommunityDashboardView.swift
+        │   │   └── CommunityDashboardViewModel.swift
+        │   ├── CommunityNavigatorView
+        │   │   └── CommunityNavigatorView.swift
+        │   ├── GroupsView
+        │   │   ├── GroupsView.swift
+        │   │   └── GroupsViewModel.swift
+        │   ├── LoginView
+        │   │   ├── LoginView.swift
+        │   │   └── LoginViewModel.swift
+        │   ├── MessagesView
+        │   │   └── MessagesView.swift
+        │   ├── ProfileView
+        │   │   └── ProfileView.swift
+        │   └── VerificationPendingView
+        │       └── VerificationPendingView.swift
+        ├── Home
+        │   └── HomeView
+        │       ├── HomeSubViews
+        │       │   ├── HomeElementView.swift
+        │       │   ├── HomeList.swift
+        │       │   ├── HomeListsView.swift
+        │       │   ├── HomeSettingsSheetView.swift
+        │       │   ├── HomeSingleListView.swift
+        │       │   ├── HomeStatsView.swift
+        │       │   ├── HomeWidgetElementSelectionView.swift
+        │       │   ├── HomeWidgetView.swift
+        │       │   └── WidgetElements
+        │       │       ├── HomeAddedLastBooksView
+        │       │       │   ├── HomeAddedLastBooksView.swift
+        │       │       │   └── HomeAddedLastBooksViewModel.swift
+        │       │       ├── HomeBooksView
+        │       │       │   ├── HomeBooksView.swift
+        │       │       │   ├── HomeBooksViewModel.swift
+        │       │       │   └── HomeSingleBookView.swift
+        │       │       └── HomeFavListView
+        │       │           ├── HomeFavListView.swift
+        │       │           └── HomeFavListViewModel.swift
+        │       ├── HomeView.swift
+        │       └── HomeViewModel.swift
+        ├── Library
+        │   ├── AllBookListView
+        │   │   ├── AllBookListSubViews
+        │   │   │   └── AllBookListNewBookView.swift
+        │   │   ├── AllBookListView.swift
+        │   │   └── AllBookListViewModel.swift
+        │   ├── AuthorSelectionView
+        │   │   ├── AuthorSelectionSubViews
+        │   │   │   └── CreateAuthorView.swift
+        │   │   ├── AuthorSelectionView.swift
+        │   │   └── AuthorSelectionViewModel.swift
+        │   ├── BookDetailView
+        │   │   ├── BookDetailSubViews
+        │   │   │   ├── BookDetailEditView
+        │   │   │   │   └── BookDetailEditView.swift
+        │   │   │   ├── BookDetailSyncView
+        │   │   │   │   ├── BookDetailSyncView.swift
+        │   │   │   │   └── BookDetailSyncViewModel.swift
+        │   │   │   ├── BookNewNoteView
+        │   │   │   │   └── BookNewNoteView.swift
+        │   │   │   └── BookToListView
+        │   │   │       └── BookToListView.swift
+        │   │   ├── BookDetailView.swift
+        │   │   └── BookDetailViewModel.swift
+        │   ├── BookListDetailView
+        │   │   ├── BookListDetailSubViews
+        │   │   │   ├── BookListAddBookView
+        │   │   │   │   ├── BookListAddBookView.swift
+        │   │   │   │   └── BookListAddBookViewModel.swift
+        │   │   │   └── BookListDetailEditView.swift
+        │   │   ├── BookListDetailView.swift
+        │   │   └── BookListDetailViewModel.swift
+        │   ├── LibraryView
+        │   │   ├── LibrarySubViews
+        │   │   │   ├── HorizontalBookListView.swift
+        │   │   │   ├── LibrarySyncView
+        │   │   │   │   ├── LibrarySyncView.swift
+        │   │   │   │   └── LibrarySyncViewModel.swift
+        │   │   │   └── VerticalBookListsView.swift
+        │   │   ├── LibraryView.swift
+        │   │   └── LibraryViewModel.swift
+        │   ├── NewBookEditView
+        │   │   ├── NewBookEditSubViews
+        │   │   │   └── CustomTextField.swift
+        │   │   ├── NewBookEditView.swift
+        │   │   └── NewBookEditViewModel.swift
+        │   └── NewListEditView
+        │       ├── NewListEditView.swift
+        │       └── NewListEditViewModel.swift
         ├── NavigatorView
-        │   ├── Enums
-        │   │   └── Tab.swift
         │   └── NavigatorView.swift
-        ├── NewBookEditView
-        │   ├── NewBookEditView.swift
-        │   └── NewBookEditViewModel.swift
-        ├── NoteDetailView
-        │   └── NoteDetailView.swift
-        ├── NotesBookSelectionView
-        │   └── NotesBookSelectionView.swift
-        ├── NotesEditView
-        │   └── NotesEditView.swift
-        ├── NotesListView
-        │   ├── CategorySelectionView.swift
-        │   ├── NotesListSubViews
-        │   │   ├── CreateCategoryView.swift
-        │   │   ├── CreateTagView.swift
-        │   │   └── CustomSearchBar.swift
-        │   ├── NotesListView.swift
-        │   ├── NotesListViewModel.swift
-        │   └── TagSelectionView.swift
-        ├── SafariView
-        │   └── SafariView.swift
-        ├── ScannerView
-        │   ├── DocumentScannerView.swift
-        │   ├── RoundedRectLabel.swift
-        │   ├── ScannerViewModel.swift
-        │   └── TestScannerView.swift
-        ├── SearchView
-        │   ├── SearchView.swift
-        │   ├── SearchViewModel.swift
-        │   └── SearchViewSubViews
-        │       ├── AuthorsResultView.swift
-        │       ├── BooksResultView.swift
-        │       ├── ScannerSearchBar.swift
-        │       └── SingleBookResultView.swift
-        └── SettingsView_deprecated
-            └── SettingsView.swift
+        ├── Notes
+        │   ├── NoteDetailView
+        │   │   ├── NoteDetailView.swift
+        │   │   └── NoteDetailViewModel.swift
+        │   ├── NotesBookSelectionView
+        │   │   └── NotesBookSelectionView.swift
+        │   ├── NotesEditView
+        │   │   └── NotesEditView.swift
+        │   └── NotesListView
+        │       ├── NotesListSubViews
+        │       │   └── CustomSearchBar.swift
+        │       ├── NotesListView.swift
+        │       └── NotesListViewModel.swift
+        ├── Search
+        │   ├── SafariView
+        │   │   └── SafariView.swift
+        │   ├── ScannerView
+        │   │   ├── DocumentScannerView.swift
+        │   │   ├── RoundedRectLabel.swift
+        │   │   └── ScannerViewModel.swift
+        │   └── SearchView
+        │       ├── SearchView.swift
+        │       ├── SearchViewModel.swift
+        │       └── SearchViewSubViews
+        │           ├── AuthorsResultView.swift
+        │           ├── BooksResultView.swift
+        │           ├── ScannerSearchBar.swift
+        │           └── SingleBookResultView.swift
+        └── Vaults
+            ├── VaultDetailView
+            │   ├── VaultDetailSubViews
+            │   │   ├── VaultDetailBookItemView.swift
+            │   │   └── VaultDetailHorizontalView.swift
+            │   ├── VaultDetailView.swift
+            │   └── VaultDetailViewModel.swift
+            └── VaultListView
+                ├── VaultListSubViews
+                │   └── CreateVaultSheetView.swift
+                ├── VaultListView.swift
+                └── VaultListViewModel.swift
+
 ```
 
 Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.
