@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
+    @State private var selection: ElementType = .standard
 
-    @State private var selection: WidgetElement.ElementType = .standard
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -26,6 +26,7 @@ struct HomeView: View {
                 ForEach(viewModel.widgets) { widget in
                     if viewModel.areWidgetsDragable {
                         HomeWidgetView(widget: widget)
+                            .padding(0)
                             .environmentObject(viewModel)
                             .draggable(widget) {
                                 RoundedRectangle(cornerRadius: 10)
@@ -65,6 +66,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .navigationTitle("Dashboard")
             .toolbar {
                 if !viewModel.widgets.isEmpty {
                     Button("", systemImage: viewModel.areWidgetsDragable ? "lock.open" : "lock", action: {

@@ -16,10 +16,29 @@ class HomeViewModel: ObservableObject {
     }
 
     @Published var books: [WidgetBook] = []
+    @Published var cdBooks: [CDBook] = []
+
+    @Published var firstBook: CDBook?
+    @Published var secondBook: CDBook?
+
+    var filteredFirstBook: [CDBook] {
+        if secondBook == nil {
+            return cdBooks
+        } else {
+            return cdBooks.filter { $0.isbn13 != secondBook?.isbn13 }
+        }
+    }
+
+    var filteredSecondBook: [CDBook] {
+        if firstBook == nil {
+            return cdBooks
+        } else {
+            return cdBooks.filter { $0.isbn13 != firstBook?.isbn13 }
+        }
+    }
 
     @Published var selectedWidgets: [Widget] = []
     @Published var selectedWidgetElements: [WidgetElement] = []
-    @Published var selection = "Red"
 
     @Published var draggingWidget: Widget?
     @Published var draggingWidgetElement: WidgetElement?
@@ -31,11 +50,16 @@ class HomeViewModel: ObservableObject {
 
     init() {
         loadWidgets()
+    }
 
-        // Testfunktion
-//        if widgets.isEmpty {
-//            self.dummieWidgets()
-//        }
+    func getCDBooks() {
+        let fetchRequest = CDBook.fetchRequest()
+
+        do {
+            self.cdBooks = try PersistentStore.shared.context.fetch(fetchRequest)
+        } catch {
+            return
+        }
     }
 
     func cdBooksToWidgetBooks() {
@@ -112,6 +136,36 @@ class HomeViewModel: ObservableObject {
         return Widget(title: title, elements: elements)
     }
 
+    func createStatisticWidget(title: String, elements: [WidgetElement]) -> Widget {
+        return Widget(title: title, elements: [WidgetElement(name: "Statistik", type: .stats, stats: ["Anzahl Bücher": "999"])])
+    }
+
+    func createBookWidget(title: String, numberOfBooks: Int, books: (CDBook, CDBook?)) -> Widget {
+        let firstWidgetBook = WidgetBook(cdBookId: books.0.id ?? UUID(), title: books.0.title ?? "", cover: books.0.coverImage)
+        let secondWidgetBook = WidgetBook(cdBookId: books.1?.id ?? UUID(), title: books.1?.title ?? "", cover: books.1?.coverImage)
+        if numberOfBooks == 1 {
+            return Widget(title: title, elements: [WidgetElement(name: "Bücher", type: .book, book: firstWidgetBook)])
+        } else {
+            return Widget(title: title, elements: [WidgetElement(name: "Bücher", type: .books, books: [firstWidgetBook, secondWidgetBook])])
+        }
+    }
+
+    func createFavoriteWidget(title: String) -> Widget {
+        return Widget(title: title, elements: [WidgetElement(name: "Favoriten", type: .favs)])
+    }
+
+    func createAddedLastWidget(title: String) -> Widget {
+        return Widget(title: title, elements: [WidgetElement(name: "Zuletzt hinzugefügt", type: .addedLast)])
+    }
+
+    func createListWidget(title: String, elements: [WidgetElement]) -> Widget {
+        return Widget(title: title, elements: elements)
+    }
+
+    func createNoteWidget(title: String, elements: [WidgetElement]) -> Widget {
+        return Widget(title: title, elements: elements)
+    }
+
     private func createDoubleBookWidgetElement(name: String, firstBook: WidgetBook, secondBook: WidgetBook) -> WidgetElement {
         return WidgetElement(name: name, type: .books, books: [firstBook, secondBook])
     }
@@ -128,49 +182,5 @@ class HomeViewModel: ObservableObject {
            let decodedWidgets = try? JSONDecoder().decode([Widget].self, from: savedData) {
             widgets = decodedWidgets
         }
-    }
-
-    // Testfunktion
-    private func dummieWidgets() {
-        let libraryViewModel = LibraryViewModel()
-        libraryViewModel.getCDBooks()
-
-        var elementsOne: [WidgetElement] = []
-
-        if let book = libraryViewModel.books.first {
-            if let cover = book.coverImage, let bookId = book.id, let bookTitle = book.title {
-                let widgetBook = WidgetBook(cdBookId: bookId, title: bookTitle, cover: cover)
-
-                elementsOne = [
-                    WidgetElement(name: "Buch", type: .book, book: widgetBook),
-                    WidgetElement(name: "Name", type: .standard),
-                    WidgetElement(name: "Name", type: .standard),
-                    WidgetElement(name: "Name", type: .standard),
-                    WidgetElement(name: "Name", type: .standard)
-                ]
-            }
-        }
-
-        let elements = [
-            WidgetElement(name: "Name", type: .standard),
-            WidgetElement(name: "Name", type: .standard),
-            WidgetElement(name: "Name", type: .standard),
-            WidgetElement(name: "Name", type: .standard),
-            WidgetElement(name: "Name", type: .standard)
-        ]
-
-        let widgetOne = Widget(title: "Erstes Widget", elements: elementsOne)
-        let widgetTwo = Widget(title: "Zweites Widget", elements: elements)
-        let widgetThree = Widget(title: "Drittes Widget", elements: elements)
-        let widgetFour = Widget(title: "Viertes Widget", elements: elements)
-
-        let widgets = [
-            widgetOne,
-            widgetTwo,
-            widgetThree,
-            widgetFour
-        ]
-
-        self.widgets = widgets
     }
 }

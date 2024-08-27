@@ -8,15 +8,6 @@
 import Foundation
 
 struct WidgetElement: Identifiable, Codable, Equatable {
-    enum ElementType: String, Codable, CaseIterable {
-        case standard = "Standard"
-        case book = "Buch"
-        case books = "Bücher"
-        case stats = "Statistiken"
-        case list = "Liste"
-        case lists = "Listen"
-    }
-
     var id = UUID()
     var name: String
     var isSmall: Bool = false

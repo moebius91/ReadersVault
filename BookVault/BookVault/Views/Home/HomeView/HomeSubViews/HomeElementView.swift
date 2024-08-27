@@ -41,14 +41,27 @@ struct HomeElementView: View {
                     if let lists = element.lists {
                         HomeListsView(lists: lists)
                     }
+                case .favs:
+                    HomeFavListView()
+                case .addedLast:
+                    HomeAddedLastBooksView()
                 }
             }
+            .padding(.horizontal)
         }
         .frame(height: 150)
     }
 }
 
 #Preview {
+    let homeViewModel = HomeViewModel()
+
+    if let widget = homeViewModel.widgets.last {
+        if let element = widget.elements.first {
+            return HomeElementView(element: element)
+        }
+    }
+
     let viewModel = LibraryViewModel()
     viewModel.getCDBooks()
 

@@ -21,12 +21,12 @@ struct HomeWidgetView: View {
                     Text(widget.title)
                         .font(.title2)
                         .bold()
-                    Spacer()
-                    VStack {
-                        Button("", systemImage: widget.itemsMovable ? "lock.open" : "lock") {
-                            viewModel.toggleWidgetItemsMovable(for: widget.id)
-                        }
-                    }
+                        .padding(8)
+//                    VStack {
+//                        Button("", systemImage: widget.itemsMovable ? "lock.open" : "lock") {
+//                            viewModel.toggleWidgetItemsMovable(for: widget.id)
+//                        }
+//                    }
                 }
                 .padding(.top)
                 .padding(.horizontal)
@@ -64,16 +64,22 @@ struct HomeWidgetView: View {
                         HomeElementView(element: element)
                     }
                 }
+                .padding(.top, 8)
             }
-            .padding(.bottom)
-            .padding()
+            .padding(0)
         }
+//        .padding()
     }
 }
 
 #Preview {
-    HomeWidgetView(widget: Widget(title: "Test", elements: []))
-        .environmentObject(HomeViewModel())
+    let homeViewModel = HomeViewModel()
+
+    if let widget = homeViewModel.widgets.first {
+        return HomeWidgetView(widget: widget)
+            .environmentObject(homeViewModel)
+    }
+    return EmptyView()
 }
 
 #Preview("HomeView") {

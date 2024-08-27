@@ -71,6 +71,7 @@ class SearchViewModel: ObservableObject {
         cdBook.isbn10 = self.book?.isbn10
         cdBook.isbn13 = self.book?.isbn13
         cdBook.publisher = self.book?.publisher
+        cdBook.createdAt = Date()
 
         self.book?.authors?.forEach { name in
             if let author = checkAndCreateAuthor(name) {

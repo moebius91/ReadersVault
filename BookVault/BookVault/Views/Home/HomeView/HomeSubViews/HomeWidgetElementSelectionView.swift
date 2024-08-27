@@ -11,7 +11,7 @@ struct HomeWidgetElementSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @EnvironmentObject var viewModel: HomeViewModel
-    @State private var selection: WidgetElement.ElementType = .standard
+    @State private var selection: ElementType = .standard
     @State private var name: String = ""
 
     @State private var bookSelection: WidgetBook = WidgetBook(cdBookId: UUID(), title: "")
@@ -39,7 +39,7 @@ struct HomeWidgetElementSelectionView: View {
                     }
                     Section("Neues Element") {
                         Picker("Wähle ein Element", selection: $selection) {
-                            ForEach(WidgetElement.ElementType.allCases, id: \.self) { type in
+                            ForEach(ElementType.allCases, id: \.self) { type in
                                 Text(type.rawValue)
                             }
                         }

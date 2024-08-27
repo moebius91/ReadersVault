@@ -53,6 +53,7 @@ class AllBookListViewModel: ObservableObject {
         cdBook.isOwned = self.isOwned
         cdBook.isLoaned = self.isLoaned
         cdBook.isRead = self.isRead
+        cdBook.createdAt = Date()
 
         // Autoren müssen anders erfasst werden.
         self.selectedAuthors.forEach { author in
