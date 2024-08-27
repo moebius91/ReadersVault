@@ -111,6 +111,7 @@ struct HomeSettingsSheetView: View {
                                 }
                                 viewModel.selectedWidgets.append(newWidget)
                                 viewModel.widgets.append(newWidget)
+                                title = ""
                             }
                         }
                     }

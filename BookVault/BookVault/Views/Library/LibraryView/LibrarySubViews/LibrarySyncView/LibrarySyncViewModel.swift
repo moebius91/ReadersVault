@@ -185,10 +185,10 @@ class LibrarySyncViewModel: ObservableObject {
 
     private func getAllSyncedBooks() {
         let cdBooksISBNSet = Set(cdBooks.map { $0.isbn13 })
-        self.syncedBooks = self.books.filter { 
+        self.syncedBooks = self.books.filter {
             cdBooksISBNSet.contains($0.isbn13)
         }
-        
+
 //        let fireBookISBNSet = Set(books.map { $0.isbn13 })
 //        self.syncedBooks = self.cdBooks.filter { cdBook in
 //            guard let isbn13 = cdBook.isbn13 else { return false }
