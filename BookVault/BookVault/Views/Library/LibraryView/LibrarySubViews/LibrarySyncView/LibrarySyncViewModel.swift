@@ -48,6 +48,7 @@ class LibrarySyncViewModel: ObservableObject {
         cdBook.isDesired = fireBook.isDesired
         cdBook.isLoaned = fireBook.isLoaned
         cdBook.isOwned = fireBook.isOwned
+        cdBook.createdAt = Date()
 
         downloadImage(from: fireBook.coverUrl) { data in
             cdBook.coverImage = data

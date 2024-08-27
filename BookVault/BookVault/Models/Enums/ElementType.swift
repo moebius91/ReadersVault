@@ -14,4 +14,6 @@ enum ElementType: String, Codable, CaseIterable {
     case stats = "Statistiken"
     case list = "Liste"
     case lists = "Listen"
+    case favs = "Favoriten"
+    case addedLast = "Zuletzt hinzugefügt"
 }

@@ -13,6 +13,8 @@ struct HomeSettingsSheetView: View {
         case statistic = "Statistiken"
         case list = "Listen-Widget"
         case note = "Notizen-Widget"
+        case fav = "Favoriten-Widget"
+        case addedLast = "Zuletzt-Hinzugefügt"
 
         var id: String { rawValue }
     }
@@ -78,6 +80,10 @@ struct HomeSettingsSheetView: View {
                             Text("Test")
                         case .statistic:
                             Text("Statistiken")
+                        case .fav:
+                            Text("Favoriten-Widget")
+                        case .addedLast:
+                            Text("Zuletzt hinzugefügt.")
                         }
                         Button("Widget hinzufügen") {
                             var newWidget = viewModel.createWidget(title: title, elements: [])
@@ -98,6 +104,10 @@ struct HomeSettingsSheetView: View {
                                     newWidget = newWidget
                                 case .note:
                                     newWidget = newWidget
+                                case .fav:
+                                    newWidget = viewModel.createFavoriteWidget(title: title)
+                                case .addedLast:
+                                    newWidget = viewModel.createAddedLastWidget(title: title)
                                 }
                                 viewModel.selectedWidgets.append(newWidget)
                                 viewModel.widgets.append(newWidget)

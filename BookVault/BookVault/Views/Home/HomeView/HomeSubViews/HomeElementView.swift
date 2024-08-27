@@ -41,8 +41,13 @@ struct HomeElementView: View {
                     if let lists = element.lists {
                         HomeListsView(lists: lists)
                     }
+                case .favs:
+                    HomeFavListView()
+                case .addedLast:
+                    HomeAddedLastBooksView()
                 }
             }
+            .padding(.horizontal)
         }
         .frame(height: 150)
     }

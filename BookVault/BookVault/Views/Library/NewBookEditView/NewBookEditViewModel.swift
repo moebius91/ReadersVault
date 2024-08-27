@@ -73,6 +73,7 @@ class NewBookEditViewModel: ObservableObject {
         cdBook.isOwned = self.isOwned
         cdBook.isLoaned = self.isLoaned
         cdBook.isRead = self.isRead
+        cdBook.createdAt = Date()
 
         self.selectedTags.forEach { tag in
             cdBook.addToTags(tag)

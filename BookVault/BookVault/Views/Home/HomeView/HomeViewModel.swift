@@ -150,6 +150,14 @@ class HomeViewModel: ObservableObject {
         }
     }
 
+    func createFavoriteWidget(title: String) -> Widget {
+        return Widget(title: title, elements: [WidgetElement(name: "Favoriten", type: .favs)])
+    }
+
+    func createAddedLastWidget(title: String) -> Widget {
+        return Widget(title: title, elements: [WidgetElement(name: "Zuletzt hinzugefügt", type: .addedLast)])
+    }
+
     func createListWidget(title: String, elements: [WidgetElement]) -> Widget {
         return Widget(title: title, elements: elements)
     }
