@@ -31,8 +31,11 @@ struct LibraryView: View {
                 Button("Hinzufügen", systemImage: "plus") {
                     // Button
                 }
+                .disabled(true)
             }
-            .sheet(isPresented: $isPresented) {
+            .sheet(isPresented: $isPresented, onDismiss: {
+                viewModel.getCDBooks()
+            }) {
                 LibrarySyncView()
                     .environmentObject(LibrarySyncViewModel(books: viewModel.books))
             }
