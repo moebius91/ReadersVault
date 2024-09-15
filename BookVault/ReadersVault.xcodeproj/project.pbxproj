@@ -87,7 +87,6 @@
 		C1383C4D2C38330500CDB87A /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C4A2C38330500CDB87A /* ApiRepository.swift */; };
 		C1383C592C38356300CDB87A /* BookVault.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1383C552C38356300CDB87A /* BookVault.xcdatamodeld */; };
 		C1383C5A2C38356300CDB87A /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383C562C38356300CDB87A /* PersistentStore.swift */; };
-		C1383C5C2C3C0DBF00CDB87A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */; };
 		C167B08C2C526F6400BD6FFA /* ScannerSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B08B2C526F6400BD6FFA /* ScannerSearchBar.swift */; };
 		C167B0932C53EE9400BD6FFA /* NewBookEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B0922C53EE9400BD6FFA /* NewBookEditView.swift */; };
 		C167B0952C53EEA700BD6FFA /* NewBookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C167B0942C53EEA700BD6FFA /* NewBookEditViewModel.swift */; };
@@ -219,7 +218,6 @@
 		C1383C4A2C38330500CDB87A /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		C1383C562C38356300CDB87A /* PersistentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
 		C1383C582C38356300CDB87A /* BookVault.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookVault.xcdatamodel; sourceTree = "<group>"; };
-		C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C167B08B2C526F6400BD6FFA /* ScannerSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerSearchBar.swift; sourceTree = "<group>"; };
 		C167B0922C53EE9400BD6FFA /* NewBookEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookEditView.swift; sourceTree = "<group>"; };
 		C167B0942C53EEA700BD6FFA /* NewBookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookEditViewModel.swift; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				C1383C3E2C3832D200CDB87A /* Models */,
 				C125BFBF2C32C652000636AF /* ReadersVaultApp.swift */,
 				C125BFC32C32C653000636AF /* Assets.xcassets */,
-				C1383C5B2C3C0DBF00CDB87A /* GoogleService-Info.plist */,
 				C125BFC52C32C653000636AF /* Preview Content */,
 			);
 			path = BookVault;
@@ -1112,7 +1109,6 @@
 			files = (
 				C125BFC72C32C653000636AF /* Preview Assets.xcassets in Resources */,
 				C125BFC42C32C653000636AF /* Assets.xcassets in Resources */,
-				C1383C5C2C3C0DBF00CDB87A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
