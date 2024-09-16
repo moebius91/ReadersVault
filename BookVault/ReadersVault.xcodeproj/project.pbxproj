@@ -137,6 +137,7 @@
 		C1EFDD432C515589003032BF /* CategoriesSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD422C515589003032BF /* CategoriesSelectionView.swift */; };
 		C1EFDD452C51571E003032BF /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD442C51571E003032BF /* CreateCategoryView.swift */; };
 		C1EFDD482C51646E003032BF /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFDD472C51646E003032BF /* NoteDetailView.swift */; };
+		C1FCCF452C984ECB00BB791A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1FCCF442C984ECB00BB791A /* GoogleService-Info.plist */; };
 		C1FFD9AE2C7CDDDB0040E4A0 /* HomeFavListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFD9AD2C7CDDDB0040E4A0 /* HomeFavListView.swift */; };
 		C1FFD9B02C7CDE320040E4A0 /* HomeFavListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFD9AF2C7CDE320040E4A0 /* HomeFavListViewModel.swift */; };
 		C1FFD9B32C7DB6050040E4A0 /* HomeAddedLastBooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFD9B22C7DB6050040E4A0 /* HomeAddedLastBooksViewModel.swift */; };
@@ -269,6 +270,7 @@
 		C1EFDD422C515589003032BF /* CategoriesSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSelectionView.swift; sourceTree = "<group>"; };
 		C1EFDD442C51571E003032BF /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
 		C1EFDD472C51646E003032BF /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		C1FCCF442C984ECB00BB791A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1FFD9AD2C7CDDDB0040E4A0 /* HomeFavListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFavListView.swift; sourceTree = "<group>"; };
 		C1FFD9AF2C7CDE320040E4A0 /* HomeFavListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFavListViewModel.swift; sourceTree = "<group>"; };
 		C1FFD9B22C7DB6050040E4A0 /* HomeAddedLastBooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddedLastBooksViewModel.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 		C125BFBE2C32C652000636AF /* BookVault */ = {
 			isa = PBXGroup;
 			children = (
+				C1FCCF442C984ECB00BB791A /* GoogleService-Info.plist */,
 				C162C0C02C3D7A0E00C84781 /* Views */,
 				C1383C482C3832DF00CDB87A /* Repositories */,
 				C1383C3E2C3832D200CDB87A /* Models */,
@@ -1109,6 +1112,7 @@
 			files = (
 				C125BFC72C32C653000636AF /* Preview Assets.xcassets in Resources */,
 				C125BFC42C32C653000636AF /* Assets.xcassets in Resources */,
+				C1FCCF452C984ECB00BB791A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
